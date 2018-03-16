@@ -6,6 +6,9 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/")
 
 ADD_EXECUTABLE("${PROJECT_NAME}" "Main.cpp")
 
+install(TARGETS "${PROJECT_NAME}" DESTINATION bin)
+install(FILES "${PROJECT_NAME}" DESTINATION src)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/")
 
 
@@ -13,8 +16,8 @@ add_subdirectory("include")
 add_subdirectory("src")
 
 #Define compiler features
-target_compile_features("${PROJECT_NAME}" 
-			PRIVATE 
+target_compile_features("${PROJECT_NAME}"
+			PRIVATE
 			cxx_nullptr
 			cxx_right_angle_brackets
 			)
@@ -45,6 +48,6 @@ target_include_directories("${PROJECT_NAME}" PUBLIC ${TGUI_INCLUDE_DIR})
 target_link_libraries("${PROJECT_NAME}" PUBLIC ${TGUI_LIBRARY})
 
 #cpack
-include("Cpack")
+include("CPack")
 SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 SET(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
