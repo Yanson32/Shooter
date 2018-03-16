@@ -1,8 +1,8 @@
 #ifndef STATEBASE_H
 #define STATEBASE_H
+#include <GameUtilities/Engin/GameState.h>
 
-
-class StateBase
+class StateBase: public Engin::GameState
 {
     public:
         StateBase();
