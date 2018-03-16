@@ -8,6 +8,10 @@ ADD_EXECUTABLE("${PROJECT_NAME}" "Main.cpp")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/")
 
+
+add_subdirectory("include")
+add_subdirectory("src")
+
 #Define compiler features
 target_compile_features("${PROJECT_NAME}" 
 			PRIVATE 
