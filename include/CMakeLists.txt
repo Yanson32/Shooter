@@ -2,6 +2,8 @@ set(FILES 	""
 
 )
 set(SUB_DIRECTORIES "Engin"
+					"Events"
+					"States"
 )
 
 #Add subdirectories

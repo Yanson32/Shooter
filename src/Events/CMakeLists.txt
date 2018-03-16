@@ -1,8 +1,6 @@
 set(FILES 	""
 )
-set(SUB_DIRECTORIES "Engin"
-					"Events"
-					"States"
+set(SUB_DIRECTORIES ""
 )
 
 #Add subdirectories
