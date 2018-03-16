@@ -8,6 +8,21 @@ ADD_EXECUTABLE("${PROJECT_NAME}" "Main.cpp")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/")
 
+#Define compiler features
+target_compile_features("${PROJECT_NAME}" 
+			PRIVATE 
+			cxx_nullptr
+			cxx_right_angle_brackets
+			)
+
+
+#Add includes to target
+target_include_directories("${PROJECT_NAME}" PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
+  $<INSTALL_INTERFACE:include>
+	)
+
 find_package(GameUtilities REQUIRED)
 # and for each of your dependent executable/library targets:
 target_link_libraries("${PROJECT_NAME}" PUBLIC "GameUtilities")
