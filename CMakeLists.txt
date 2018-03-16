@@ -1,9 +1,10 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 1.0.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.1.0)
 
 PROJECT("Shooter")
 
 ADD_EXECUTABLE("${PROJECT_NAME}" "Main.cpp")
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/")
 
 find_package(GameUtilities REQUIRED)
 # and for each of your dependent executable/library targets:
