@@ -2,7 +2,7 @@
 #define SH_ENGIN_H
 #include <GameUtilities/Engin/Engin.h>
 
-class Game: public Engin::Engin
+class Game: public GU::Engin::Engin
 {
     public:
         Game();

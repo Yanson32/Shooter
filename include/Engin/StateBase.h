@@ -2,7 +2,7 @@
 #define STATEBASE_H
 #include <GameUtilities/Engin/GameState.h>
 
-class StateBase: public Engin::GameState
+class StateBase: public GU::Engin::GameState
 {
     public:
         StateBase();
