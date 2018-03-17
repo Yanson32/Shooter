@@ -5,7 +5,7 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+
 
     sf::Clock timer;
     const sf::Time deltaTime = sf::seconds(1.0f / 60.0f);

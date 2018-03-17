@@ -27,7 +27,27 @@ void IntroState::Clean()
 *************************************************************************************/
 void IntroState::HandleEvents(GU::Engin::Engin& engin, const int &deltaTime)
 {
+//    if(window.isOpen())
+//    {
+//        sf::Event event;
+//
+//        while (window.pollEvent(event))
+//        {
+//            StateBase::sfEvent(engin, event);
+//            sfEvent(engin, event);
+//            gui.handleEvent(event);
+//        }
+//        leftPaddle->handleInput(*ball);
+//        rightPaddle->handleInput(*ball);
+//    }
 
+    //GameUtilities event loop
+//    Evt::EventPtr evtPtr;
+//    while(EventManager::inst().Poll((evtPtr)))
+//    {
+//        StateBase::guEvent(engin, evtPtr);
+//        guEvent(engin, evtPtr);
+//    }
 }
 
 
@@ -47,7 +67,7 @@ void IntroState::Update(GU::Engin::Engin& engin, const int &deltaTime)
 *************************************************************************************/
 void IntroState::Draw(GU::Engin::Engin& engin, const int &deltaTime)
 {
-
+    window.clear();
 }
 
 IntroState::~IntroState()
