@@ -1,6 +1,6 @@
 #include "Events/EventBase.h"
-#include "Events/Id.h"
-EventBase::EventBase(): GU::Evt::Event(Events::Id::BASE)
+
+EventBase::EventBase(const int newId): GU::Evt::Event(newId)
 {
     //ctor
 }
