@@ -1,4 +1,12 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/EventBase.cpp"
+			"${CMAKE_CURRENT_SOURCE_DIR}/ChangeState.cpp"
+			"${CMAKE_CURRENT_SOURCE_DIR}/PlayMusic.cpp"
+			"${CMAKE_CURRENT_SOURCE_DIR}/PlaySound.cpp"
+			"${CMAKE_CURRENT_SOURCE_DIR}/Pop.cpp"
+			"${CMAKE_CURRENT_SOURCE_DIR}/EventManager.cpp"
+			"${CMAKE_CURRENT_SOURCE_DIR}/PushState.cpp"
+			"${CMAKE_CURRENT_SOURCE_DIR}/MusicVolumeChanged.cpp"
+			"${CMAKE_CURRENT_SOURCE_DIR}/SoundVolumeChanged.cpp"
 )
 set(SUB_DIRECTORIES ""
 )

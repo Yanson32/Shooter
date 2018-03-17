@@ -1,4 +1,5 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Id.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/IntroState.h"
 
 )
 set(SUB_DIRECTORIES ""
