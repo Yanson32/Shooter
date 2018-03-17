@@ -5,8 +5,8 @@ namespace Events
 {
     enum Id
     {
-
-    }
+        BASE
+    };
 }
 
 #endif // ID_H_INCLUDED
