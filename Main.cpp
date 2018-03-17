@@ -1,24 +1,37 @@
 #include <SFML/Graphics.hpp>
+#include "Engin/Game.h"
+#include "States/IntroState.h"
+#include <memory>
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
 
-    while (window.isOpen())
+    sf::Clock timer;
+    const sf::Time deltaTime = sf::seconds(1.0f / 60.0f);
+    sf::Time accumulator = sf::seconds(0);
+
+	Game engin;
+
+	std::unique_ptr<IntroState> state(new IntroState());
+	engin.Push(std::move(state));
+	//EventManager::inst().Post<PlayMusic>("../Resources/Music/Electro_Zombies.ogg");
+	//EventManager::inst().Post<MusicVolumeChanged>();
+	//EventManager::inst().Post<SoundVolumeChanged>();
+
+
+    while (engin.IsRunning())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
+        accumulator += timer.restart();
+        engin.HandleEvents(deltaTime.asSeconds());
+        while(accumulator.asSeconds() >= deltaTime.asSeconds())
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
+            engin.Update(deltaTime.asSeconds());
+            accumulator -= deltaTime;
         }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
+        engin.Draw(deltaTime.asSeconds());
     }
+
 
     return 0;
 }
