@@ -1,4 +1,7 @@
 #include "States/IntroState.h"
+#include <SFML/Window/Event.hpp>
+#include "Events/EventManager.h"
+#include <iostream>
 
 IntroState::IntroState()
 {
@@ -27,27 +30,25 @@ void IntroState::Clean()
 *************************************************************************************/
 void IntroState::HandleEvents(GU::Engin::Engin& engin, const int &deltaTime)
 {
-//    if(window.isOpen())
-//    {
-//        sf::Event event;
-//
-//        while (window.pollEvent(event))
-//        {
-//            StateBase::sfEvent(engin, event);
-//            sfEvent(engin, event);
-//            gui.handleEvent(event);
-//        }
-//        leftPaddle->handleInput(*ball);
-//        rightPaddle->handleInput(*ball);
-//    }
+    if(window.isOpen())
+    {
+        sf::Event event;
+
+        while (window.pollEvent(event))
+        {
+            StateBase::sfEvent(engin, event);
+            //sfEvent(engin, event);
+            //gui.handleEvent(event);
+        }
+    }
 
     //GameUtilities event loop
-//    Evt::EventPtr evtPtr;
-//    while(EventManager::inst().Poll((evtPtr)))
-//    {
-//        StateBase::guEvent(engin, evtPtr);
-//        guEvent(engin, evtPtr);
-//    }
+    GU::Evt::EventPtr evtPtr;
+    while(EventManager::inst().Poll((evtPtr)))
+    {
+        //StateBase::guEvent(engin, evtPtr);
+        //guEvent(engin, evtPtr);
+    }
 }
 
 
@@ -68,6 +69,7 @@ void IntroState::Update(GU::Engin::Engin& engin, const int &deltaTime)
 void IntroState::Draw(GU::Engin::Engin& engin, const int &deltaTime)
 {
     window.clear();
+    window.display();
 }
 
 IntroState::~IntroState()

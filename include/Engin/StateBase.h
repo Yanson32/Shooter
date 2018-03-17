@@ -7,6 +7,7 @@ class StateBase: public GU::Engin::GameState
 {
     public:
         StateBase();
+        void sfEvent(GU::Engin::Engin& engin, const sf::Event &event);
         virtual ~StateBase();
     protected:
         sf::RenderWindow window;

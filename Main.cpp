@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Engin/Game.h"
 #include "States/IntroState.h"
+#include "Events/EventManager.h"
 #include <memory>
 
 int main()
@@ -14,7 +15,8 @@ int main()
 	Game engin;
 
 	std::unique_ptr<IntroState> state(new IntroState());
-	engin.Push(std::move(state));
+	engin.ChangeState(std::move(state));
+
 	//EventManager::inst().Post<PlayMusic>("../Resources/Music/Electro_Zombies.ogg");
 	//EventManager::inst().Post<MusicVolumeChanged>();
 	//EventManager::inst().Post<SoundVolumeChanged>();
