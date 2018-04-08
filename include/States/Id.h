@@ -5,7 +5,9 @@ namespace States
 {
     enum Id
     {
-
+        PLAY_STATE,
+        MULTIPLAYER_STATE,
+        OPTIONS_STATE
     };
 }
 

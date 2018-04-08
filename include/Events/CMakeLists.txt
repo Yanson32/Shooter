@@ -2,6 +2,7 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Id.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/Events.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/EventBase.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/EventManager.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/SFEventHandler.h"
 )
 set(SUB_DIRECTORIES ""
 )

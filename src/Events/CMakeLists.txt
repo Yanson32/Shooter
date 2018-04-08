@@ -1,5 +1,6 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/EventBase.cpp"
 			"${CMAKE_CURRENT_SOURCE_DIR}/EventManager.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/SFEventHandler.cpp"
 )
 set(SUB_DIRECTORIES ""
 )

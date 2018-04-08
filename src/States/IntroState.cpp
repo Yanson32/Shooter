@@ -1,11 +1,29 @@
 #include "States/IntroState.h"
+#include "States/Id.h"
 #include <SFML/Window/Event.hpp>
 #include "Events/EventManager.h"
 #include <iostream>
+#include "Settings.h"
+#include "Events/Events.h"
+//tgui::Gui IntroState::gui(window);
 
 IntroState::IntroState()
 {
     //ctor
+    startButton = tgui::Button::create("Start");
+    startButton->connect("pressed", &IntroState::onStartPressed, this);
+    startButton->setPosition(Settings::inst().buttonPosition(0));
+    startButton->setSize(Settings::inst().buttonSize());
+
+    multiplayerButton = tgui::Button::create("Multiplayer");
+    multiplayerButton->connect("pressed", &IntroState::onMultiplayerPressed, this);
+    multiplayerButton->setPosition(Settings::inst().buttonPosition(1));
+    multiplayerButton->setSize(Settings::inst().buttonSize());
+
+    optionButton = tgui::Button::create("Options");
+    optionButton->connect("pressed", &IntroState::onOptionsPressed, this);
+    optionButton->setPosition(Settings::inst().buttonPosition(2));
+    optionButton->setSize(Settings::inst().buttonSize());
 }
 
 /*********************************************************************************//**
@@ -13,7 +31,9 @@ IntroState::IntroState()
 *************************************************************************************/
 void IntroState::Init()
 {
-
+    gui.add(startButton);
+    gui.add(multiplayerButton);
+    gui.add(optionButton);
 }
 
 /*********************************************************************************//**
@@ -21,7 +41,7 @@ void IntroState::Init()
 *************************************************************************************/
 void IntroState::Clean()
 {
-
+    gui.removeAllWidgets();
 }
 
 /*********************************************************************************//**
@@ -36,9 +56,8 @@ void IntroState::HandleEvents(GU::Engin::Engin& engin, const int &deltaTime)
 
         while (window.pollEvent(event))
         {
-            StateBase::sfEvent(engin, event);
-            //sfEvent(engin, event);
-            //gui.handleEvent(event);
+            handleSFEvent(engin, event);
+            gui.handleEvent(event);
         }
     }
 
@@ -46,8 +65,7 @@ void IntroState::HandleEvents(GU::Engin::Engin& engin, const int &deltaTime)
     GU::Evt::EventPtr evtPtr;
     while(EventManager::inst().Poll((evtPtr)))
     {
-        //StateBase::guEvent(engin, evtPtr);
-        //guEvent(engin, evtPtr);
+        handleGUEvent(engin, evtPtr);
     }
 }
 
@@ -69,7 +87,24 @@ void IntroState::Update(GU::Engin::Engin& engin, const int &deltaTime)
 void IntroState::Draw(GU::Engin::Engin& engin, const int &deltaTime)
 {
     window.clear();
+    gui.draw();
     window.display();
+}
+
+
+void IntroState::onStartPressed()
+{
+    EventManager::inst().Post<GU::Evt::PushState>(States::Id::PLAY_STATE);
+}
+
+void IntroState::onMultiplayerPressed()
+{
+    EventManager::inst().Post<GU::Evt::PushState>(States::Id::MULTIPLAYER_STATE);
+}
+
+void IntroState::onOptionsPressed()
+{
+    EventManager::inst().Post<GU::Evt::PushState>(States::Id::OPTIONS_STATE);
 }
 
 IntroState::~IntroState()

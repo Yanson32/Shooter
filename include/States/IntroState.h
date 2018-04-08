@@ -38,6 +38,13 @@ class IntroState: public StateBase
         virtual ~IntroState();
     protected:
     private:
+        tgui::Button::Ptr startButton;
+        tgui::Button::Ptr optionButton;
+        tgui::Button::Ptr multiplayerButton;
+        void onStartPressed();
+        void onMultiplayerPressed();
+        void onOptionsPressed();
+
 };
 
 #endif // INTROSTATE_H

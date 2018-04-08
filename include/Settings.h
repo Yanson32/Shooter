@@ -8,6 +8,7 @@ class Settings
     public:
         sf::String getTitle() const;
         sf::Vector2f buttonPosition(const unsigned pos = 0) const;
+        sf::Vector2f buttonSize() const;
         static Settings& inst();
     private:
         sf::String title;
@@ -17,6 +18,7 @@ class Settings
         virtual ~Settings();
     protected:
     private:
+        sf::Vector2f m_ButtonSize;
 };
 
 #endif // SETTINGS_H
