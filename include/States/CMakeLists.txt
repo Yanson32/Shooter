@@ -1,5 +1,7 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Id.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/IntroState.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/PlayState.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/MapCreatorState.h"
 
 )
 set(SUB_DIRECTORIES ""

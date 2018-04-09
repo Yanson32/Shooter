@@ -7,7 +7,8 @@ namespace States
     {
         PLAY_STATE,
         MULTIPLAYER_STATE,
-        OPTIONS_STATE
+        OPTIONS_STATE,
+        MAP_CREATOR_STATE
     };
 }
 

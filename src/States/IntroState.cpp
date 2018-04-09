@@ -20,10 +20,16 @@ IntroState::IntroState()
     multiplayerButton->setPosition(Settings::inst().buttonPosition(1));
     multiplayerButton->setSize(Settings::inst().buttonSize());
 
+    mapButton = tgui::Button::create("Map Creator");
+    mapButton->connect("pressed", &IntroState::onMapPressed, this);
+    mapButton->setPosition(Settings::inst().buttonPosition(2));
+    mapButton->setSize(Settings::inst().buttonSize());
+
     optionButton = tgui::Button::create("Options");
     optionButton->connect("pressed", &IntroState::onOptionsPressed, this);
-    optionButton->setPosition(Settings::inst().buttonPosition(2));
+    optionButton->setPosition(Settings::inst().buttonPosition(3));
     optionButton->setSize(Settings::inst().buttonSize());
+
 }
 
 /*********************************************************************************//**
@@ -34,6 +40,7 @@ void IntroState::Init()
     gui.add(startButton);
     gui.add(multiplayerButton);
     gui.add(optionButton);
+    gui.add(mapButton);
 }
 
 /*********************************************************************************//**
@@ -105,6 +112,11 @@ void IntroState::onMultiplayerPressed()
 void IntroState::onOptionsPressed()
 {
     EventManager::inst().Post<GU::Evt::PushState>(States::Id::OPTIONS_STATE);
+}
+
+void IntroState::onMapPressed()
+{
+    EventManager::inst().Post<GU::Evt::PushState>(States::Id::MAP_CREATOR_STATE);
 }
 
 IntroState::~IntroState()

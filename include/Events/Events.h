@@ -11,5 +11,8 @@
 
 #include "Events/EventManager.h"
 #include "Events/Id.h"
+#include "Events/ShowGrid.h"
+#include "Events/SnapToGrid.h"
+
 
 #endif

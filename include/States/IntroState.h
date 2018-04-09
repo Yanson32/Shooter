@@ -41,9 +41,11 @@ class IntroState: public StateBase
         tgui::Button::Ptr startButton;
         tgui::Button::Ptr optionButton;
         tgui::Button::Ptr multiplayerButton;
+        tgui::Button::Ptr mapButton;
         void onStartPressed();
         void onMultiplayerPressed();
         void onOptionsPressed();
+        void onMapPressed();
 
 };
 

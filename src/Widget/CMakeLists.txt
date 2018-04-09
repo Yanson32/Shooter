@@ -1,10 +1,7 @@
-set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Settings.cpp"
-            "${CMAKE_CURRENT_SOURCE_DIR}/MapCreatorPanel.cpp"
+set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/MultiListBox.cpp"
+
 )
-set(SUB_DIRECTORIES "Engin"
-					"Events"
-					"States"
-					"Widget"
+set(SUB_DIRECTORIES ""
 )
 
 #Add subdirectories
