@@ -1,4 +1,4 @@
-<h1>Shooter<h2>
+<h1>Shooter</h1>
 
 <p>
 	Retro 2d shooter game
