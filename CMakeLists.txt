@@ -15,11 +15,15 @@ add_subdirectory("extlibs")
 add_subdirectory("include")
 add_subdirectory("src")
 
+set_property(TARGET "${PROJECT_NAME}" PROPERTY CXX_STANDARD 14)
+
 #Define compiler features
 target_compile_features("${PROJECT_NAME}"
 			PRIVATE
 			cxx_nullptr
 			cxx_right_angle_brackets
+			cxx_auto_type
+			cxx_decltype
 			)
 
 
