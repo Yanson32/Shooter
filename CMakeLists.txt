@@ -36,10 +36,9 @@ target_include_directories("${PROJECT_NAME}" PUBLIC
 
 target_link_libraries("${PROJECT_NAME}" PUBLIC Box2D)
 
-find_package(GameUtilities REQUIRED)
-# and for each of your dependent executable/library targets:
-target_link_libraries("${PROJECT_NAME}" PUBLIC "GameUtilities")
-
+#Find GameUtiliites packages
+find_package(GameUtilities COMPONENTS Core Event Engin REQUIRED)
+target_link_libraries("${PROJECT_NAME}" PRIVATE GU::Core GU::Event GU::Engin)
 
 find_package(SFML 2 COMPONENTS system window graphics audio network REQUIRED)
 target_include_directories("${PROJECT_NAME}" PUBLIC ${SFML_INCLUDE_DIR})
