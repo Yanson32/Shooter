@@ -1,9 +1,10 @@
 #include "MapCreatorPanel.h"
 #include "Events/Events.h"
+#include <iostream>
 MapCreatorPanel::MapCreatorPanel()
 {
     //ctor
-    setBackgroundColor(sf::Color::Blue);
+    //setBackgroundColor(sf::Color::Blue);
     setSize({300, 600});
     setPosition({0, 0});
 

@@ -7,7 +7,8 @@
 #include "Events/Events.h"
 //tgui::Gui IntroState::gui(window);
 
-IntroState::IntroState()
+IntroState::IntroState(sf::RenderWindow &newWindow, tgui::Gui &newGui):
+StateBase(newWindow, newGui)
 {
     //ctor
     startButton = tgui::Button::create("Start");
@@ -55,7 +56,7 @@ void IntroState::Clean()
 *   \brief	This method handles input such as user input and events
 *	\param	engin is a reference to the game's Engin object.
 *************************************************************************************/
-void IntroState::HandleEvents(GU::Engin::Engin& engin, const int &deltaTime)
+void IntroState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTime)
 {
     if(window.isOpen())
     {
@@ -81,7 +82,7 @@ void IntroState::HandleEvents(GU::Engin::Engin& engin, const int &deltaTime)
 *   \brief	This method handles input such as user input and events
 *	\param	engin is a reference to the game's Engin object.
 *************************************************************************************/
-void IntroState::Update(GU::Engin::Engin& engin, const int &deltaTime)
+void IntroState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 {
 
 }
@@ -91,7 +92,7 @@ void IntroState::Update(GU::Engin::Engin& engin, const int &deltaTime)
 *   \brief	This method draws the current game state.
 *	\param	engin is a reference to the game's Engin object.
 *************************************************************************************/
-void IntroState::Draw(GU::Engin::Engin& engin, const int &deltaTime)
+void IntroState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear();
     gui.draw();

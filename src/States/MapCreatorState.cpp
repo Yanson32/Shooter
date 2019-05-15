@@ -1,7 +1,9 @@
 #include "States/MapCreatorState.h"
 #include "Events/Events.h"
 #include <cassert>
-MapCreatorState::MapCreatorState():
+#include <iostream>
+MapCreatorState::MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui):
+StateBase(newWindow, newGui),
 panel(new MapCreatorPanel())
 {
     //ctor
@@ -32,7 +34,7 @@ void MapCreatorState::Clean()
 *   \brief	This method handles input such as user input and events
 *	\param	engin is a reference to the game's Engin object.
 *************************************************************************************/
-void MapCreatorState::HandleEvents(GU::Engin::Engin& engin, const int &deltaTime)
+void MapCreatorState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTime)
 {
     if(window.isOpen())
     {
@@ -58,7 +60,7 @@ void MapCreatorState::HandleEvents(GU::Engin::Engin& engin, const int &deltaTime
 *   \brief	This method handles input such as user input and events
 *	\param	engin is a reference to the game's Engin object.
 *************************************************************************************/
-void MapCreatorState::Update(GU::Engin::Engin& engin, const int &deltaTime)
+void MapCreatorState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 {
     if(!IsPaused())
     {
@@ -95,7 +97,7 @@ void MapCreatorState::Update(GU::Engin::Engin& engin, const int &deltaTime)
 *   \brief	This method draws the current game state.
 *	\param	engin is a reference to the game's Engin object.
 *************************************************************************************/
-void MapCreatorState::Draw(GU::Engin::Engin& engin, const int &deltaTime)
+void MapCreatorState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear();
     gui.draw();

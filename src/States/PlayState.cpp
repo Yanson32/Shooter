@@ -1,8 +1,8 @@
 #include "States/PlayState.h"
 #include "Events/EventManager.h"
 
-PlayState::PlayState():
-StateBase::StateBase()
+PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui):
+StateBase(newWindow, newGui)
 {
 
 }
@@ -26,7 +26,7 @@ void PlayState::Clean()
 *   \brief	This method handles input such as user input and events
 *	\param	engin is a reference to the game's Engin object.
 *************************************************************************************/
-void PlayState::HandleEvents(GU::Engin::Engin& engin, const int &deltaTime)
+void PlayState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTime)
 {
     if(window.isOpen())
     {
@@ -52,7 +52,7 @@ void PlayState::HandleEvents(GU::Engin::Engin& engin, const int &deltaTime)
 *   \brief	This method handles input such as user input and events
 *	\param	engin is a reference to the game's Engin object.
 *************************************************************************************/
-void PlayState::Update(GU::Engin::Engin& engin, const int &deltaTime)
+void PlayState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 {
     if(!IsPaused())
     {
@@ -64,7 +64,7 @@ void PlayState::Update(GU::Engin::Engin& engin, const int &deltaTime)
 /*********************************************************************************//**
 *   \brief	This method draws the current game state.*	\param	engin is a reference to the game's Engin object.
 *************************************************************************************/
-void PlayState::Draw(GU::Engin::Engin& engin, const int &deltaTime)
+void PlayState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear();
     gui.draw();

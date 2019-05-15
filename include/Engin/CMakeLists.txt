@@ -1,5 +1,4 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Game.h"
-            "${CMAKE_CURRENT_SOURCE_DIR}/StateBase.h"
 
 )
 set(SUB_DIRECTORIES ""
