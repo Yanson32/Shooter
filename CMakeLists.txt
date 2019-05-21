@@ -4,50 +4,13 @@ PROJECT("Shooter")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/")
 
-ADD_EXECUTABLE("${PROJECT_NAME}" "Main.cpp")
 
-install(TARGETS "${PROJECT_NAME}" DESTINATION bin)
 install(FILES "${PROJECT_NAME}" DESTINATION src)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/")
 
 add_subdirectory("extlibs")
-add_subdirectory("include")
-add_subdirectory("src")
-
-set_property(TARGET "${PROJECT_NAME}" PROPERTY CXX_STANDARD 14)
-
-#Define compiler features
-target_compile_features("${PROJECT_NAME}"
-			PRIVATE
-			cxx_nullptr
-			cxx_right_angle_brackets
-			cxx_auto_type
-			cxx_decltype
-			)
-
-
-#Add includes to target
-target_include_directories("${PROJECT_NAME}" PUBLIC
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
-  $<INSTALL_INTERFACE:include>
-	)
-
-target_link_libraries("${PROJECT_NAME}" PUBLIC Box2D)
-
-#Find GameUtiliites packages
-find_package(GameUtilities COMPONENTS Core Event Engin REQUIRED)
-target_link_libraries("${PROJECT_NAME}" PRIVATE GU::Core GU::Event GU::Engin)
-
-find_package(SFML 2 COMPONENTS system window graphics audio network REQUIRED)
-target_include_directories("${PROJECT_NAME}" PUBLIC ${SFML_INCLUDE_DIR})
-target_link_libraries("${PROJECT_NAME}" PUBLIC ${SFML_LIBRARIES})
-
-find_package(TGUI REQUIRED)
-target_include_directories("${PROJECT_NAME}" PUBLIC ${TGUI_INCLUDE_DIR})
-target_link_libraries("${PROJECT_NAME}" PUBLIC ${TGUI_LIBRARY})
-
+add_subdirectory("shooter")
 #cpack
 include("CPack")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
