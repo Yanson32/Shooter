@@ -5,6 +5,7 @@ set(SUB_DIRECTORIES "Engin"
 					"Events"
 					"States"
 					"Widget"
+					"Gui"
 )
 
 #Add subdirectories
