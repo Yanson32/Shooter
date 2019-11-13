@@ -13,23 +13,23 @@ StateBase(newWindow, newGui)
     //ctor
     startButton = tgui::Button::create("Start");
     startButton->connect("pressed", &IntroState::onStartPressed, this);
-    startButton->setPosition(Settings::inst().buttonPosition(0));
-    startButton->setSize(Settings::inst().buttonSize());
+    //startButton->setPosition(Settings::inst().buttonPosition(0));
+    startButton->setSize(Settings::buttonSize);
 
     multiplayerButton = tgui::Button::create("Multiplayer");
     multiplayerButton->connect("pressed", &IntroState::onMultiplayerPressed, this);
-    multiplayerButton->setPosition(Settings::inst().buttonPosition(1));
-    multiplayerButton->setSize(Settings::inst().buttonSize());
+    //multiplayerButton->setPosition(Settings::inst().buttonPosition(1));
+    multiplayerButton->setSize(Settings::buttonSize);
 
     mapButton = tgui::Button::create("Map Creator");
     mapButton->connect("pressed", &IntroState::onMapPressed, this);
-    mapButton->setPosition(Settings::inst().buttonPosition(2));
-    mapButton->setSize(Settings::inst().buttonSize());
+    //mapButton->setPosition(Settings::inst().buttonPosition(2));
+    mapButton->setSize(Settings::buttonSize);
 
     optionButton = tgui::Button::create("Options");
     optionButton->connect("pressed", &IntroState::onOptionsPressed, this);
-    optionButton->setPosition(Settings::inst().buttonPosition(3));
-    optionButton->setSize(Settings::inst().buttonSize());
+    //optionButton->setPosition(Settings::inst().buttonPosition(3));
+    optionButton->setSize(Settings::buttonSize);
 
 }
 
