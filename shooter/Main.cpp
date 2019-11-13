@@ -4,9 +4,10 @@
 #include "Events/EventManager.h"
 #include <memory>
 #include <TGUI/TGUI.hpp>
+#include "Settings.h"
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(200, 200), "Shooter");
+	sf::RenderWindow window(sf::VideoMode(Settings::screen.x, Settings::screen.y), "Shooter");
 
 	tgui::Gui gui(window);
 

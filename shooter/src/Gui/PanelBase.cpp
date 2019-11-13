@@ -7,9 +7,10 @@ namespace Gui
         //ctor
 
 		spacer = tgui::Panel::create();
+        spacer->getRenderer()->setBackgroundColor(sf::Color::Black);
 
-        //this->setSize({Settings::screen.x / 2, Settings::screen.y / 2});
-        //this->setPosition({Settings::screen.x / 4, Settings::screen.y / 4});
+        this->setSize({Settings::screen.x / 2, Settings::screen.y / 2});
+        this->setPosition({Settings::screen.x / 4, Settings::screen.y / 4});
         this->getRenderer()->setBackgroundColor(sf::Color::Transparent);
 
         mainLayout = tgui::VerticalLayout::create();

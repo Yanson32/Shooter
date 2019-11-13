@@ -1,7 +1,7 @@
 #ifndef INTROSTATE_H
 #define INTROSTATE_H
 #include "States/StateBase.h"
-
+#include "Gui/PanelBase.h"
 class IntroState: public StateBase
 {
     public:
@@ -38,10 +38,11 @@ class IntroState: public StateBase
         virtual ~IntroState();
     protected:
     private:
-        tgui::Button::Ptr startButton;
-        tgui::Button::Ptr optionButton;
-        tgui::Button::Ptr multiplayerButton;
-        tgui::Button::Ptr mapButton;
+//        tgui::Button::Ptr startButton;
+//        tgui::Button::Ptr optionButton;
+//        tgui::Button::Ptr multiplayerButton;
+//        tgui::Button::Ptr mapButton;
+        std::shared_ptr<Gui::PanelBase> panel;
         void onStartPressed();
         void onMultiplayerPressed();
         void onOptionsPressed();

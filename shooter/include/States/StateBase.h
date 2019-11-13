@@ -6,6 +6,7 @@
 #include <TGUI/TGUI.hpp>
 #include <Events/SFEventHandler.h>
 
+#include <memory>
 class StateBase:
 public GU::Engin::GameState,
 public GU::Evt::EventHandler,
@@ -19,6 +20,7 @@ public SFEventHandler
     protected:
         sf::RenderWindow &window;
        	tgui::Gui &gui;
+
     private:
 
 };

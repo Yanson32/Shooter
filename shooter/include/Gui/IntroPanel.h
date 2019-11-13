@@ -13,6 +13,7 @@ namespace Gui
         private:
             tgui::Button::Ptr startBtn;
             tgui::Button::Ptr optionsBtn;
+            tgui::Button::Ptr multiplayerButton;
     };
 }
 #endif // GUI_INTROPANEL_H

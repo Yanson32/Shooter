@@ -9,5 +9,6 @@ namespace Settings
 {
     extern sf::String title;
     extern sf::Vector2f buttonSize;
+    extern sf::Vector2f screen;
 }
 #endif // SETTINGS_H

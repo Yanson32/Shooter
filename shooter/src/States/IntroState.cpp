@@ -5,31 +5,16 @@
 #include <iostream>
 #include "Settings.h"
 #include "Events/Events.h"
+#include "Gui/IntroPanel.h"
 //tgui::Gui IntroState::gui(window);
 
 IntroState::IntroState(sf::RenderWindow &newWindow, tgui::Gui &newGui):
-StateBase(newWindow, newGui)
+StateBase(newWindow, newGui),
+panel(new Gui::IntroPanel())
 {
     //ctor
-    startButton = tgui::Button::create("Start");
-    startButton->connect("pressed", &IntroState::onStartPressed, this);
-    //startButton->setPosition(Settings::inst().buttonPosition(0));
-    startButton->setSize(Settings::buttonSize);
 
-    multiplayerButton = tgui::Button::create("Multiplayer");
-    multiplayerButton->connect("pressed", &IntroState::onMultiplayerPressed, this);
-    //multiplayerButton->setPosition(Settings::inst().buttonPosition(1));
-    multiplayerButton->setSize(Settings::buttonSize);
-
-    mapButton = tgui::Button::create("Map Creator");
-    mapButton->connect("pressed", &IntroState::onMapPressed, this);
-    //mapButton->setPosition(Settings::inst().buttonPosition(2));
-    mapButton->setSize(Settings::buttonSize);
-
-    optionButton = tgui::Button::create("Options");
-    optionButton->connect("pressed", &IntroState::onOptionsPressed, this);
-    //optionButton->setPosition(Settings::inst().buttonPosition(3));
-    optionButton->setSize(Settings::buttonSize);
+    gui.add(panel);
 
 }
 
@@ -38,10 +23,10 @@ StateBase(newWindow, newGui)
 *************************************************************************************/
 void IntroState::Init()
 {
-    gui.add(startButton);
-    gui.add(multiplayerButton);
-    gui.add(optionButton);
-    gui.add(mapButton);
+//    gui.add(startButton);
+//    gui.add(multiplayerButton);
+//    gui.add(optionButton);
+//    gui.add(mapButton);
 }
 
 /*********************************************************************************//**
