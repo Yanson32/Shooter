@@ -42,11 +42,11 @@ class IntroState: public StateBase
 //        tgui::Button::Ptr optionButton;
 //        tgui::Button::Ptr multiplayerButton;
 //        tgui::Button::Ptr mapButton;
-        std::shared_ptr<Gui::PanelBase> panel;
-        void onStartPressed();
-        void onMultiplayerPressed();
-        void onOptionsPressed();
-        void onMapPressed();
+
+//        void onStartPressed();
+//        void onMultiplayerPressed();
+//        void onOptionsPressed();
+//        void onMapPressed();
 
 };
 

@@ -1,77 +1,81 @@
 #include "Gui/IntroPanel.h"
 #include "Settings.h"
 //#include "Event/Object.h"
-//#include "Event/Manager.h"
+#include "Events/EventManager.h"
 //#include "State/Id.h"
-namespace Gui
+#include "GameUtilities/Event/Click.h"
+#include "GameUtilities/Event/PushState.h"
+#include "Gui/id.h"
+#include "States/Id.h"
+
+
+/****************************************************************************//**
+*   @brief  Constructor.
+********************************************************************************/
+IntroPanel::IntroPanel():
+PanelBase(Gui::id::INTRO)
 {
-    IntroPanel::IntroPanel()
-    {
-        //ctor
-        const sf::Vector2f buttonPos1(300, 400);
-        const sf::Vector2f buttonPos2(300, 475);
-        //ctor
-        startBtn = tgui::Button::create("Start");
-        startBtn->setTextSize(buttonTextSize);
-        startBtn->setSize(Settings::buttonSize);
-        startBtn->connect("pressed", [](){
-            //Event::Object event(Event::Object::Type::BUTTON_PRESSED);
-            //event.buttonPressed.id = Event::ButtonPressed::START_BUTTON;
-            //Event::Manager::inst().push(event);
-        });
+    //ctor
+    //getRenderer()->setBackgroundColor(sf::Color::Transparent);
+    const sf::Vector2f buttonPos1(300, 400);
+    const sf::Vector2f buttonPos2(300, 475);
+    //ctor
+    startBtn = tgui::Button::create("Start");
+    //startBtn->setTextSize(buttonTextSize);
+    startBtn->setSize(Settings::buttonSize);
+    startBtn->connect("pressed", [](){
+        EventManager::inst().Post<GU::Evt::PushState>(States::Id::PLAY_STATE);
+    });
 
-        multiplayerButton = tgui::Button::create("Multiplayer");
-        multiplayerButton->setTextSize(buttonTextSize);
-        //multiplayerButton->connect("pressed", &IntroState::onMultiplayerPressed, this);
-        //multiplayerButton->setPosition(Settings::inst().buttonPosition(1));
-        multiplayerButton->setSize(Settings::buttonSize);
+    multiplayerButton = tgui::Button::create("Multiplayer");
+    //multiplayerButton->setTextSize(buttonTextSize);
+    multiplayerButton->connect("pressed", [](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::MULTIPLAYER);
 
-        optionsBtn = tgui::Button::create("Options");
-        optionsBtn->setTextSize(buttonTextSize);
-        optionsBtn->setSize(Settings::buttonSize);
-        optionsBtn->connect("pressed", [](){
-            //Event::Object event(Event::Object::Type::BUTTON_PRESSED);
-            //event.buttonPressed.id = Event::ButtonPressed::OPTIONS_BUTTON;
-            //Event::Manager::inst().push(event);
-        });
+    });
 
+    multiplayerButton->setSize(Settings::buttonSize);
 
-        layout3->add(spacer);
-        layout3->add(startBtn);
-        layout3->add(spacer);
+    optionsBtn = tgui::Button::create("Options");
+    //optionsBtn->setTextSize(buttonTextSize);
+    optionsBtn->setSize(Settings::buttonSize);
+    optionsBtn->connect("pressed", [](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::GENERAL);
+    });
 
-        layout5->add(spacer);
-        layout5->add(multiplayerButton);
-        layout5->add(spacer);
+    tgui::HorizontalLayout::Ptr layout1 = content->appendLayout();
+    layout1->add(spacer);
+    layout1->add(startBtn);
+    layout1->add(spacer);
 
-        buttonLayout->add(spacer);
-        buttonLayout->add(optionsBtn);
-        buttonLayout->add(spacer);
+    tgui::HorizontalLayout::Ptr mapSpace = content->appendLayout();
 
+    #ifdef DEBUG
+        tgui::Button::Ptr mapButton = tgui::Button::create("Map");
+        mapSpace->add(spacer);
+        mapSpace->add(mapButton);
+        mapSpace->add(spacer);
+    #endif
+    tgui::HorizontalLayout::Ptr layout2 = content->appendLayout();
 
-        //    startButton = tgui::Button::create("Start");
-//    startButton->connect("pressed", &IntroState::onStartPressed, this);
-//    //startButton->setPosition(Settings::inst().buttonPosition(0));
-//    startButton->setSize(Settings::buttonSize);
-//
-//    multiplayerButton = tgui::Button::create("Multiplayer");
-//    multiplayerButton->connect("pressed", &IntroState::onMultiplayerPressed, this);
-//    //multiplayerButton->setPosition(Settings::inst().buttonPosition(1));
-//    multiplayerButton->setSize(Settings::buttonSize);
-//
-//    mapButton = tgui::Button::create("Map Creator");
-//    mapButton->connect("pressed", &IntroState::onMapPressed, this);
-//    //mapButton->setPosition(Settings::inst().buttonPosition(2));
-//    mapButton->setSize(Settings::buttonSize);
-//
-//    optionButton = tgui::Button::create("Options");
-//    optionButton->connect("pressed", &IntroState::onOptionsPressed, this);
-//    //optionButton->setPosition(Settings::inst().buttonPosition(3));
-//    optionButton->setSize(Settings::buttonSize);
-    }
+    layout2->add(spacer);
+    layout2->add(multiplayerButton);
+    layout2->add(spacer);
 
-    IntroPanel::~IntroPanel()
-    {
-        //dtor
-    }
+    content->appendSpacer();
+    tgui::HorizontalLayout::Ptr layout3 = content->appendLayout();
+
+    layout3->add(spacer);
+    layout3->add(optionsBtn);
+    layout3->add(spacer);
 }
+
+
+/****************************************************************************//**
+*   @brief  Destructor.
+********************************************************************************/
+IntroPanel::~IntroPanel()
+{
+    //dtor
+}
+

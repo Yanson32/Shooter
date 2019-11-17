@@ -1,5 +1,6 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Settings.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/MapCreatorPanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/Functions.cpp"
 )
 set(SUB_DIRECTORIES "Engin"
 					"Events"

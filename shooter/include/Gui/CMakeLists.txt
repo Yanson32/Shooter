@@ -1,5 +1,13 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/PanelBase.h"
-		"${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/OptionsPanel.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/GeneralPanel.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/ControlPanel.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/SoundPanel.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/ContentPane.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/MultiPlayerSettingsPanel.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/DevSettingsPanel.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/id.h"
 
 )
 

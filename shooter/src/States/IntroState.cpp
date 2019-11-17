@@ -6,14 +6,14 @@
 #include "Settings.h"
 #include "Events/Events.h"
 #include "Gui/IntroPanel.h"
+#include "Settings.h"
 //tgui::Gui IntroState::gui(window);
 
 IntroState::IntroState(sf::RenderWindow &newWindow, tgui::Gui &newGui):
-StateBase(newWindow, newGui),
-panel(new Gui::IntroPanel())
+StateBase(newWindow, newGui)
 {
     //ctor
-
+    panel.reset(new IntroPanel());
     gui.add(panel);
 
 }
@@ -79,31 +79,11 @@ void IntroState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 *************************************************************************************/
 void IntroState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
-    window.clear();
+    window.clear(Settings::background);
     gui.draw();
     window.display();
 }
 
-
-void IntroState::onStartPressed()
-{
-    EventManager::inst().Post<GU::Evt::PushState>(States::Id::PLAY_STATE);
-}
-
-void IntroState::onMultiplayerPressed()
-{
-    EventManager::inst().Post<GU::Evt::PushState>(States::Id::MULTIPLAYER_STATE);
-}
-
-void IntroState::onOptionsPressed()
-{
-    EventManager::inst().Post<GU::Evt::PushState>(States::Id::OPTIONS_STATE);
-}
-
-void IntroState::onMapPressed()
-{
-    EventManager::inst().Post<GU::Evt::PushState>(States::Id::MAP_CREATOR_STATE);
-}
 
 IntroState::~IntroState()
 {

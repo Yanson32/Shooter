@@ -1,31 +1,32 @@
-#ifndef GUI_INTROPANEL_H
-#define GUI_INTROPANEL_H
+#ifndef OPTIONSPANEL_H
+#define OPTIONSPANEL_H
 #include "Gui/PanelBase.h"
+#include "Gui/id.h"
 
 
 /****************************************************************************//**
 *   @author Wayne J Larson Jr.
 *   @date   11/16/19
-*   @brief  This class displays the start screen with basic options for the user.
+*   @brief  This class is a base class for all aptions panels.
 ********************************************************************************/
-class IntroPanel: public PanelBase
+class OptionsPanel: public PanelBase
 {
     public:
 
         /****************************************************************************//**
-        *   @brief  Constructor.
+        *   @brief The constructor
+        *   @param  The id param is used to identify the gui panel.
         ********************************************************************************/
-        IntroPanel();
-
+        OptionsPanel(const int newId = Gui::id::OPTIONS);
 
         /****************************************************************************//**
-        *   @brief  Destructor.
+        *   @brief  Destructor
         ********************************************************************************/
-        virtual ~IntroPanel();
+        virtual ~OptionsPanel();
+
     protected:
-    private:
-        tgui::Button::Ptr startBtn;
-        tgui::Button::Ptr optionsBtn;
-        tgui::Button::Ptr multiplayerButton;
+        tgui::Tabs::Ptr tabs;
+        tgui::Button::Ptr backBtn;
 };
-#endif // GUI_INTROPANEL_H
+
+#endif // OPTIONSPANEL_H

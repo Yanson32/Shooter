@@ -38,3 +38,5 @@ find_package(TGUI REQUIRED)
 target_include_directories("${PROJECT_NAME}" PUBLIC ${TGUI_INCLUDE_DIR})
 target_link_libraries("${PROJECT_NAME}" PUBLIC ${TGUI_LIBRARY})
 
+add_definitions(-DDEBUG)
+

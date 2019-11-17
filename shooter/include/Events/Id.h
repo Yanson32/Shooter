@@ -12,6 +12,7 @@ namespace Events
         PLAY_MUSIC              = GU::Evt::Id::PLAY_MUSIC,
         PLAY_SOUND              = GU::Evt::Id::PLAY_SOUND,
         SOUND_VOLUME_CHANGED    = GU::Evt::Id::SOUND_EFFECTS_VOLUME_CHANGED,
+        CLICK                   = GU::Evt::Id::CLICK,
         SHOW_GRID,
         SNAP_TO_GRID,
         BASE

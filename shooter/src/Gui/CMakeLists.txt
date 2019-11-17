@@ -1,5 +1,12 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/PanelBase.cpp"
-		"${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/OptionsPanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/GeneralPanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/ControlPanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/SoundPanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/ContentPane.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/MultiPlayerSettingsPanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/DevSettingsPanel.cpp"
 )
 
 set(RELATIVE_PATH "src")

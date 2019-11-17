@@ -5,7 +5,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <TGUI/TGUI.hpp>
 #include <Events/SFEventHandler.h>
-
+#include "Gui/PanelBase.h"
 #include <memory>
 class StateBase:
 public GU::Engin::GameState,
@@ -20,7 +20,7 @@ public SFEventHandler
     protected:
         sf::RenderWindow &window;
        	tgui::Gui &gui;
-
+        std::shared_ptr<PanelBase> panel;
     private:
 
 };

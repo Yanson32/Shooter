@@ -5,10 +5,12 @@
 #include <memory>
 #include <TGUI/TGUI.hpp>
 #include "Settings.h"
+#include <iostream>
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(Settings::screen.x, Settings::screen.y), "Shooter");
-
+    std::cout << "A" << sf::Keyboard::A << (int)'A' << std::endl;
+    std::cout << "Z" << sf::Keyboard::Z << (int)'Z' << std::endl;
 	tgui::Gui gui(window);
 
     sf::Clock timer;
