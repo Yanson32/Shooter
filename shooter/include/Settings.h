@@ -24,7 +24,11 @@ namespace Settings
     extern sf::Color background;
     extern int port;
     extern float32 velocityIterations;
+    extern sf::String currentMap;
     extern int32 positionIterations;
     extern float32 timeStep;
+    extern sf::String levelDirectory;
+    extern sf::String currentMap;
+    extern std::string map;
 }
 #endif // SETTINGS_H

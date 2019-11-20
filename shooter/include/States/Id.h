@@ -8,7 +8,7 @@ namespace States
         PLAY_STATE,
         MULTIPLAYER_STATE,
         OPTIONS_STATE,
-        MAP_CREATOR_STATE,
+        MAP_CREATION_STATE,
         INTRO_STATE
     };
 }

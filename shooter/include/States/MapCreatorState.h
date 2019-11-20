@@ -1,12 +1,13 @@
 #ifndef SHOOTER_MAPCREATORSTATE_H
 #define SHOOTER_MAPCREATORSTATE_H
 #include "States/StateBase.h"
-#include "MapCreatorPanel.h"
-
+#include "Gui/Editor/MapCreatorPanel.h"
+#include "Gui/Editor/EditorPanel.h"
+#include "Map.h"
 class MapCreatorState: public StateBase
 {
     public:
-        MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui);
+        MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const std::string newMap);
         /*********************************************************************************//**
         *   \brief	Initialize the game state.
         *************************************************************************************/
@@ -42,10 +43,9 @@ class MapCreatorState: public StateBase
         virtual ~MapCreatorState();
     protected:
     private:
-        std::shared_ptr<MapCreatorPanel> panel;
-        tgui::Button::Ptr collapseButton;
-        void onCollapsePressed();
+        std::shared_ptr<EditorPanel> panel;
         sf::Clock collapseTimer;
+        Map map;
 };
 
 #endif // SHOOTER_MAPCREATORSTATE_H

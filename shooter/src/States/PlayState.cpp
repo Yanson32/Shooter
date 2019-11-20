@@ -1,8 +1,8 @@
 #include "States/PlayState.h"
 #include "Events/EventManager.h"
-
+#include "States/Id.h"
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui):
-StateBase(newWindow, newGui)
+StateBase(newWindow, newGui, States::Id::PLAY_STATE)
 {
 
 }

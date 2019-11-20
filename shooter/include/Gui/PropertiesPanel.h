@@ -1,25 +1,13 @@
-#ifndef CONTENTPANE_H
-#define CONTENTPANE_H
+#ifndef PROPERTIESPANEL_H
+#define PROPERTIESPANEL_H
 #include <TGUI/TGUI.hpp>
 #include <SFML/Graphics.hpp>
-
-
-/****************************************************************************//**
-*   @brief The ContentPane class creates a panel designed to display properties.
-*   @author Wayne J Larson Jr.
-*   @date   11/17/19
-********************************************************************************/
-class ContentPane: public tgui::ScrollablePanel
+#include <vector>
+class PropertiesPanel: public tgui::ScrollablePanel
 {
     public:
-
-        /****************************************************************************//**
-        *   @brief Constructor.
-        ********************************************************************************/
-        ContentPane();
-
-
-        /****************************************************************************//**
+        PropertiesPanel(const int width, const int height);
+                /****************************************************************************//**
         *   @brief Create a space in the panel.
         ********************************************************************************/
         void appendSpacer();
@@ -82,15 +70,13 @@ class ContentPane: public tgui::ScrollablePanel
         *   @return A pointer to the layout.
         ********************************************************************************/
         tgui::HorizontalLayout::Ptr get(const std::size_t &i);
+        virtual ~PropertiesPanel();
 
+    protected:
 
-        /****************************************************************************//**
-        *   @brief  Destructor.
-        ********************************************************************************/
-        virtual ~ContentPane();
     private:
         std::vector<tgui::HorizontalLayout::Ptr> layouts;
         sf::Vector2f layoutSize;
 };
 
-#endif // CONTENTPANE_H
+#endif // PROPERTIESPANEL_H
