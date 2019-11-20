@@ -4,7 +4,7 @@ namespace Settings
 {
     sf::String title = "Shooter";
     sf::Vector2f buttonSize(300, 50);
-    sf::Vector2f screen(800, 600);
+    sf::Vector2f screen(800, 450);
     sf::String name = "Player";
     sf::String difficulty = "Normal";
     int effectVolume = 10;
