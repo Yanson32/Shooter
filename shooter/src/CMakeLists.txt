@@ -1,6 +1,7 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Settings.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/Functions.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/Map.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/Tile.cpp"
 )
 set(SUB_DIRECTORIES "Engin"
 					"Events"
