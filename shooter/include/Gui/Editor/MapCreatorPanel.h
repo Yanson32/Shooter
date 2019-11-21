@@ -13,6 +13,7 @@ class MapCreatorPanel: public tgui::Panel
     public:
         MapCreatorPanel(Map &map);
         void init();
+        bool drawGrid() const;
         virtual ~MapCreatorPanel();
     protected:
         const unsigned NUMBER_OF_TABS = 3;

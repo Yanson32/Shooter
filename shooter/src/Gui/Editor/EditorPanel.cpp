@@ -61,6 +61,11 @@ void EditorPanel::init()
     panel->init();
 }
 
+bool EditorPanel::drawGrid() const
+{
+    return panel->drawGrid();
+}
+
 EditorPanel::~EditorPanel()
 {
     //dtor

@@ -20,6 +20,11 @@ panel(new EditorPanel(map))
     map.name = newMap;
     map.read();
 
+    //Initialize grid
+    sf::Vector2f mapSize(map.width, map.height);
+    sf::Vector2f tileSize(map.tileWidth, map.tileHeight);
+    grid.init(mapSize, tileSize);
+
 //    collapseButton = tgui::Button::create("Collapse");
 //    collapseButton->connect("pressed", &MapCreatorState::onCollapsePressed, this);
 //    collapseButton->setSize({50, 50});
@@ -91,6 +96,8 @@ void MapCreatorState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 void MapCreatorState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear();
+    if(panel->drawGrid())
+        window.draw(grid);
     gui.draw();
     window.display();
 }

@@ -30,6 +30,11 @@ void EditorGeneralPanel::init()
 
 }
 
+bool EditorGeneralPanel::drawGrid() const
+{
+    return grid->isChecked();
+}
+
 EditorGeneralPanel::~EditorGeneralPanel()
 {
     //dtor

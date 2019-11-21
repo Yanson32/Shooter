@@ -12,7 +12,7 @@
 MapCreatorPanel::MapCreatorPanel(Map &map)
 {
     //ctor
-    getRenderer()->setBackgroundColor(sf::Color::Transparent);
+    getRenderer()->setBackgroundColor(sf::Color::Black);
     setSize({300, Settings::screen.y});
     setPosition({0, 0});
 
@@ -143,6 +143,10 @@ void MapCreatorPanel::init()
     generalPanel->init();
 }
 
+bool MapCreatorPanel::drawGrid() const
+{
+    return generalPanel->drawGrid();
+}
 MapCreatorPanel::~MapCreatorPanel()
 {
     //dtor

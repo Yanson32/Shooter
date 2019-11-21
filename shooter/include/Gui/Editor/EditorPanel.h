@@ -10,6 +10,7 @@ class EditorPanel: public tgui::Panel
         EditorPanel(Map &map);
         void init();
         void update();
+        bool drawGrid() const;
         virtual ~EditorPanel();
 
     protected:

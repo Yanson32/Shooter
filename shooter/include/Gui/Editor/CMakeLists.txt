@@ -3,6 +3,7 @@ set(FILES   "${CMAKE_CURRENT_SOURCE_DIR}/MapCreatorPanel.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/EditorLayersPanel.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/EditorObjectPanel.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/EditorPanel.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/Grid.h"
 )
 
 set(RELATIVE_PATH "include")

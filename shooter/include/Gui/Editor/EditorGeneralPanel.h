@@ -8,6 +8,7 @@ class EditorGeneralPanel: public tgui::Panel
     public:
         EditorGeneralPanel(const int newWidth, const int newHeight, Map &newMap);
         void init();
+        bool drawGrid() const;
         virtual ~EditorGeneralPanel();
 
         std::shared_ptr<PropertiesPanel> properties;

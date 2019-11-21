@@ -4,6 +4,7 @@
 #include "Gui/Editor/MapCreatorPanel.h"
 #include "Gui/Editor/EditorPanel.h"
 #include "Map.h"
+#include "Gui/Editor/Grid.h"
 class MapCreatorState: public StateBase
 {
     public:
@@ -46,6 +47,7 @@ class MapCreatorState: public StateBase
         std::shared_ptr<EditorPanel> panel;
         sf::Clock collapseTimer;
         Map map;
+        Grid grid;
 };
 
 #endif // SHOOTER_MAPCREATORSTATE_H
