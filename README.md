@@ -6,7 +6,7 @@
 
 - [SFML](http://www.sfml-dev.org)
 - [TGUI](https://tgui.eu/)
-- [Bost](https://www.boost.org/)
+- [Boost](https://www.boost.org/)
 - [GameUtilities](https://github.com/Yanson32/GameUtilities)
 
 
