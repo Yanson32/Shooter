@@ -19,7 +19,9 @@ panel(new EditorPanel(map))
     Settings::currentMap = Settings::map;
     map.name = newMap;
     map.read();
-
+    std::cout << "map constructo layer count " << map.getLayerCount() << std::endl;
+    std::cout << "map name " << map.name << std::endl;
+    //std::cout << "Map state name " << map.getLayer("Background").name << std::endl;
     //Initialize grid
     sf::Vector2f mapSize(map.width, map.height);
     sf::Vector2f tileSize(map.tileWidth, map.tileHeight);

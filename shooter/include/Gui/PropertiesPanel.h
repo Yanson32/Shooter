@@ -17,7 +17,7 @@ class PropertiesPanel: public tgui::ScrollablePanel
         *   @brief  Create a single line with some text.
         *   @param  text to be displayed.
         ********************************************************************************/
-        void appendSection(const sf::String &text);
+        tgui::Label::Ptr appendSection(const sf::String &text);
 
 
         /****************************************************************************//**

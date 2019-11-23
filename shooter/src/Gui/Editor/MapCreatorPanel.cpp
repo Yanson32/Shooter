@@ -47,6 +47,7 @@ MapCreatorPanel::MapCreatorPanel(Map &map)
         map.tileWidth = toInt(generalPanel->tileWidth->getText());
         map.tileHeight = toInt(generalPanel->tileHeight->getText());
         map.write();
+        std::cout << "write " << std::endl;
     });
     buttonLayout->add(saveButton);
 
@@ -63,7 +64,7 @@ MapCreatorPanel::MapCreatorPanel(Map &map)
 
 
 
-    layersPanel.reset(new EditorLayersPanel(300, Settings::screen.y - 150));
+    layersPanel.reset(new EditorLayersPanel(300, Settings::screen.y - 150, map));
     layersPanel->setPosition(0, 75);
     //layersPanel->setSize(300, 400);
 
@@ -140,7 +141,9 @@ void MapCreatorPanel::onAddLayer()
 
 void MapCreatorPanel::init()
 {
+    layersPanel->init();
     generalPanel->init();
+
 }
 
 bool MapCreatorPanel::drawGrid() const

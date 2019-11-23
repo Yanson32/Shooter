@@ -4,6 +4,8 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/MapCreatorPanel.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/EditorObjectPanel.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/EditorPanel.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/Grid.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/LayersListBox.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/LayerPropertiesPanel.cpp"
 )
 
 set(RELATIVE_PATH "src")

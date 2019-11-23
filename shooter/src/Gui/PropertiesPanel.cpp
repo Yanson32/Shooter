@@ -46,11 +46,12 @@ void PropertiesPanel::appendSpacer()
 *           added to the layout maually.
 *   @return A pointer to the layout.
 ********************************************************************************/
-void PropertiesPanel::appendSection(const sf::String &text)
+tgui::Label::Ptr PropertiesPanel::appendSection(const sf::String &text)
 {
     tgui::HorizontalLayout::Ptr layout = appendLayout();
     tgui::Label::Ptr temp = tgui::Label::create(text);
     layout->add(temp);
+    return temp;
 }
 
 

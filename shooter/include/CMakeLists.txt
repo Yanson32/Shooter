@@ -2,6 +2,7 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Settings.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/Functions.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/Map.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/Tile.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/Layer.h"
 
 )
 set(SUB_DIRECTORIES "Engin"

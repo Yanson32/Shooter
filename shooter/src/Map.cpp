@@ -4,6 +4,7 @@
 #include <iostream>
 #include "config.h"
 #include <boost/filesystem.hpp>
+#include <cassert>
 Map::Map()
 {
     //ctor
@@ -12,7 +13,7 @@ Map::Map()
 
 void Map::read()
 {
-    std::string sourceDir = getSourceDir();
+    std::string sourceDir = getSourceDir() + name + ".map";;
     std::ifstream sourceStream(sourceDir);
     if(!sourceStream)
         return;
@@ -23,37 +24,53 @@ void Map::read()
     sourceStream >> ordering;
     sourceStream >> tileWidth;
     sourceStream >> tileHeight;
+    std::size_t size;
+    sourceStream >> size;
+    for(std::size_t i = 0; i < size; ++i)
+    {
+        std::string temp;
+        sourceStream >> temp;
+
+        if(layerExists(temp))
+        {
+            layers[temp].read(name);
+            std::cout << "Layer exists " << std::endl;
+        }
+        else
+        {
+            Layer layer;
+            layer.name = temp;
+            layer.read(name);
+            layers[temp] = layer;
+        }
+    }
     sourceStream.close();
 }
 
 void Map::write()
 {
-    std::string sourceDir = getSourceDir();
-    std::string buildDir = getBuildDir();
+    std::vector<std::string> dir = getAllDir();
 
-    std::ofstream sourceStream(sourceDir);
-    std::ofstream buildStream(buildDir);
+    for(int i = 0; i < dir.size(); ++i)
+    {
+        std::string file = dir[i] + name + ".map";
+        std::cout << "file " << file << std::endl;
+        std::ofstream steam(file);
 
-    std::cout << sourceDir << std::endl;
-//    if(!sourceStream || !buildStream)
-//        return;
-
-    sourceStream << name << std::endl;
-    sourceStream << width << std::endl;
-    sourceStream << height << std::endl;
-    sourceStream << ordering << std::endl;
-    sourceStream << tileWidth << std::endl;
-    sourceStream << tileHeight << std::endl;
-    sourceStream.close();
-
-    buildStream << name << std::endl;
-    buildStream << width << std::endl;
-    buildStream << height << std::endl;
-    buildStream << ordering << std::endl;
-    buildStream << tileWidth << std::endl;
-    buildStream << tileHeight << std::endl;
-    buildStream.close();
-
+        steam << name << std::endl;
+        steam << width << std::endl;
+        steam << height << std::endl;
+        steam << ordering << std::endl;
+        steam << tileWidth << std::endl;
+        steam << tileHeight << std::endl;
+        steam << layers.size() << std::endl;
+        for(auto &element : layers)
+        {
+            steam << element.first << std::endl;
+            element.second.write(name);
+        }
+        steam.close();
+    }
 }
 
 void Map::remove()
@@ -64,19 +81,89 @@ void Map::remove()
     boost::filesystem::remove(build);
 }
 
-std::string Map::getSourceDir()
+std::string Map::getSourceDir() const
 {
-    return SOURCE_DIR + "/Assets/Level/" + name + ".map";
+    std::string temp = SOURCE_DIR + "/Assets/Level/" + name + "/";
+    boost::filesystem::create_directory(temp);
+    return temp;
 }
 
 
-std::string Map::getBuildDir()
+std::string Map::getBuildDir() const
 {
-    return BUILD_DIR + "/Assets/Level/" + name + ".map";
+    std::string temp = BUILD_DIR + "/Assets/Level/" + name + "/";
+    boost::filesystem::create_directory(temp);
+    return temp;
 }
 
+void Map::addLayer(Layer layer)
+{
+    assert(!layerExists(layer.name));
+    layers[layer.name] = layer;
+}
+
+Layer& Map::getLayer(const std::string &name)
+{
+    assert(layerExists(name));
+
+    if(layers.find(name) != layers.end())
+        return layers.find(name)->second;
+}
+
+bool Map::layerExists(const std::string &name)
+{
+    if(layers.find(name) == layers.end())
+        return false;
+
+    return true;
+}
+
+std::size_t Map::getLayerCount() const
+{
+    return layers.size();
+}
+
+Layer& Map::operator [] (const std::size_t index)
+{
+    assert(index < layers.size());
+    assert(index >= 0);
+
+    std::size_t count = 0;
+    for(auto it = layers.begin(); layers.begin() != layers.end(); ++it)
+    {
+        if(count == index)
+        {
+            return it->second;
+        }
+        ++count;
+    }
+
+    throw std::runtime_error("Out of bounds");
+}
+
+bool Map::removeLayer(const std::string &layer)
+{
+    assert(layerExists(layer));
+    layers.erase(layers.find(layer));
+    std::vector<std::string> dir = getAllDir();
+
+    for(int i = 0; i < dir.size(); ++i)
+    {
+        std::string file = dir[i] + layer + ".lay";
+        boost::filesystem::path path(file);
+        boost::filesystem::remove(path);
+    }
+
+    this->write();
+}
+
+std::vector<std::string> Map::getAllDir() const
+{
+    return {getSourceDir(), getBuildDir()};
+}
 
 Map::~Map()
 {
     //dtor
+    write();
 }
