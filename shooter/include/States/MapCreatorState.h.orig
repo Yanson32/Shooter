@@ -1,12 +1,16 @@
 #ifndef SHOOTER_MAPCREATORSTATE_H
 #define SHOOTER_MAPCREATORSTATE_H
+<<<<<<< HEAD
 #include "Gui/Editor/MapCreatorPanel.h"
 #include "Gui/Editor/EditorPanel.h"
 #include "Map.h"
 #include "Gui/Editor/Grid.h"
 #include "States/PlayState.h"
-#include "Gui/Editor/MapCreatorPanel.h"
+=======
+#include "States/PlayState.h"
+#include "MapCreatorPanel.h"
 
+>>>>>>> 46677b05bb157174f6715a837592c3740c14d9c6
 class MapCreatorState: public PlayState
 {
     public:

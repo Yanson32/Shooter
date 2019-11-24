@@ -26,6 +26,10 @@ gui(newGui),
 id(newId)
 {
     //ctor
+    title = tgui::Label::create(Settings::title);
+    gui.add(title);
+    title->setPosition({320, 25});
+    title->setTextSize(40);
 }
 
 
@@ -70,6 +74,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     if(panel->id != Gui::id::INTRO)
                     {
                         gui.removeAllWidgets();
+                        gui.add(title);
                         panel = std::shared_ptr<IntroPanel>(new IntroPanel());
                         gui.add(panel);
                     }
@@ -79,6 +84,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     if(panel->id != Gui::id::CONTROLS)
                     {
                         gui.removeAllWidgets();
+                        gui.add(title);
                         std::shared_ptr<ControlPanel> tempPanel = std::shared_ptr<ControlPanel>(new ControlPanel());
                         tempPanel->init();
                         panel = tempPanel;
@@ -90,6 +96,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     if(panel->id != Gui::id::SOUND)
                     {
                         gui.removeAllWidgets();
+                        gui.add(title);
                         std::shared_ptr<SoundPanel> tempPanel = std::shared_ptr<SoundPanel>(new SoundPanel());
                         tempPanel->init();
                         panel = tempPanel;
@@ -102,6 +109,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     if(panel->id != Gui::id::GENERAL)
                     {
                         gui.removeAllWidgets();
+                        gui.add(title);
                         std::shared_ptr<GeneralPanel> tempPanel = std::shared_ptr<GeneralPanel>(new GeneralPanel());
                         tempPanel->init();
                         panel = tempPanel;
@@ -114,6 +122,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     if(panel->id != Gui::id::MULTIPLAYER)
                     {
                         gui.removeAllWidgets();
+                        gui.add(title);
                         std::shared_ptr<MultiPlayerSettingsPanel> tempPanel = std::shared_ptr<MultiPlayerSettingsPanel>(new MultiPlayerSettingsPanel());
                         tempPanel->init();
                         panel = tempPanel;
@@ -126,6 +135,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     if(panel->id != Gui::id::DEV)
                     {
                         gui.removeAllWidgets();
+                        gui.add(title);
                         std::shared_ptr<DevSettingsPanel> tempPanel = std::shared_ptr<DevSettingsPanel>(new DevSettingsPanel());
                         tempPanel->init();
                         panel = tempPanel;
