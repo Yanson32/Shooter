@@ -8,6 +8,8 @@
 #include <iostream>
 int main()
 {
+    tgui::Theme theme{"Assets/Theme/Black.txt"};
+    tgui::Theme::setDefault(&theme);
 	sf::RenderWindow window(sf::VideoMode(Settings::screen.x, Settings::screen.y), "Shooter");
     std::cout << "A" << sf::Keyboard::A << (int)'A' << std::endl;
     std::cout << "Z" << sf::Keyboard::Z << (int)'Z' << std::endl;
@@ -22,6 +24,8 @@ int main()
 	std::unique_ptr<IntroState> state(new IntroState(window, gui));
 	engin.ChangeState(std::move(state));
 
+
+    //tgui::ButtonRenderer btnRenderer(theme.getRenderer("button"));
 	//EventManager::inst().Post<PlayMusic>("../Resources/Music/Electro_Zombies.ogg");
 	//EventManager::inst().Post<MusicVolumeChanged>();
 	//EventManager::inst().Post<SoundVolumeChanged>();

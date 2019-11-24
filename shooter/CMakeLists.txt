@@ -48,3 +48,4 @@ configure_file("${CMAKE_SOURCE_DIR}/cmake/config.h.in" "${CMAKE_CURRENT_BINARY_D
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/config.h" DESTINATION "include")
 add_definitions(-DDEBUG)
 
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Assets/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/Assets/")
