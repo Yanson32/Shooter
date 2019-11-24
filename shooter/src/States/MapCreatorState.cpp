@@ -12,7 +12,7 @@
 #include "Gui/Editor/MapCreatorPanel.h"
 #include <iostream>
 MapCreatorState::MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const std::string newMap):
-StateBase(newWindow, newGui, States::Id::MAP_CREATION_STATE),
+PlayState(newWindow, newGui, States::Id::MAP_CREATION_STATE),
 panel(new EditorPanel(map))
 {
     //ctor

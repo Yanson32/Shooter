@@ -1,11 +1,12 @@
 #ifndef SHOOTER_PLAYSTATE_H
 #define SHOOTER_PLAYSTATE_H
 #include "States/StateBase.h"
+#include "States/Id.h"
 
 class PlayState: public StateBase
 {
     public:
-        PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui);
+        PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const int &newId = States::Id::PLAY_STATE);
 
         /*********************************************************************************//**
         *   \brief	Initialize the game state.
