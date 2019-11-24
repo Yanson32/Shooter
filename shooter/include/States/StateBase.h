@@ -21,6 +21,7 @@ public SFEventHandler
         sf::RenderWindow &window;
        	tgui::Gui &gui;
         std::shared_ptr<PanelBase> panel;
+        tgui::Label::Ptr title;
     private:
 
 };

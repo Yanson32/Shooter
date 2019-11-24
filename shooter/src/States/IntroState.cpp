@@ -15,7 +15,6 @@ StateBase(newWindow, newGui)
     //ctor
     panel.reset(new IntroPanel());
     gui.add(panel);
-
 }
 
 /*********************************************************************************//**
