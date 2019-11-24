@@ -40,3 +40,4 @@ target_link_libraries("${PROJECT_NAME}" PUBLIC ${TGUI_LIBRARY})
 
 add_definitions(-DDEBUG)
 
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Assets/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/Assets/")
