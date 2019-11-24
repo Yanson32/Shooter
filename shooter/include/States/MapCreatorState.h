@@ -1,9 +1,9 @@
 #ifndef SHOOTER_MAPCREATORSTATE_H
 #define SHOOTER_MAPCREATORSTATE_H
-#include "States/StateBase.h"
+#include "States/PlayState.h"
 #include "MapCreatorPanel.h"
 
-class MapCreatorState: public StateBase
+class MapCreatorState: public PlayState
 {
     public:
         MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui);

@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 MapCreatorState::MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui):
-StateBase(newWindow, newGui),
+PlayState(newWindow, newGui),
 panel(new MapCreatorPanel())
 {
     //ctor
