@@ -10,6 +10,7 @@ install(FILES "${PROJECT_NAME}" DESTINATION src)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules/")
 
 add_subdirectory("extlibs")
+add_subdirectory("editor")
 add_subdirectory("shooter")
 #cpack
 include("CPack")

@@ -38,6 +38,8 @@ find_package(TGUI REQUIRED)
 target_include_directories("${PROJECT_NAME}" PUBLIC ${TGUI_INCLUDE_DIR})
 target_link_libraries("${PROJECT_NAME}" PUBLIC ${TGUI_LIBRARY})
 
+#link against map editor
+target_link_libraries("${PROJECT_NAME}" PUBLIC Editor)
 add_definitions(-DDEBUG)
 
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Assets/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/Assets/")
