@@ -16,6 +16,9 @@ class EditorGeneralPanel: public tgui::Panel
         tgui::EditBox::Ptr width;
         tgui::EditBox::Ptr height;
         tgui::EditBox::Ptr ordering;
+        tgui::EditBox::Ptr red;
+        tgui::EditBox::Ptr blue;
+        tgui::EditBox::Ptr green;
         tgui::CheckBox::Ptr grid;
         tgui::CheckBox::Ptr snap;
         Map &map;

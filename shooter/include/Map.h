@@ -27,6 +27,9 @@ class Map: public sf::Drawable
         int width;
         int height;
         int ordering;
+        int red = 100;
+        int blue = 0;
+        int green = 0;
         std::size_t getLayerCount() const;
         Layer& operator [] (const std::size_t index);
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

@@ -22,6 +22,9 @@ void Map::read()
     sourceStream >> width;
     sourceStream >> height;
     sourceStream >> ordering;
+    sourceStream >> red;
+    sourceStream >> blue;
+    sourceStream >> green;
     std::size_t size;
     sourceStream >> size;
     for(std::size_t i = 0; i < size; ++i)
@@ -59,6 +62,10 @@ void Map::write()
         steam << width << std::endl;
         steam << height << std::endl;
         steam << ordering << std::endl;
+        steam << red << std::endl;
+        steam << blue << std::endl;
+        steam << green << std::endl;
+
         steam << layers.size() << std::endl;
         for(auto &element : layers)
         {

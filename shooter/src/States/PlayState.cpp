@@ -66,7 +66,7 @@ void PlayState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 *************************************************************************************/
 void PlayState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
-    window.clear();
+    window.clear(sf::Color(map.red, map.blue, map.green));
     window.draw(map);
     gui.draw();
     window.display();
