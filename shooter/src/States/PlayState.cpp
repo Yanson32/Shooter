@@ -67,6 +67,7 @@ void PlayState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 void PlayState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear();
+    window.draw(map);
     gui.draw();
     window.display();
 }

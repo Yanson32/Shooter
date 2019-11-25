@@ -78,6 +78,11 @@ std::vector<std::string> Layer::getAllPaths(const std::string &map) const
     return {getSourceDir(map), getBuildDir(map)};
 }
 
+void Layer::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    for(auto it = tiles.begin(); it != tiles.end(); ++it)
+        target.draw(*it);
+}
 Layer::~Layer()
 {
     //dtor

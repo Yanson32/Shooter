@@ -2,6 +2,7 @@
 #define SHOOTER_PLAYSTATE_H
 #include "States/StateBase.h"
 #include "States/Id.h"
+#include "Map.h"
 
 class PlayState: public StateBase
 {
@@ -39,7 +40,7 @@ class PlayState: public StateBase
         virtual void Draw(GU::Engin::Engin& engin, const float &deltaTime) override;
         virtual ~PlayState();
     protected:
-    private:
+        Map map;
 };
 
 #endif // SHOOTER_PLAYSTATE_H

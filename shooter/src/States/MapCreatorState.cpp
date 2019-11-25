@@ -98,8 +98,7 @@ void MapCreatorState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 void MapCreatorState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear();
-    if(panel->drawGrid())
-        window.draw(grid);
+    window.draw(map);
     gui.draw();
     window.display();
 }

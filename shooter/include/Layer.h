@@ -4,7 +4,8 @@
 #include "Tile.h"
 #include <vector>
 #include <string>
-class Layer
+#include <SFML/Graphics/Drawable.hpp>
+class Layer: public sf::Drawable
 {
     public:
         Layer();
@@ -22,6 +23,7 @@ class Layer
         std::string getBuildDir(const std::string &map) const;
         std::vector<std::string> getAllPaths(const std::string &map) const;
         std::string getFullPath(const std::string dir, const std::string &map) const;
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
         virtual ~Layer();
 };
 

@@ -4,8 +4,9 @@
 #include "Settings.h"
 #include <string>
 #include "Layer.h"
+#include <SFML/Graphics/Drawable.hpp>
 
-class Map
+class Map: public sf::Drawable
 {
     public:
         Map();
@@ -28,6 +29,7 @@ class Map
         int tileHeight;
         std::size_t getLayerCount() const;
         Layer& operator [] (const std::size_t index);
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     private:
         std::map<std::string, Layer> layers;
 

@@ -2,7 +2,6 @@
 #define SHOOTER_MAPCREATORSTATE_H
 #include "Gui/Editor/MapCreatorPanel.h"
 #include "Gui/Editor/EditorPanel.h"
-#include "Map.h"
 #include "Gui/Editor/Grid.h"
 #include "States/PlayState.h"
 #include "Gui/Editor/MapCreatorPanel.h"
@@ -48,7 +47,6 @@ class MapCreatorState: public PlayState
     private:
         std::shared_ptr<EditorPanel> panel;
         sf::Clock collapseTimer;
-        Map map;
         Grid grid;
 };
 

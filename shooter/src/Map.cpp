@@ -162,6 +162,13 @@ std::vector<std::string> Map::getAllDir() const
     return {getSourceDir(), getBuildDir()};
 }
 
+void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    for(auto it = layers.begin(); it != layers.end(); ++it)
+        target.draw(it->second);
+}
+
+
 Map::~Map()
 {
     //dtor
