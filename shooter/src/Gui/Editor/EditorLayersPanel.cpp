@@ -69,6 +69,9 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
     removeButton = tgui::Button::create("Remove");
     controlsLayout->add(removeButton);
     removeButton->connect("pressed", [&](){
+        if(listBox-> getSelectedItemIndex() == -1)
+            return;
+
         std::string text = listBox->getSelectedItem();
 
         if(text == "")
@@ -86,49 +89,64 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
     this->add(properties);
 
     properties->zOrder->connect("TextChanged", [&](){
-
+        if(listBox-> getSelectedItemIndex() == -1)
+            return;
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).zOrder = toInt(properties->zOrder->getText());
         map.write();
     });
 
     properties->tileWidth->connect("TextChanged", [&](){
+        if(listBox-> getSelectedItemIndex() == -1)
+            return;
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).width = toInt(properties->tileWidth->getText());
         map.write();
     });
 
     properties->tileHeight->connect("TextChanged", [&](){
+        if(listBox-> getSelectedItemIndex() == -1)
+            return;
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).height = toInt(properties->tileHeight->getText());
         map.write();
     });
 
     properties->combo->connect("ItemSelected", [&](){
+        if(listBox-> getSelectedItemIndex() == -1)
+            return;
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).type = properties->combo->getSelectedItem().toAnsiString();
         map.write();
     });
 
     properties->visible->connect("checked", [&](){
+        if(listBox-> getSelectedItemIndex() == -1)
+            return;
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).visible = properties->visible->isChecked();
         map.write();
     });
 
     properties->visible->connect("unchecked", [&](){
+        if(listBox-> getSelectedItemIndex() == -1)
+            return;
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).visible = properties->visible->isChecked();
         map.write();
     });
 
     properties->grid->connect("checked", [&](){
+        if(listBox-> getSelectedItemIndex() == -1)
+            return;
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).grid = properties->grid->isChecked();
         map.write();
     });
 
     properties->grid->connect("unchecked", [&](){
+        if(listBox-> getSelectedItemIndex() == -1)
+            return;
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).grid = properties->grid->isChecked();
         map.write();
