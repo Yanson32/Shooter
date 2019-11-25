@@ -44,8 +44,6 @@ MapCreatorPanel::MapCreatorPanel(Map &map)
         map.height = toInt(generalPanel->height->getText());
         map.width = toInt(generalPanel->width->getText());
         map.ordering = toInt(generalPanel->ordering->getText());
-        map.tileWidth = toInt(generalPanel->tileWidth->getText());
-        map.tileHeight = toInt(generalPanel->tileHeight->getText());
         map.write();
         std::cout << "write " << std::endl;
     });

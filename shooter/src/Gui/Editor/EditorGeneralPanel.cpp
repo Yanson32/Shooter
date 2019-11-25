@@ -12,8 +12,6 @@ map(newMap)
     this->width = properties->appendEditBox("Map Width", "");
     this->height = properties->appendEditBox("Map Height", "");
     this->ordering = properties->appendEditBox("Ordering", "");
-    tileWidth = properties->appendEditBox("Tile Width", "");
-    tileHeight = properties->appendEditBox("Tile Height", "");
     this->grid = properties->appendCheckBox("Grid");
     this->snap = properties->appendCheckBox("Snap To Grid");
     this->add(properties);
@@ -25,8 +23,6 @@ void EditorGeneralPanel::init()
     width->setText(toString(map.width));
     height->setText(toString(map.height));
     ordering->setText(toString(map.ordering));
-    tileWidth->setText(toString(map.tileWidth));
-    tileHeight->setText(toString(map.tileHeight));
 
 }
 

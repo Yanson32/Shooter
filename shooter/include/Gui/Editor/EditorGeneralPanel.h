@@ -18,8 +18,6 @@ class EditorGeneralPanel: public tgui::Panel
         tgui::EditBox::Ptr ordering;
         tgui::CheckBox::Ptr grid;
         tgui::CheckBox::Ptr snap;
-        tgui::EditBox::Ptr tileWidth;
-        tgui::EditBox::Ptr tileHeight;
         Map &map;
 };
 

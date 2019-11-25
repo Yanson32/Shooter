@@ -25,8 +25,6 @@ class Map: public sf::Drawable
         int width;
         int height;
         int ordering;
-        int tileWidth;
-        int tileHeight;
         std::size_t getLayerCount() const;
         Layer& operator [] (const std::size_t index);
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

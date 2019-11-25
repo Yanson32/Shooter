@@ -23,9 +23,6 @@ panel(new EditorPanel(map))
     std::cout << "map name " << map.name << std::endl;
     //std::cout << "Map state name " << map.getLayer("Background").name << std::endl;
     //Initialize grid
-    sf::Vector2f mapSize(map.width, map.height);
-    sf::Vector2f tileSize(map.tileWidth, map.tileHeight);
-    grid.init(mapSize, tileSize);
 
 //    collapseButton = tgui::Button::create("Collapse");
 //    collapseButton->connect("pressed", &MapCreatorState::onCollapsePressed, this);

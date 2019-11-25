@@ -22,8 +22,6 @@ void Map::read()
     sourceStream >> width;
     sourceStream >> height;
     sourceStream >> ordering;
-    sourceStream >> tileWidth;
-    sourceStream >> tileHeight;
     std::size_t size;
     sourceStream >> size;
     for(std::size_t i = 0; i < size; ++i)
@@ -61,8 +59,6 @@ void Map::write()
         steam << width << std::endl;
         steam << height << std::endl;
         steam << ordering << std::endl;
-        steam << tileWidth << std::endl;
-        steam << tileHeight << std::endl;
         steam << layers.size() << std::endl;
         for(auto &element : layers)
         {
