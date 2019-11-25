@@ -82,7 +82,20 @@ void Layer::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     for(auto it = tiles.begin(); it != tiles.end(); ++it)
         target.draw(*it);
+
+    if(grid && selected)
+        target.draw(layerGrid);
 }
+
+void Layer::init(const sf::Vector2f &mapSize)
+{
+    if(mapSize.x <= 0 || mapSize.y <= 0)
+        return;
+    if(width <= 0 || height <=0)
+        return;
+    layerGrid.init(mapSize, {width, height});
+}
+
 Layer::~Layer()
 {
     //dtor

@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <SFML/Graphics/Drawable.hpp>
+#include "Gui/Editor/Grid.h"
 class Layer: public sf::Drawable
 {
     public:
@@ -16,7 +17,9 @@ class Layer: public sf::Drawable
         int width;
         int height;
         int zOrder;
+        bool selected = false;
         std::vector<Tile> tiles;
+        void init(const sf::Vector2f &mapSize);
         void read(const std::string &map);
         void write(const std::string &map);
         std::string getSourceDir(const std::string &map) const;
@@ -25,6 +28,7 @@ class Layer: public sf::Drawable
         std::string getFullPath(const std::string dir, const std::string &map) const;
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
         virtual ~Layer();
+        Grid layerGrid;
 };
 
 #endif // LAYER_H

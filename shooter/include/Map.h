@@ -10,9 +10,11 @@ class Map: public sf::Drawable
 {
     public:
         Map();
+        void init();
         void read();
         void write();
         void remove();
+        void layerSelected(const std::string &name);
         bool layerExists(const std::string &name);
         std::string getSourceDir() const;
         std::string getBuildDir() const;

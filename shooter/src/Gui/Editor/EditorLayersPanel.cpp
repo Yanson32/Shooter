@@ -30,6 +30,8 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
                 map.addLayer(layer);
             }
             map.getLayer(text).read(map.name);
+            map.layerSelected(text);
+            map.getLayer(text).init({map.width, map.height});
             properties->init(map.getLayer(text));
         }
     });
@@ -102,6 +104,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).width = toInt(properties->tileWidth->getText());
         map.write();
+        map.getLayer(text).init({map.width, map.height});
     });
 
     properties->tileHeight->connect("TextChanged", [&](){
@@ -110,6 +113,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).height = toInt(properties->tileHeight->getText());
         map.write();
+        map.getLayer(text).init({map.width, map.height});
     });
 
     properties->combo->connect("ItemSelected", [&](){

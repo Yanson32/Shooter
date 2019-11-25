@@ -164,6 +164,24 @@ void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const
         target.draw(it->second);
 }
 
+void Map::layerSelected(const std::string &name)
+{
+    for(auto it = layers.begin(); it != layers.end(); ++it)
+    {
+        it->second.selected = false;
+        if(it->first == name)
+            it->second.selected = true;
+    }
+}
+
+void Map::init()
+{
+    for(auto it = layers.begin(); it != layers.end(); ++it)
+    {
+        it->second.init({width, height});
+    }
+}
+
 
 Map::~Map()
 {
