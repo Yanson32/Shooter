@@ -75,8 +75,8 @@ void Map::write()
 
 void Map::remove()
 {
-    boost::filesystem::path source(getSourceDir());
-    boost::filesystem::path build(getBuildDir());
+    boost::filesystem::path source(getSourceDir() + this->name + ".map");
+    boost::filesystem::path build(getBuildDir() + this->name + ".map");
     boost::filesystem::remove(source);
     boost::filesystem::remove(build);
 }
