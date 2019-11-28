@@ -1,6 +1,6 @@
 #ifndef DEVSETTINGSPANEL_H
 #define DEVSETTINGSPANEL_H
-#include "Gui/OptionsPanel.h"
+#include "Gui/Options/OptionsPanel.h"
 
 
 /****************************************************************************//**

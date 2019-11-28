@@ -1,6 +1,6 @@
 #ifndef MULTIPLAYERSETTINGSPANEL_H
 #define MULTIPLAYERSETTINGSPANEL_H
-#include "Gui/OptionsPanel.h"
+#include "Gui/Options/OptionsPanel.h"
 
 
 /****************************************************************************//**

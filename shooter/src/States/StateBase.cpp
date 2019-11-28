@@ -10,12 +10,12 @@
 #include <iostream>
 #include "Gui/id.h"
 #include "GameUtilities/Event/Click.h"
-#include "Gui/GeneralPanel.h"
+#include "Gui/Options/GeneralPanel.h"
 #include "Gui/IntroPanel.h"
-#include "Gui/ControlPanel.h"
-#include "Gui/SoundPanel.h"
-#include "Gui/MultiPlayerSettingsPanel.h"
-#include "Gui/DevSettingsPanel.h"
+#include "Gui/Options/ControlPanel.h"
+#include "Gui/Options/SoundPanel.h"
+#include "Gui/Options/MultiPlayerSettingsPanel.h"
+#include "Gui/Options/DevSettingsPanel.h"
 #include "Gui/MapLoader.h"
 #include "Gui/NewLevelSettingsPanel.h"
 

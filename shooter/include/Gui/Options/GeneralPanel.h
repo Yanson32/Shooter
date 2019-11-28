@@ -1,6 +1,6 @@
 #ifndef GENERALPANEL_H
 #define GENERALPANEL_H
-#include "Gui/OptionsPanel.h"
+#include "Gui/Options/OptionsPanel.h"
 
 
 /****************************************************************************//**

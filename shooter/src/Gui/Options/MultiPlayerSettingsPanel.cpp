@@ -1,4 +1,4 @@
-#include "Gui/MultiPlayerSettingsPanel.h"
+#include "Gui/Options/MultiPlayerSettingsPanel.h"
 #include "Gui/id.h"
 #include <sstream>
 #include "Settings.h"

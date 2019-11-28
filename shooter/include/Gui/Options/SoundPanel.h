@@ -1,6 +1,6 @@
 #ifndef SOUND_PANEL_H
 #define SOUND_PANEL_H
-#include "Gui/OptionsPanel.h"
+#include "Gui/Options/OptionsPanel.h"
 
 
 /****************************************************************************//**

@@ -1,4 +1,4 @@
-#include "Gui/OptionsPanel.h"
+#include "Gui/Options/OptionsPanel.h"
 #include "Settings.h"
 #include "Events/EventManager.h"
 #include "Gui/id.h"
@@ -13,7 +13,7 @@ OptionsPanel::OptionsPanel(const int newId):
 GuiBase(newId)
 {
     //ctor
-    getRenderer()->setBackgroundColor(sf::Color::Black);
+    getRenderer()->setBackgroundColor(sf::Color(50, 50, 50));
     tabs = tgui::Tabs::create();
     tabLayout->add(tabs);
     //tabs->setPosition({300, 100});

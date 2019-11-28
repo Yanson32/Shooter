@@ -1,4 +1,4 @@
-#include "Gui/ControlPanel.h"
+#include "Gui/Options/ControlPanel.h"
 #include "Settings.h"
 #include "Gui/id.h"
 #include "Editor/Functions.h"

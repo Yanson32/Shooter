@@ -1,6 +1,6 @@
 #ifndef CONTROLPANEL_H
 #define CONTROLPANEL_H
-#include "Gui/OptionsPanel.h"
+#include "Gui/Options/OptionsPanel.h"
 
 /****************************************************************************//**
 *   @author Wayne J Larson Jr.

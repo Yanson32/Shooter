@@ -1,4 +1,4 @@
-#include "Gui/SoundPanel.h"
+#include "Gui/Options/SoundPanel.h"
 #include "Settings.h"
 
 /****************************************************************************//**

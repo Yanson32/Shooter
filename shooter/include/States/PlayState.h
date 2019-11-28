@@ -3,7 +3,7 @@
 #include "States/StateBase.h"
 #include "States/Id.h"
 #include "Editor/Map.h"
-#include "Gui/OptionsPanel.h"
+#include "Gui/Options/OptionsPanel.h"
 class PlayState: public StateBase
 {
     public:

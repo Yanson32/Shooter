@@ -1,17 +1,11 @@
-set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.cpp"
-            "${CMAKE_CURRENT_SOURCE_DIR}/OptionsPanel.cpp"
-            "${CMAKE_CURRENT_SOURCE_DIR}/GeneralPanel.cpp"
-            "${CMAKE_CURRENT_SOURCE_DIR}/ControlPanel.cpp"
-            "${CMAKE_CURRENT_SOURCE_DIR}/SoundPanel.cpp"
-            "${CMAKE_CURRENT_SOURCE_DIR}/MultiPlayerSettingsPanel.cpp"
-            "${CMAKE_CURRENT_SOURCE_DIR}/DevSettingsPanel.cpp"
-            "${CMAKE_CURRENT_SOURCE_DIR}/MapLoader.cpp"
+set(FILES   "${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.cpp"
+	    "${CMAKE_CURRENT_SOURCE_DIR}/MapLoader.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/NewLevelSettingsPanel.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/GuiBase.cpp"
 )
 
 set(RELATIVE_PATH "src")
-set(SUB_DIRECTORIES "Editor"
+set(SUB_DIRECTORIES "Editor" "Options"
 )
 
 foreach(VAR ${SUB_DIRECTORIES})
