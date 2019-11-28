@@ -8,6 +8,7 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/MapLoader.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/NewLevelSettingsPanel.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/GuiBase.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/StartPanel.cpp"
 )
 
 set(RELATIVE_PATH "src")

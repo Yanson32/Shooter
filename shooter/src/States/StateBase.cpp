@@ -18,6 +18,7 @@
 #include "Gui/DevSettingsPanel.h"
 #include "Gui/MapLoader.h"
 #include "Gui/NewLevelSettingsPanel.h"
+#include "Gui/StartPanel.h"
 //sf::RenderWindow StateBase::window(sf::VideoMode({800, 600}), Settings::inst().getTitle());
 //tgui::Gui StateBase::gui(window);
 StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, const int &newId):
@@ -163,6 +164,18 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                         gui.removeAllWidgets();
                         std::shared_ptr<NewLevelSettingsPanel> tempPanel = std::shared_ptr<NewLevelSettingsPanel>(new NewLevelSettingsPanel());
                         tempPanel->init();
+                        panel = tempPanel;
+                        gui.add(panel);
+                    }
+                }
+                break;
+                case Gui::id::START:
+                {
+                    if(panel->id != Gui::id::START)
+                    {
+                        gui.removeAllWidgets();
+                        std::shared_ptr<StartPanel> tempPanel = std::shared_ptr<StartPanel>(new StartPanel());
+                        //tempPanel->init();
                         panel = tempPanel;
                         gui.add(panel);
                     }

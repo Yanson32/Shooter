@@ -7,7 +7,7 @@
 #include "GameUtilities/Event/PushState.h"
 #include "Gui/id.h"
 #include "States/Id.h"
-
+#include "Gui/id.h"
 
 /****************************************************************************//**
 *   @brief  Constructor.
@@ -24,7 +24,7 @@ GuiBase(Gui::id::INTRO)
     //startBtn->setTextSize(buttonTextSize);
     startBtn->setSize(Settings::buttonSize);
     startBtn->connect("pressed", [](){
-        EventManager::inst().Post<GU::Evt::PushState>(States::Id::PLAY_STATE);
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::START);
     });
 
     multiplayerButton = tgui::Button::create("Multiplayer");

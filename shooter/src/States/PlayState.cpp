@@ -1,11 +1,13 @@
 #include "States/PlayState.h"
 #include "Events/EventManager.h"
 #include "config.h"
+#include "Settings.h"
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const int &newId):
 StateBase(newWindow, newGui, States::Id::PLAY_STATE),
 map(SOURCE_DIR, BUILD_DIR)
 {
-
+    map.name = "Temp";
+    map.read();
 }
 /*********************************************************************************//**
 *   \brief	Initialize the game state.
@@ -67,7 +69,7 @@ void PlayState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 *************************************************************************************/
 void PlayState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
-    window.clear(sf::Color(map.red, map.blue, map.green));
+    window.clear(sf::Color(map.red, map.green, map.blue));
     window.draw(map);
     gui.draw();
     window.display();
