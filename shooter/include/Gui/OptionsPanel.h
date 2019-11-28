@@ -24,7 +24,6 @@ class OptionsPanel: public GuiBase
         ********************************************************************************/
         virtual ~OptionsPanel();
 
-    protected:
         tgui::Tabs::Ptr tabs;
         tgui::Button::Ptr backBtn;
 };

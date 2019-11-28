@@ -13,8 +13,8 @@ OptionsPanel::OptionsPanel(const int newId):
 GuiBase(newId)
 {
     //ctor
-
-tabs = tgui::Tabs::create();
+    getRenderer()->setBackgroundColor(sf::Color::Black);
+    tabs = tgui::Tabs::create();
     tabLayout->add(tabs);
     //tabs->setPosition({300, 100});
     tabs->add("General");
@@ -42,9 +42,9 @@ tabs = tgui::Tabs::create();
 
         });
     backBtn = tgui::Button::create("Back");
-    backBtn->connect("pressed", [](){
-            EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
-        });
+//    backBtn->connect("pressed", [](){
+//            EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
+//        });
 
     buttonLayout->add(spacer);
     buttonLayout->add(backBtn);

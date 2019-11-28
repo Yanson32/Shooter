@@ -194,6 +194,25 @@ void StateBase::handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event)
         case sf::Event::Closed:
             engin.Quit();
         break;
+        case sf::Event::KeyPressed:
+            switch(event.key.code)
+            {
+                case sf::Keyboard::Escape:
+                    gui.removeAllWidgets();
+                    panel = std::shared_ptr<GeneralPanel>(new GeneralPanel());
+                    std::shared_ptr<GeneralPanel> temp = std::static_pointer_cast<GeneralPanel>(panel);
+                    if(temp)
+                    {
+                        temp->backBtn->connect("pressed", [&](){
+                            EventManager::inst().Post<GU::Evt::Pop>();
+                            gui.removeAllWidgets();
+                        });
+                    }
+
+                    gui.add(panel);
+                break;
+            }
+        break;
     }
 }
 
