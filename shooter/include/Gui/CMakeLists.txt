@@ -8,7 +8,6 @@ set(FILES 	 "${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/MapLoader.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/NewLevelSettingsPanel.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/GuiBase.h"
-            "${CMAKE_CURRENT_SOURCE_DIR}/StartPanel.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/id.h"
 
 )

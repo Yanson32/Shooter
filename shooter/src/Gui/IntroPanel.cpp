@@ -22,7 +22,7 @@ GuiBase(Gui::id::INTRO)
     startBtn = tgui::Button::create("Start");
     startBtn->setSize(Settings::buttonSize);
     startBtn->connect("pressed", [](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::START);
+        EventManager::inst().Post<GU::Evt::PushState>(States::Id::PLAY_STATE);
     });
 
 
