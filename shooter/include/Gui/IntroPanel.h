@@ -26,6 +26,8 @@ class IntroPanel: public GuiBase
     private:
         tgui::Button::Ptr startBtn;
         tgui::Button::Ptr optionsBtn;
-        tgui::Button::Ptr multiplayerButton;
+        tgui::Button::Ptr hostButton;
+        tgui::Button::Ptr connectButton;
+        tgui::Button::Ptr loadButton;
 };
 #endif // GUI_INTROPANEL_H
