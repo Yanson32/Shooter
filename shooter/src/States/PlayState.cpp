@@ -1,8 +1,9 @@
 #include "States/PlayState.h"
 #include "Events/EventManager.h"
-
-PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui):
-StateBase(newWindow, newGui)
+#include "config.h"
+PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const int &newId):
+StateBase(newWindow, newGui, States::Id::PLAY_STATE),
+map(SOURCE_DIR, BUILD_DIR)
 {
 
 }
@@ -66,7 +67,8 @@ void PlayState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 *************************************************************************************/
 void PlayState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
-    window.clear();
+    window.clear(sf::Color(map.red, map.blue, map.green));
+    window.draw(map);
     gui.draw();
     window.display();
 }

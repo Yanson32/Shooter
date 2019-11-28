@@ -2,7 +2,7 @@
 #include "Gui/id.h"
 #include <sstream>
 #include "Settings.h"
-#include "Functions.h"
+#include "Editor/Functions.h"
 
 
 /****************************************************************************//**

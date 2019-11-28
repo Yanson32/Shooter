@@ -13,7 +13,12 @@ namespace Gui
         GENERAL,
         CONTROLS,
         SOUND,
-        DEV
+        DEV,
+        MAP_LOADER,
+        NEW_LEVEL,
+        EDITOR_GENERAL,
+        EDITOR_lAYERS,
+        EDITOR_OBJECT
     };
 }
 #endif // ID_H_INCLUDED

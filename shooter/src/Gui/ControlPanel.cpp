@@ -1,7 +1,7 @@
 #include "Gui/ControlPanel.h"
 #include "Settings.h"
 #include "Gui/id.h"
-#include "Functions.h"
+#include "Editor/Functions.h"
 
 
 /****************************************************************************//**

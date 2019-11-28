@@ -38,8 +38,16 @@ find_package(TGUI REQUIRED)
 target_include_directories("${PROJECT_NAME}" PUBLIC ${TGUI_INCLUDE_DIR})
 target_link_libraries("${PROJECT_NAME}" PUBLIC ${TGUI_LIBRARY})
 
-#link against map editor
+find_package(Boost COMPONENTS filesystem REQUIRED)
+target_link_libraries("${PROJECT_NAME}" PUBLIC ${Boost_LIBRARIES})
+target_include_directories("${PROJECT_NAME}" PUBLIC ${Boost_INCLUDE_DIRS})
+
 target_link_libraries("${PROJECT_NAME}" PUBLIC Editor)
+
+file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Assets" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+
+configure_file("${CMAKE_SOURCE_DIR}/cmake/config.h.in" "${CMAKE_CURRENT_BINARY_DIR}/config.h")
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/config.h" DESTINATION "include")
 add_definitions(-DDEBUG)
 
 file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Assets/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/Assets/")

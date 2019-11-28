@@ -1,25 +1,18 @@
-#include "Gui/ContentPane.h"
+#include "Editor/PropertiesPanel.h"
 
-
-/****************************************************************************//**
-*   @brief Constructor.
-********************************************************************************/
-ContentPane::ContentPane()
+PropertiesPanel::PropertiesPanel(const int width, const int height)
 {
     //ctor
-    this->setSize(380, 300);
-    this->getScrollbarWidth();
-    getRenderer()->setBackgroundColor(sf::Color::Transparent);
-    layoutSize.x = this->getSize().x - this->getScrollbarWidth();
-    layoutSize.y = this->getSize().y * 0.1f;
+    this->setSize(width, height);
+    layoutSize.x = this->getSize().x - this->getScrollbarWidth() - 2;
+    layoutSize.y = 30;
     getRenderer()->setBackgroundColor(sf::Color::Transparent);
 }
-
 
 /****************************************************************************//**
 *   @brief Create a space in the panel.
 ********************************************************************************/
-tgui::HorizontalLayout::Ptr ContentPane::appendLayout()
+tgui::HorizontalLayout::Ptr PropertiesPanel::appendLayout()
 {
     tgui::HorizontalLayout::Ptr layout = tgui::HorizontalLayout::create();
     layout->setSize(layoutSize);
@@ -42,7 +35,7 @@ tgui::HorizontalLayout::Ptr ContentPane::appendLayout()
 *   @brief  Create a single line with some text.
 *   @param  text to be displayed.
 ********************************************************************************/
-void ContentPane::appendSpacer()
+void PropertiesPanel::appendSpacer()
 {
     appendLayout();
 }
@@ -53,11 +46,12 @@ void ContentPane::appendSpacer()
 *           added to the layout maually.
 *   @return A pointer to the layout.
 ********************************************************************************/
-void ContentPane::appendSection(const sf::String &text)
+tgui::Label::Ptr PropertiesPanel::appendSection(const sf::String &text)
 {
     tgui::HorizontalLayout::Ptr layout = appendLayout();
     tgui::Label::Ptr temp = tgui::Label::create(text);
     layout->add(temp);
+    return temp;
 }
 
 
@@ -67,14 +61,14 @@ void ContentPane::appendSection(const sf::String &text)
 *   @param  Text that will be displayed in the editbox.
 *   @return A pointer to the editbox
 ********************************************************************************/
-tgui::EditBox::Ptr ContentPane::appendEditBox(const sf::String &label, const sf::String &text)
+tgui::EditBox::Ptr PropertiesPanel::appendEditBox(const sf::String &label, const sf::String &text)
 {
     tgui::Label::Ptr boxLabel = tgui::Label::create(label);
     tgui::EditBox::Ptr editBox = tgui::EditBox::create();
     editBox->setText(text);
     tgui::HorizontalLayout::Ptr layout = appendLayout();
     tgui::Panel::Ptr panel = tgui::Panel::create();
-    panel->getRenderer()->setBackgroundColor(sf::Color::Black);
+    panel->getRenderer()->setBackgroundColor(sf::Color::Transparent);
     layout->add(boxLabel);
     layout->add(panel);
     panel->add(editBox);
@@ -89,7 +83,7 @@ tgui::EditBox::Ptr ContentPane::appendEditBox(const sf::String &label, const sf:
 *   @param  True if the checkbox should be displayed as checked and false otherwise
 *   @return A pointer to the checkbox.
 ********************************************************************************/
-tgui::CheckBox::Ptr ContentPane::appendCheckBox(const sf::String &label, const bool val)
+tgui::CheckBox::Ptr PropertiesPanel::appendCheckBox(const sf::String &label, const bool val)
 {
     tgui::Label::Ptr checkboxLabel = tgui::Label::create(label);
     tgui::CheckBox::Ptr checkBox = tgui::CheckBox::create();
@@ -111,7 +105,7 @@ tgui::CheckBox::Ptr ContentPane::appendCheckBox(const sf::String &label, const b
 *   @param  A vector of strings that wil be listed as choices in the combobox
 *   @return A pointer to the combobox.
 ********************************************************************************/
-tgui::ComboBox::Ptr ContentPane::appendComboBox(const sf::String &label, std::vector<sf::String> &elements)
+tgui::ComboBox::Ptr PropertiesPanel::appendComboBox(const sf::String &label, std::vector<sf::String> &elements)
 {
     tgui::Label::Ptr comboLabel = tgui::Label::create(label);
     tgui::ComboBox::Ptr box = tgui::ComboBox::create();
@@ -136,7 +130,7 @@ tgui::ComboBox::Ptr ContentPane::appendComboBox(const sf::String &label, std::ve
 *   @param  Description of the property.
 *   @return Pointer to the created slider.
 ********************************************************************************/
-tgui::Slider::Ptr ContentPane::appendSlider(const sf::String &label)
+tgui::Slider::Ptr PropertiesPanel::appendSlider(const sf::String &label)
 {
     tgui::Label::Ptr sliderLabel = tgui::Label::create(label);
     tgui::Slider::Ptr slider = tgui::Slider::create();
@@ -148,21 +142,27 @@ tgui::Slider::Ptr ContentPane::appendSlider(const sf::String &label)
 }
 
 
+tgui::Button::Ptr PropertiesPanel::appendButton(const sf::String &label, const int &id)
+{
+    tgui::Label::Ptr buttonLabel = tgui::Label::create(label);
+    tgui::Button::Ptr button = tgui::Button::create(label);
+    tgui::HorizontalLayout::Ptr layout = appendLayout();
+    layout->add(buttonLabel);
+    layout->add(button);
+}
+
+
 /****************************************************************************//**
 *   @brief  Get a pointer to any layout in the panel.
 *   @param  The index of the layout.
 *   @return A pointer to the layout.
 ********************************************************************************/
-tgui::HorizontalLayout::Ptr ContentPane::get(const std::size_t &i)
+tgui::HorizontalLayout::Ptr PropertiesPanel::get(const std::size_t &i)
 {
     return layouts.at(i);
 }
 
-
-/****************************************************************************//**
-*   @brief  Destructor.
-********************************************************************************/
-ContentPane::~ContentPane()
+PropertiesPanel::~PropertiesPanel()
 {
     //dtor
 }

@@ -10,7 +10,7 @@
 *   @param  The id param is used to identify the gui panel.
 ********************************************************************************/
 OptionsPanel::OptionsPanel(const int newId):
-PanelBase(newId)
+GuiBase(newId)
 {
     //ctor
 

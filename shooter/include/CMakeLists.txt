@@ -1,6 +1,4 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Settings.h"
-            "${CMAKE_CURRENT_SOURCE_DIR}/MapCreatorPanel.h"
-            "${CMAKE_CURRENT_SOURCE_DIR}/Functions.h"
 
 )
 set(SUB_DIRECTORIES "Engin"

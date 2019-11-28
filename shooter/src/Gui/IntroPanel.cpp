@@ -13,7 +13,7 @@
 *   @brief  Constructor.
 ********************************************************************************/
 IntroPanel::IntroPanel():
-PanelBase(Gui::id::INTRO)
+GuiBase(Gui::id::INTRO)
 {
     //ctor
     //getRenderer()->setBackgroundColor(sf::Color::Transparent);
@@ -55,6 +55,9 @@ PanelBase(Gui::id::INTRO)
         mapSpace->add(spacer);
         mapSpace->add(mapButton);
         mapSpace->add(spacer);
+        mapButton->connect("pressed", [&](){
+            EventManager::inst().Post<GU::Evt::Click>(Gui::id::MAP_LOADER);
+        });
     #endif
     tgui::HorizontalLayout::Ptr layout2 = content->appendLayout();
 

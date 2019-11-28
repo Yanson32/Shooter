@@ -1,7 +1,8 @@
 #ifndef INTROSTATE_H
 #define INTROSTATE_H
 #include "States/StateBase.h"
-#include "Gui/PanelBase.h"
+#include "Editor/PanelBase.h"
+#include "Gui/id.h"
 class IntroState: public StateBase
 {
     public:
@@ -35,6 +36,8 @@ class IntroState: public StateBase
                 *	\param	engin is a reference to the game's Engin object.
                 *************************************************************************************/
                 virtual void Draw(GU::Engin::Engin& engin, const float &deltaTime) override;
+
+                void handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event);
         virtual ~IntroState();
     protected:
     private:
@@ -47,6 +50,7 @@ class IntroState: public StateBase
 //        void onMultiplayerPressed();
 //        void onOptionsPressed();
 //        void onMapPressed();
+            Gui::id panelId = Gui::id::INTRO;
 
 };
 

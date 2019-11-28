@@ -1,18 +1,12 @@
-#include "Gui/PanelBase.h"
+#include "Gui/GuiBase.h"
 #include "Settings.h"
-
-
-/****************************************************************************//**
-*   @brief  Constructor
-*   @param  The id of the panel
-********************************************************************************/
-PanelBase::PanelBase(const int newId):
+GuiBase::GuiBase(const int newId):
 id(newId),
 content(new ContentPane())
 {
     //ctor
     spacer = tgui::Panel::create();
-    spacer->getRenderer()->setBackgroundColor(Settings::background);
+    spacer->getRenderer()->setBackgroundColor(sf::Color::Transparent);
     this->setSize({Settings::screen.x / 2, Settings::screen.y / 2});
     this->setPosition({Settings::screen.x / 4, Settings::screen.y / 4});
     this->getRenderer()->setBackgroundColor(sf::Color::Transparent);
@@ -27,14 +21,11 @@ content(new ContentPane())
     buttonLayout->setSize("100%", "10%");
     buttonLayout->setPosition(0, "90%");
     this->add(buttonLayout);
+//    this->setSize("50%", "50%");
+//    this->setPosition(200, 100);
 }
 
-
-/****************************************************************************//**
-*   @brief  Destructor
-********************************************************************************/
-PanelBase::~PanelBase()
+GuiBase::~GuiBase()
 {
-        //dtor
+    //dtor
 }
-

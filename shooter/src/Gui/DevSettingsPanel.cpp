@@ -1,7 +1,7 @@
 #include "Gui/DevSettingsPanel.h"
 #include "Gui/id.h"
 #include "Settings.h"
-#include "Functions.h"
+#include "Editor/Functions.h"
 
 
 /****************************************************************************//**

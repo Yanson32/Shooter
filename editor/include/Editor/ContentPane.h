@@ -74,6 +74,8 @@ class ContentPane: public tgui::ScrollablePanel
         tgui::Slider::Ptr appendSlider(const sf::String &label);
 
 
+        tgui::Button::Ptr appendButton(const sf::String &label, const int &id);
+
         /****************************************************************************//**
         *   @brief  Get a pointer to any layout in the panel.
         *   @param  The index of the layout.

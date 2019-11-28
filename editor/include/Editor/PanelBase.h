@@ -1,7 +1,7 @@
 #ifndef GUI_CUSTOMPANEL_H
 #define GUI_CUSTOMPANEL_H
 #include <TGUI/TGUI.hpp>
-#include "Gui/ContentPane.h"
+#include "Editor/ContentPane.h"
 #include <memory>
 
 

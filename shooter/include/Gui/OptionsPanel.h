@@ -1,6 +1,6 @@
 #ifndef OPTIONSPANEL_H
 #define OPTIONSPANEL_H
-#include "Gui/PanelBase.h"
+#include "Gui/GuiBase.h"
 #include "Gui/id.h"
 
 
@@ -9,7 +9,7 @@
 *   @date   11/16/19
 *   @brief  This class is a base class for all aptions panels.
 ********************************************************************************/
-class OptionsPanel: public PanelBase
+class OptionsPanel: public GuiBase
 {
     public:
 

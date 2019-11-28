@@ -1,6 +1,6 @@
 #ifndef GUI_INTROPANEL_H
 #define GUI_INTROPANEL_H
-#include "Gui/PanelBase.h"
+#include "Gui/GuiBase.h"
 
 
 /****************************************************************************//**
@@ -8,7 +8,7 @@
 *   @date   11/16/19
 *   @brief  This class displays the start screen with basic options for the user.
 ********************************************************************************/
-class IntroPanel: public PanelBase
+class IntroPanel: public GuiBase
 {
     public:
 
