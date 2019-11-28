@@ -9,7 +9,7 @@ map(newMap)
     this->add(panel);
     setSize({350, 600});
     setPosition({0, 0});
-    getRenderer()->setBackgroundColor(sf::Color::Black);
+    getRenderer()->setBackgroundColor(sf::Color::Transparent);
     collapseButton = tgui::Button::create("Collapse");
     //collapseButton->connect("pressed", &MapCreatorState::onCollapsePressed, this);
     collapseButton->setSize({50, 50});
@@ -44,12 +44,10 @@ void Editor::update()
 
             this->setPosition(panelPos);
         }
-//
-        if(this->getPosition().x + this->getSize().x < collapseButton->getSize().x)
-            this->setPosition(collapseButton->getSize().x - this->getSize().x, 0);
-        sf::Vector2f buttonPos = this->getPosition();
-        buttonPos.x += this->getSize().x;
-        collapseButton->setPosition(buttonPos);
+
+        if(this->getPosition().x < -(this->getSize().x - collapseButton->getSize().x))
+            this->setPosition({(-this->getSize().x + collapseButton->getSize().x), 0});
+
 }
 
 void Editor::onCollapsePressed()

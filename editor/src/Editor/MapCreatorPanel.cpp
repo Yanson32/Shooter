@@ -18,6 +18,7 @@ MapCreatorPanel::MapCreatorPanel(Map &map)
     setSize(300, 600);
     tabLayout = tgui::HorizontalLayout::create();
     tabLayout->setSize("100%", 50);
+
     tabs = tgui::Tabs::create();
     tabLayout->add(tabs);
     tabs->setPosition({0, 100});
