@@ -1,7 +1,6 @@
 #ifndef GENERALPANEL_H
 #define GENERALPANEL_H
-#include "Gui/Options/OptionsPanel.h"
-
+#include "Editor/ContentPane.h"
 
 /****************************************************************************//**
 *   @author Wayne J Larson Jr.
@@ -9,7 +8,7 @@
 *   @brief  This class displays developer settings. These settings will only
 *           be seen in debug mode.
 ********************************************************************************/
-class GeneralPanel: public OptionsPanel
+class GeneralPanel: public ContentPane
 {
     public:
 

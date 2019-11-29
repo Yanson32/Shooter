@@ -4,16 +4,18 @@
 #include "Gui/id.h"
 #include "GameUtilities/Event/Click.h"
 
-
+#include <iostream>
 /****************************************************************************//**
 *   @brief The constructor
 *   @param  The id param is used to identify the gui panel.
 ********************************************************************************/
-OptionsPanel::OptionsPanel(const int newId):
+OptionsPanel::OptionsPanel(const bool back, const int newId):
 GuiBase(newId)
 {
     //ctor
-    getRenderer()->setBackgroundColor(sf::Color(50, 50, 50));
+    closeBtn = tgui::Button::create("Close");
+    sf::Color grey(50, 50, 50);
+    getRenderer()->setBackgroundColor(grey);
     tabs = tgui::Tabs::create();
     tabLayout->add(tabs);
     //tabs->setPosition({300, 100});
@@ -30,27 +32,79 @@ GuiBase(newId)
     tabs->connect("TabSelected", [&](){
             sf::String text = tabs->getSelected();
             if(text == "General")
-                EventManager::inst().Post<GU::Evt::Click>(Gui::id::GENERAL);
+            {
+                this->removeAllWidgets();
+                this->add(tabLayout);
+                content.reset(new GeneralPanel());
+                content->setSize("95%", "70%");
+                content->setPosition("5%", "15%");
+                this->add(content);
+                this->add(buttonLayout);
+            }
             else if(text == "Controls")
-                EventManager::inst().Post<GU::Evt::Click>(Gui::id::CONTROLS);
+            {
+                this->removeAllWidgets();
+                this->add(tabLayout);
+                content.reset(new ControlPanel());
+                content->setSize("95%", "70%");
+                content->setPosition("5%", "15%");
+                this->add(content);
+                this->add(buttonLayout);
+            }
             else if(text == "Sound")
-                EventManager::inst().Post<GU::Evt::Click>(Gui::id::SOUND);
+            {
+                this->removeAllWidgets();
+                this->add(tabLayout);
+                content.reset(new SoundPanel());
+                content->setSize("95%", "70%");
+                content->setPosition("5%", "15%");
+                this->add(content);
+                this->add(buttonLayout);
+            }
             else if(text == "Multiplayer")
-                EventManager::inst().Post<GU::Evt::Click>(Gui::id::MULTIPLAYER);
+            {
+                this->removeAllWidgets();
+                this->add(tabLayout);
+                content.reset(new MultiPlayerSettingsPanel());
+                content->setSize("95%", "70%");
+                content->setPosition("5%", "15%");
+                this->add(content);
+                this->add(buttonLayout);
+            }
             else if(text == "Dev")
-                EventManager::inst().Post<GU::Evt::Click>(Gui::id::DEV);
+            {
+                this->removeAllWidgets();
+                this->add(tabLayout);
+                content.reset(new DevSettingsPanel());
+                content->setSize("95%", "70%");
+                content->setPosition("5%", "15%");
+                this->add(content);
+                this->add(buttonLayout);
+            }
 
         });
     backBtn = tgui::Button::create("Back");
 //    backBtn->connect("pressed", [](){
 //            EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
 //        });
+    backBtn->getRenderer()->setBackgroundColor(grey);
+    closeBtn->getRenderer()->setBackgroundColor(grey);
+    if(back)
+    {
+        buttonLayout->add(backBtn);
+        buttonLayout->add(closeBtn);
+        buttonLayout->add(spacer);
 
-    buttonLayout->add(spacer);
-    buttonLayout->add(backBtn);
-    buttonLayout->add(spacer);
+    }
+    else
+    {
+        buttonLayout->add(spacer);
+        buttonLayout->add(closeBtn);
+        buttonLayout->add(spacer);
+    }
 
-
+   // content->setSize(100, 100);
+   tabs->select("General");
 }
 
 

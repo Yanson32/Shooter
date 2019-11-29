@@ -60,7 +60,7 @@ GuiBase(Gui::id::INTRO)
     optionsBtn = tgui::Button::create("Options");
     optionsBtn->setSize(Settings::buttonSize);
     optionsBtn->connect("pressed", [](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::GENERAL);
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::OPTIONS);
     });
 
     tgui::HorizontalLayout::Ptr layout5 = content->appendLayout();

@@ -1,14 +1,13 @@
 #ifndef MULTIPLAYERSETTINGSPANEL_H
 #define MULTIPLAYERSETTINGSPANEL_H
-#include "Gui/Options/OptionsPanel.h"
-
+#include "Editor/ContentPane.h"
 
 /****************************************************************************//**
 *   @author Wayne J Larson Jr.
 *   @date   11/16/19
 *   @brief  This class displays settings for multiplayer mode.
 ********************************************************************************/
-class MultiPlayerSettingsPanel: public OptionsPanel
+class MultiPlayerSettingsPanel: public ContentPane
 {
     public:
         /****************************************************************************//**

@@ -31,7 +31,7 @@ class PlayState: public StateBase
         *	\param	engin is a reference to the game's Engin object.
         *************************************************************************************/
         virtual void Update(GU::Engin::Engin& engin, const float &deltaTime) override;
-
+        void handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event);
 
         /*********************************************************************************//**
         *   \brief	This method draws the current game state.

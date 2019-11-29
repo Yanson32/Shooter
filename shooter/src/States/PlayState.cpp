@@ -2,6 +2,8 @@
 #include "Events/EventManager.h"
 #include "config.h"
 #include "Settings.h"
+#include <GameUtilities/Event/Pop.h>
+
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const int &newId):
 StateBase(newWindow, newGui, States::Id::PLAY_STATE),
 map(SOURCE_DIR, BUILD_DIR)
@@ -73,6 +75,41 @@ void PlayState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
     window.draw(map);
     gui.draw();
     window.display();
+}
+
+void PlayState::handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event)
+{
+    StateBase::handleSFEvent(engin, event);
+
+    switch(event.type)
+    {
+        case sf::Event::KeyPressed:
+            switch(event.key.code)
+            {
+                case sf::Keyboard::Escape:
+                    if(panel)
+                        gui.remove(panel);
+
+                    std::shared_ptr<OptionsPanel> temp(new OptionsPanel(true));
+                    panel = temp;
+
+                    if(temp)
+                    {
+                        temp->backBtn->connect("pressed", [&](){
+                            EventManager::inst().Post<GU::Evt::Pop>();
+                            gui.removeAllWidgets();
+                        });
+
+                        temp->closeBtn->connect("pressed", [&](){
+                            gui.remove(panel);
+                        });
+                    }
+
+                    gui.add(panel);
+                break;
+            }
+        break;
+    }
 }
 
 PlayState::~PlayState()

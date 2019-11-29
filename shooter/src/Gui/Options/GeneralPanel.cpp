@@ -7,11 +7,11 @@
 /****************************************************************************//**
 *   @brief  Constructor.
 ********************************************************************************/
-GeneralPanel::GeneralPanel():
-OptionsPanel(Gui::id::GENERAL)
+GeneralPanel::GeneralPanel()//:
+//OptionsPanel(Gui::id::GENERAL)
 {
     //ctor
-    nameEdit = content->appendEditBox("Name", Settings::name);
+    nameEdit = this->appendEditBox("Name", Settings::name);
     nameEdit->connect("TextChanged", [&](){
         sf::String text = nameEdit->getText();
         Settings::name = text;
@@ -19,7 +19,7 @@ OptionsPanel(Gui::id::GENERAL)
 
 
     std::vector<sf::String> difficulty = {"Easy", "Normal", "Hard"};
-    difficultyBox = content->appendComboBox("Difficulty", difficulty);
+    difficultyBox = this->appendComboBox("Difficulty", difficulty);
     difficultyBox->setSelectedItem(Settings::difficulty);
     difficultyBox->connect("ItemSelected", [&](){
         Settings::difficulty = difficultyBox->getSelectedItem();
@@ -32,9 +32,9 @@ OptionsPanel(Gui::id::GENERAL)
 ********************************************************************************/
 void GeneralPanel::init()
 {
-    sf::String text = tabs->getSelected();
-    if(text != "General")
-        tabs->select("General");
+//    sf::String text = tabs->getSelected();
+//    if(text != "General")
+//        tabs->select("General");
 }
 
 

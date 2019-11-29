@@ -1,7 +1,6 @@
 #ifndef DEVSETTINGSPANEL_H
 #define DEVSETTINGSPANEL_H
-#include "Gui/Options/OptionsPanel.h"
-
+#include "Editor/ContentPane.h"
 
 /****************************************************************************//**
 *   @author Wayne J Larson Jr.
@@ -9,7 +8,7 @@
 *   @brief  This class displays developer settings. These settings will only
 *           be seen in debug mode.
 ********************************************************************************/
-class DevSettingsPanel: public OptionsPanel
+class DevSettingsPanel: public ContentPane
 {
     public:
         /****************************************************************************//**

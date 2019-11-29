@@ -8,12 +8,12 @@
 /****************************************************************************//**
 *   @brief  Constructor.
 ********************************************************************************/
-MultiPlayerSettingsPanel::MultiPlayerSettingsPanel():
-OptionsPanel(Gui::id::MULTIPLAYER)
+MultiPlayerSettingsPanel::MultiPlayerSettingsPanel()//:
+//OptionsPanel(Gui::id::MULTIPLAYER)
 {
     //ctor
     portLabel = tgui::Label::create("Port");
-    portBox = content->appendEditBox("Port", toString(Settings::port));
+    portBox = this->appendEditBox("Port", toString(Settings::port));
     portBox->connect("TextChanged", [&](){
         sf::String text = portBox->getText();
         Settings::port = toInt(text);
@@ -26,9 +26,9 @@ OptionsPanel(Gui::id::MULTIPLAYER)
 ********************************************************************************/
 void MultiPlayerSettingsPanel::init()
 {
-    sf::String text = tabs->getSelected();
-    if(text != "Multiplayer")
-        tabs->select("Multiplayer");
+//    sf::String text = tabs->getSelected();
+//    if(text != "Multiplayer")
+//        tabs->select("Multiplayer");
 }
 
 

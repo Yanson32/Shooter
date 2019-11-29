@@ -21,8 +21,8 @@ content(new ContentPane())
     buttonLayout->setSize("100%", "10%");
     buttonLayout->setPosition(0, "90%");
     this->add(buttonLayout);
-//    this->setSize("50%", "50%");
-//    this->setPosition(200, 100);
+    this->setSize("50%", "50%");
+    this->setPosition(200, 100);
 }
 
 GuiBase::~GuiBase()

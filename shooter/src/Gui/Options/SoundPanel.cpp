@@ -4,11 +4,11 @@
 /****************************************************************************//**
 *   @brief  Constructor
 ********************************************************************************/
-SoundPanel::SoundPanel():
-OptionsPanel(Gui::id::SOUND)
+SoundPanel::SoundPanel()//:
+//OptionsPanel(Gui::id::SOUND)
 {
     //ctor
-    effectSlider = content->appendSlider("Effects");
+    effectSlider = this->appendSlider("Effects");
     effectSlider->setValue(Settings::effectVolume);
     effectSlider->connect("ValueChanged", [&](){
         int volume = effectSlider->getValue();
@@ -16,7 +16,7 @@ OptionsPanel(Gui::id::SOUND)
     });
 
 
-    musicSlider = content->appendSlider("Music");
+    musicSlider = this->appendSlider("Music");
     musicSlider->setValue(Settings::musicVolume);
     musicSlider->connect("ValueChanged", [&](){
         int volume = musicSlider->getValue();
@@ -24,7 +24,7 @@ OptionsPanel(Gui::id::SOUND)
     });
 
     std::vector<sf::String> music = {"Music 1", "Music 2", "Music 3"};
-    currentMusic = content->appendComboBox("Current Music", music);
+    currentMusic = this->appendComboBox("Current Music", music);
 }
 
 
@@ -33,9 +33,9 @@ OptionsPanel(Gui::id::SOUND)
 ********************************************************************************/
 void SoundPanel::init()
 {
-    sf::String text = tabs->getSelected();
-    if(text != "Sound")
-        tabs->select("Sound");
+//    sf::String text = tabs->getSelected();
+//    if(text != "Sound")
+//        tabs->select("Sound");
 }
 
 

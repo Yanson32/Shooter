@@ -63,13 +63,24 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
         break;
         case Events::Id::CLICK:
             std::shared_ptr<GU::Evt::Click> temp =  std::dynamic_pointer_cast<GU::Evt::Click>(event);
-            std::cout << "Click" << std::endl;
             switch(temp->buttonId)
             {
                 case Gui::id::OPTIONS:
+                {
                     gui.removeAllWidgets();
-                    panel = std::shared_ptr<GeneralPanel>(new GeneralPanel());
+                    std::shared_ptr<OptionsPanel> temp(new OptionsPanel());
+                    panel = temp;
+
+                    if(temp)
+                    {
+                        temp->closeBtn->connect("pressed", [&](){
+                            EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
+                            gui.removeAllWidgets();
+                        });
+                    }
+
                     gui.add(panel);
+                    }
                 break;
                 case Gui::id::INTRO:
                     if(panel->id != Gui::id::INTRO)
@@ -79,70 +90,6 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                         panel = std::shared_ptr<IntroPanel>(new IntroPanel());
                         gui.add(panel);
                     }
-                break;
-                case Gui::id::CONTROLS:
-                {
-                    if(panel->id != Gui::id::CONTROLS)
-                    {
-                        gui.removeAllWidgets();
-                        gui.add(title);
-                        std::shared_ptr<ControlPanel> tempPanel = std::shared_ptr<ControlPanel>(new ControlPanel());
-                        tempPanel->init();
-                        panel = tempPanel;
-                        gui.add(panel);
-                    }
-                }
-                break;
-                case Gui::id::SOUND:
-                    if(panel->id != Gui::id::SOUND)
-                    {
-                        gui.removeAllWidgets();
-                        gui.add(title);
-                        std::shared_ptr<SoundPanel> tempPanel = std::shared_ptr<SoundPanel>(new SoundPanel());
-                        tempPanel->init();
-                        panel = tempPanel;
-                        gui.add(panel);
-                    }
-                break;
-                case Gui::id::GENERAL:
-                {
-                    std::cout << "General" << std::endl;
-                    if(panel->id != Gui::id::GENERAL)
-                    {
-                        gui.removeAllWidgets();
-                        gui.add(title);
-                        std::shared_ptr<GeneralPanel> tempPanel = std::shared_ptr<GeneralPanel>(new GeneralPanel());
-                        tempPanel->init();
-                        panel = tempPanel;
-                        gui.add(panel);
-                    }
-                }
-                break;
-                case Gui::id::MULTIPLAYER:
-                {
-                    if(panel->id != Gui::id::MULTIPLAYER)
-                    {
-                        gui.removeAllWidgets();
-                        gui.add(title);
-                        std::shared_ptr<MultiPlayerSettingsPanel> tempPanel = std::shared_ptr<MultiPlayerSettingsPanel>(new MultiPlayerSettingsPanel());
-                        tempPanel->init();
-                        panel = tempPanel;
-                        gui.add(panel);
-                    }
-                }
-                break;
-                case Gui::id::DEV:
-                {
-                    if(panel->id != Gui::id::DEV)
-                    {
-                        gui.removeAllWidgets();
-                        gui.add(title);
-                        std::shared_ptr<DevSettingsPanel> tempPanel = std::shared_ptr<DevSettingsPanel>(new DevSettingsPanel());
-                        tempPanel->init();
-                        panel = tempPanel;
-                        gui.add(panel);
-                    }
-                }
                 break;
                 case Gui::id::MAP_LOADER:
                 {
@@ -181,25 +128,6 @@ void StateBase::handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event)
     {
         case sf::Event::Closed:
             engin.Quit();
-        break;
-        case sf::Event::KeyPressed:
-            switch(event.key.code)
-            {
-                case sf::Keyboard::Escape:
-                    gui.removeAllWidgets();
-                    panel = std::shared_ptr<GeneralPanel>(new GeneralPanel());
-                    std::shared_ptr<GeneralPanel> temp = std::static_pointer_cast<GeneralPanel>(panel);
-                    if(temp)
-                    {
-                        temp->backBtn->connect("pressed", [&](){
-                            EventManager::inst().Post<GU::Evt::Pop>();
-                            gui.removeAllWidgets();
-                        });
-                    }
-
-                    gui.add(panel);
-                break;
-            }
         break;
     }
 }

@@ -7,27 +7,27 @@
 /****************************************************************************//**
 *   @brief  Constructor.
 ********************************************************************************/
-DevSettingsPanel::DevSettingsPanel():
-OptionsPanel(Gui::id::DEV)
+DevSettingsPanel::DevSettingsPanel()//:
+//OptionsPanel(Gui::id::DEV)
 {
     //ctor
-    content->appendSection("Box2D");
-    velocityBox = content->appendEditBox("Velocity Iteration", toString(Settings::velocityIterations));
+    this->appendSection("Box2D");
+    velocityBox = this->appendEditBox("Velocity Iteration", toString(Settings::velocityIterations));
     velocityBox->connect("TextChanged", [&](){
         Settings::velocityIterations = toFloat(velocityBox->getText());
     });
-    timeStepBox = content->appendEditBox("Timestep", toString(Settings::timeStep));
+    timeStepBox = this->appendEditBox("Timestep", toString(Settings::timeStep));
     timeStepBox->connect("TextChanged", [&](){
         Settings::timeStep = toFloat(timeStepBox->getText());
     });
-    positionBox = content->appendEditBox("Position Iterations", toString(Settings::positionIterations));
+    positionBox = this->appendEditBox("Position Iterations", toString(Settings::positionIterations));
     positionBox->connect("TextChanged", [&](){
         Settings::positionIterations = toInt(positionBox->getText());
     });
-    shapeBox = content->appendCheckBox("Shape");
-    tgui::CheckBox::Ptr aabb = content->appendCheckBox("AABB");
-    tgui::CheckBox::Ptr circleShape = content->appendCheckBox("Circle Shape");
-    tgui::CheckBox::Ptr centerOfMass = content->appendCheckBox("Center Of Mass");
+    shapeBox = this->appendCheckBox("Shape");
+    tgui::CheckBox::Ptr aabb = this->appendCheckBox("AABB");
+    tgui::CheckBox::Ptr circleShape = this->appendCheckBox("Circle Shape");
+    tgui::CheckBox::Ptr centerOfMass = this->appendCheckBox("Center Of Mass");
 
 }
 
@@ -37,9 +37,9 @@ OptionsPanel(Gui::id::DEV)
 ********************************************************************************/
 void DevSettingsPanel::init()
 {
-    sf::String text = tabs->getSelected();
-    if(text != "Dev")
-        tabs->select("Dev");
+//    sf::String text = tabs->getSelected();
+//    if(text != "Dev")
+//        tabs->select("Dev");
 }
 
 

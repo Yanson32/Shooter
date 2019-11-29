@@ -2,7 +2,11 @@
 #define OPTIONSPANEL_H
 #include "Gui/GuiBase.h"
 #include "Gui/id.h"
-
+#include "Gui/Options/ControlPanel.h"
+#include "Gui/Options/DevSettingsPanel.h"
+#include "Gui/Options/GeneralPanel.h"
+#include "Gui/Options/MultiPlayerSettingsPanel.h"
+#include "Gui/Options/SoundPanel.h"
 
 /****************************************************************************//**
 *   @author Wayne J Larson Jr.
@@ -17,7 +21,7 @@ class OptionsPanel: public GuiBase
         *   @brief The constructor
         *   @param  The id param is used to identify the gui panel.
         ********************************************************************************/
-        OptionsPanel(const int newId = Gui::id::OPTIONS);
+        OptionsPanel(const bool back = false, const int newId = Gui::id::OPTIONS);
 
         /****************************************************************************//**
         *   @brief  Destructor
@@ -26,6 +30,7 @@ class OptionsPanel: public GuiBase
 
         tgui::Tabs::Ptr tabs;
         tgui::Button::Ptr backBtn;
+        tgui::Button::Ptr closeBtn;
 };
 
 #endif // OPTIONSPANEL_H

@@ -1,13 +1,13 @@
 #ifndef CONTROLPANEL_H
 #define CONTROLPANEL_H
-#include "Gui/Options/OptionsPanel.h"
+#include "Editor/ContentPane.h"
 
 /****************************************************************************//**
 *   @author Wayne J Larson Jr.
 *   @date   11/16/19
 *   @brief  This class defines a gui for player control settings.
 ********************************************************************************/
-class ControlPanel: public OptionsPanel
+class ControlPanel: public ContentPane
 {
     public:
         /****************************************************************************//**
