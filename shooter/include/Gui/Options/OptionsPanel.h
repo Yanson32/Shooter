@@ -21,7 +21,7 @@ class OptionsPanel: public GuiBase
         *   @brief The constructor
         *   @param  The id param is used to identify the gui panel.
         ********************************************************************************/
-        OptionsPanel(const bool back = false, const int newId = Gui::id::OPTIONS);
+        OptionsPanel(const bool greyStyle = false, const int newId = Gui::id::OPTIONS);
 
         /****************************************************************************//**
         *   @brief  Destructor

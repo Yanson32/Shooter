@@ -9,16 +9,16 @@
 *   @brief The constructor
 *   @param  The id param is used to identify the gui panel.
 ********************************************************************************/
-OptionsPanel::OptionsPanel(const bool back, const int newId):
+OptionsPanel::OptionsPanel(const bool greyStyle, const int newId):
 GuiBase(newId)
 {
     //ctor
     closeBtn = tgui::Button::create("Close");
     sf::Color grey(50, 50, 50);
-    getRenderer()->setBackgroundColor(grey);
+
     tabs = tgui::Tabs::create();
     tabLayout->add(tabs);
-    //tabs->setPosition({300, 100});
+
     tabs->add("General");
     tabs->add("Controls");
     tabs->add("Sound");
@@ -26,7 +26,7 @@ GuiBase(newId)
     #ifdef DEBUG
         tabs->add("Dev");
     #endif
-    //tabs->select("General");
+
     tabs->setTabVisible(0, true);
 
     tabs->connect("TabSelected", [&](){
@@ -84,13 +84,12 @@ GuiBase(newId)
 
         });
     backBtn = tgui::Button::create("Back");
-//    backBtn->connect("pressed", [](){
-//            EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
-//        });
-    backBtn->getRenderer()->setBackgroundColor(grey);
-    closeBtn->getRenderer()->setBackgroundColor(grey);
-    if(back)
+
+    if(greyStyle)
     {
+        getRenderer()->setBackgroundColor(grey);
+        backBtn->getRenderer()->setBackgroundColor(grey);
+        closeBtn->getRenderer()->setBackgroundColor(grey);
         buttonLayout->add(backBtn);
         buttonLayout->add(closeBtn);
         buttonLayout->add(spacer);
@@ -98,12 +97,12 @@ GuiBase(newId)
     }
     else
     {
+        getRenderer()->setBackgroundColor(sf::Color::Transparent);
         buttonLayout->add(spacer);
         buttonLayout->add(closeBtn);
         buttonLayout->add(spacer);
     }
 
-   // content->setSize(100, 100);
    tabs->select("General");
 }
 
