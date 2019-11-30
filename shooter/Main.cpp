@@ -24,13 +24,6 @@ int main()
 	std::unique_ptr<IntroState> state(new IntroState(window, gui));
 	engin.ChangeState(std::move(state));
 
-
-    //tgui::ButtonRenderer btnRenderer(theme.getRenderer("button"));
-	//EventManager::inst().Post<PlayMusic>("../Resources/Music/Electro_Zombies.ogg");
-	//EventManager::inst().Post<MusicVolumeChanged>();
-	//EventManager::inst().Post<SoundVolumeChanged>();
-
-
     while (engin.IsRunning())
    	{
         accumulator += timer.restart();
