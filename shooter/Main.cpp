@@ -8,34 +8,49 @@
 #include <iostream>
 int main()
 {
+    //Set default theme
     tgui::Theme theme{"Assets/Theme/Black.txt"};
     tgui::Theme::setDefault(&theme);
+
+
+	//Create our window
 	sf::RenderWindow window(sf::VideoMode(Settings::screen.x, Settings::screen.y), "Shooter");
-    std::cout << "A" << sf::Keyboard::A << (int)'A' << std::endl;
-    std::cout << "Z" << sf::Keyboard::Z << (int)'Z' << std::endl;
 	tgui::Gui gui(window);
 
+
+	//Setup our timestep
     sf::Clock timer;
     const sf::Time deltaTime = sf::seconds(1.0f / 60.0f);
     sf::Time accumulator = sf::seconds(0);
 
+
+    //Create an instance of our game engin
 	Game engin;
 
+
+	//Initialize our engin with a state
 	std::unique_ptr<IntroState> state(new IntroState(window, gui));
 	engin.ChangeState(std::move(state));
 
+
+	//Begin game loop
     while (engin.IsRunning())
    	{
         accumulator += timer.restart();
+
+        //Handle events (input)
         engin.HandleEvents(deltaTime.asSeconds());
         while(accumulator.asSeconds() >= deltaTime.asSeconds())
         {
+            //Update the bame
             engin.Update(deltaTime.asSeconds());
             accumulator -= deltaTime;
         }
+
+        //Drae the game
         engin.Draw(deltaTime.asSeconds());
     }
 
-
+    window.close();
     return 0;
 }
