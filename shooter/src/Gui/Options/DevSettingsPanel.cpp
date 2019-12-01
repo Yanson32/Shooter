@@ -16,9 +16,9 @@ DevSettingsPanel::DevSettingsPanel()//:
     velocityBox->connect("TextChanged", [&](){
         Settings::velocityIterations = toFloat(velocityBox->getText());
     });
-    timeStepBox = this->appendEditBox("Timestep", toString(Settings::timeStep));
+    timeStepBox = this->appendEditBox("Timestep (milliseconds)", toString(Settings::timeStep  * 1000));
     timeStepBox->connect("TextChanged", [&](){
-        Settings::timeStep = toFloat(timeStepBox->getText());
+        Settings::timeStep = toFloat(timeStepBox->getText()) / 1000.0f;
     });
     positionBox = this->appendEditBox("Position Iterations", toString(Settings::positionIterations));
     positionBox->connect("TextChanged", [&](){

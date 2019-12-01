@@ -90,6 +90,17 @@ sf::String toString(const int &num)
 
 
 /****************************************************************************//**
+*   @brief  Convert float to sf::String.
+********************************************************************************/
+sf::String toString(const float &num)
+{
+    std::stringstream ss;
+    ss << num;
+    return ss.str();
+}
+
+
+/****************************************************************************//**
 *   @brief  Convert sf::String to float.
 ********************************************************************************/
 float toFloat(const sf::String &text)

@@ -19,7 +19,7 @@ namespace Settings
     int port = 5000;
     float32 velocityIterations = 8;
     int32 positionIterations = 3;
-    float32 timeStep = 1/60.0;
+    float32 timeStep = 1.0/60.0;
     sf::String levelDirectory = "/home/me/Desktop/MyStuff/programming/Shooter/shooter/Assets/Level";
     sf::String currentMap = "";
     std::string map;

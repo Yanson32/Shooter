@@ -6,6 +6,7 @@
 #include <TGUI/TGUI.hpp>
 #include "Settings.h"
 #include <iostream>
+#include "Settings.h"
 int main()
 {
     //Set default theme
@@ -20,14 +21,15 @@ int main()
 
 	//Setup our timestep
     sf::Clock timer;
-    const sf::Time deltaTime = sf::seconds(1.0f / 60.0f);
+    const sf::Time deltaTime = sf::seconds(Settings::timeStep);
     sf::Time accumulator = sf::seconds(0);
 
 
     //Create an instance of our game engin
 	Game engin;
 
-
+    std::cout << "time step " << Settings::timeStep << std::endl;
+    std::cout << "sf time step " << deltaTime.asSeconds() << std::endl;
 	//Initialize our engin with a state
 	std::unique_ptr<IntroState> state(new IntroState(window, gui));
 	engin.ChangeState(std::move(state));
