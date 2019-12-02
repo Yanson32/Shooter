@@ -31,7 +31,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
             }
             map.getLayer(text).read(map.getBuildDir(), map.name);
             map.layerSelected(text);
-            map.getLayer(text).init({map.width, map.height});
+            //map.getLayer(text).init({map.width, map.height});
             properties->init(map.getLayer(text));
         }
     });
@@ -118,7 +118,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         map.getLayer(name).width = toInt(properties->tileWidth->getText());
         std::cout << "Width after " << map.getLayer(name).width << std::endl;
         map.write();
-        map.getLayer(name).init({map.width, map.height});
+        //map.getLayer(name).init({map.width, map.height});
     });
 
     properties->tileHeight->connect("TextChanged", [&](){
@@ -127,7 +127,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text).height = toInt(properties->tileHeight->getText());
         map.write();
-        map.getLayer(text).init({map.width, map.height});
+        //map.getLayer(text).init({map.width, map.height});
     });
 
     properties->combo->connect("ItemSelected", [&](){
