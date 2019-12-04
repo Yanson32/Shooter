@@ -172,6 +172,8 @@ bool Map::removeLayer(const std::string &layer)
     }
 
     this->write();
+
+    return true;
 }
 
 std::vector<std::string> Map::getAllDir() const

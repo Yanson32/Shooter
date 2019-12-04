@@ -153,6 +153,8 @@ tgui::Button::Ptr ContentPane::appendButton(const sf::String &label, const int &
     tgui::HorizontalLayout::Ptr layout = appendLayout();
     layout->add(buttonLabel);
     layout->add(button);
+
+    return button;
 }
 
 
