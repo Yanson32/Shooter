@@ -6,7 +6,6 @@ set(FILES   "${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.h"
 
 )
 
-set(RELATIVE_PATH "include/Gui")
 set(SUB_DIRECTORIES "Editor" "Options"
 )
 
@@ -16,5 +15,4 @@ endforeach()
 
 if(FILES)
 	target_sources("${PROJECT_NAME}" PRIVATE ${FILES})
-	install(FILES ${FILES} DESTINATION ${RELATIVE_PATH})
 endif()

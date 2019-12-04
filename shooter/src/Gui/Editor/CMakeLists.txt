@@ -1,7 +1,6 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/EditorPanel.cpp"
 )
 
-set(RELATIVE_PATH "src")
 set(SUB_DIRECTORIES ""
 )
 
@@ -11,5 +10,4 @@ endforeach()
 
 if(FILES)
 	target_sources("${PROJECT_NAME}" PRIVATE ${FILES})
-	install(FILES ${FILES} DESTINATION ${RELATIVE_PATH})
 endif()
