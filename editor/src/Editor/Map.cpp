@@ -201,7 +201,7 @@ void Map::init()
 {
     for(auto it = layers.begin(); it != layers.end(); ++it)
     {
-        it->second.init({width, height});
+        //it->second.init({width, height});
     }
 }
 

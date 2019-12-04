@@ -101,7 +101,7 @@ void Layer::init(const sf::Vector2f &mapSize)
         return;
     if(width <= 0 || height <=0)
         return;
-    layerGrid.init(mapSize, {width, height});
+    //layerGrid.init(mapSize, {width, height});
 }
 
 Layer::~Layer()
