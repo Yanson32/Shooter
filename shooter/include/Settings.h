@@ -30,5 +30,6 @@ namespace Settings
     extern sf::String levelDirectory;
     extern sf::String currentMap;
     extern std::string map;
+    extern float boxPixRatio;
 }
 #endif // SETTINGS_H

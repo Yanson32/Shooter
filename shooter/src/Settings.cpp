@@ -23,4 +23,5 @@ namespace Settings
     sf::String levelDirectory = "/home/me/Desktop/MyStuff/programming/Shooter/shooter/Assets/Level";
     sf::String currentMap = "";
     std::string map;
+    float boxPixRatio = 30;
 }

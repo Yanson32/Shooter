@@ -11,13 +11,14 @@
 #include <Box2D/Common/b2Math.h>
 #include "DebugDraw.h"
 #include <Box2D/Box2D.h>
+#include "Functions.h"
 int main()
 {
     //Initialize box2d world object
-    b2Vec2 gravity(0, 9.8);
-    b2World world(gravity);
+    sf::Vector2f gravity(0, 9.8);
+    b2World world(toMeters(gravity));
 
-    DebugDraw debugDraw(world);
+    DebugDraw debugDraw(world, Settings::boxPixRatio);
     debugDraw.AppendFlags(b2Draw::e_shapeBit);
     debugDraw.AppendFlags(b2Draw::e_jointBit);
     debugDraw.AppendFlags(b2Draw::e_aabbBit);

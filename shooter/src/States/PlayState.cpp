@@ -7,6 +7,7 @@
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Box2D/Dynamics/b2Body.h>
 #include <Box2D/Dynamics/b2Fixture.h>
+#include "Functions.h"
 
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId):
 StateBase(newWindow, newGui, newWorld, newDebugDraw, States::Id::PLAY_STATE),
@@ -24,14 +25,11 @@ map(SOURCE_DIR, BUILD_DIR)
     vert[0].x = 0;
     vert[0].y = 0;
 
-    vert[1].x = 10;
-    vert[1].y = 0;
+    vert[1] = toMeters({map.width, 0});
 
-    vert[2].x = 10;
-    vert[2].y = 10;
+    vert[2] = toMeters({map.width, map.height});
 
-    vert[3].x = 0;
-    vert[3].y = 10;
+    vert[3] = toMeters({0, map.height});
 
     chainShape.CreateChain(vert, 4);
     b2FixtureDef fixDef;
@@ -41,11 +39,11 @@ map(SOURCE_DIR, BUILD_DIR)
     //Create temp object
     b2BodyDef tempBodyDef;
     tempBodyDef.type = b2_dynamicBody;
-    tempBodyDef.position = b2Vec2(5, 5);
+    tempBodyDef.position = toMeters({50, 50});
     b2Body* tempBody = world.CreateBody(&tempBodyDef);
 
     b2PolygonShape polyShape;
-    polyShape.SetAsBox(1, 1);
+    polyShape.SetAsBox(toMeters(40), toMeters(40));
     b2FixtureDef tempFixDef;
     tempFixDef.shape = &polyShape;
 
