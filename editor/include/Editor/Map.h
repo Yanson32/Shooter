@@ -5,7 +5,7 @@
 #include <string>
 #include "Layer.h"
 #include <SFML/Graphics/Drawable.hpp>
-
+#include <memory>
 class Map: public sf::Drawable
 {
     public:
@@ -20,7 +20,7 @@ class Map: public sf::Drawable
         std::string getBuildDir() const;
         void addLayer(Layer layer);
         bool removeLayer(const std::string &layer);
-        Layer& getLayer(const std::string &name);
+        std::shared_ptr<Layer> getLayer(const std::string &name);
         std::vector<std::string> getAllDir() const;
         virtual ~Map();
         std::string name;
@@ -31,10 +31,10 @@ class Map: public sf::Drawable
         int blue = 0;
         int green = 0;
         std::size_t getLayerCount() const;
-        Layer& operator [] (const std::size_t index);
+        std::shared_ptr<Layer> operator [] (const std::size_t index);
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     private:
-        std::map<std::string, Layer> layers;
+        std::map<std::string, std::shared_ptr<Layer>> layers;
         std::string source_directory = "";
         std::string build_directory = "";
 

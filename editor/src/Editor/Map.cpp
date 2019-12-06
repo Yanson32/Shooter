@@ -43,13 +43,13 @@ void Map::read()
         sourceStream >> temp;
         if(layerExists(temp))
         {
-            layers[temp].read(getBuildDir(), name);
+            layers[temp]->read(getBuildDir(), name);
         }
         else
         {
-            Layer layer;
-            layer.name = temp;
-            layer.read(getBuildDir(), name);
+            std::shared_ptr<Layer> layer(new Layer());
+            layer->name = temp;
+            layer->read(getBuildDir(), name);
             layers[temp] = layer;
         }
     }
@@ -77,7 +77,7 @@ void Map::write()
         for(auto &element : layers)
         {
             steam << element.first << std::endl;
-            element.second.write(getBuildDir(), getSourceDir(), name);
+            element.second->write(getBuildDir(), getSourceDir(), name);
         }
         steam.close();
     }
@@ -116,10 +116,10 @@ std::string Map::getBuildDir() const
 void Map::addLayer(Layer layer)
 {
     assert(!layerExists(layer.name));
-    layers[layer.name] = layer;
+    //layers[layer.name] = layer;
 }
 
-Layer& Map::getLayer(const std::string &name)
+std::shared_ptr<Layer> Map::getLayer(const std::string &name)
 {
     assert(layerExists(name));
 
@@ -140,7 +140,7 @@ std::size_t Map::getLayerCount() const
     return layers.size();
 }
 
-Layer& Map::operator [] (const std::size_t index)
+std::shared_ptr<Layer> Map::operator [] (const std::size_t index)
 {
     assert(index < layers.size());
     assert(index >= 0);
@@ -184,16 +184,16 @@ std::vector<std::string> Map::getAllDir() const
 void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     for(auto it = layers.begin(); it != layers.end(); ++it)
-        target.draw(it->second);
+        target.draw((*it->second));
 }
 
 void Map::layerSelected(const std::string &name)
 {
     for(auto it = layers.begin(); it != layers.end(); ++it)
     {
-        it->second.selected = false;
+        it->second->selected = false;
         if(it->first == name)
-            it->second.selected = true;
+            it->second->selected = true;
     }
 }
 

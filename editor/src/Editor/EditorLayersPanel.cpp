@@ -29,9 +29,9 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
                 layer.name = text;
                 map.addLayer(layer);
             }
-            map.getLayer(text).read(map.getBuildDir(), map.name);
+            map.getLayer(text)->read(map.getBuildDir(), map.name);
             map.layerSelected(text);
-            map.getLayer(text).init({map.width, map.height});
+            map.getLayer(text)->init({map.width, map.height});
             //properties->init(map.getLayer(text));
         }
     });
@@ -94,7 +94,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         if(listBox-> getSelectedItemIndex() == -1)
             return;
         std::string text = properties->name->getText().toAnsiString();
-        map.getLayer(text).zOrder = toInt(properties->zOrder->getText());
+        map.getLayer(text)->zOrder = toInt(properties->zOrder->getText());
         map.write();
     });
 
@@ -114,9 +114,9 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         if(!map.layerExists(name))
             return;
 
-        std::cout << "Width before " << map.getLayer(name).width << std::endl;
-        map.getLayer(name).width = toInt(properties->tileWidth->getText());
-        std::cout << "Width after " << map.getLayer(name).width << std::endl;
+        std::cout << "Width before " << map.getLayer(name)->width << std::endl;
+        map.getLayer(name)->width = toInt(properties->tileWidth->getText());
+        std::cout << "Width after " << map.getLayer(name)->width << std::endl;
         map.write();
         //map.getLayer(name).init({map.width, map.height});
     });
@@ -125,7 +125,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         if(listBox-> getSelectedItemIndex() == -1)
             return;
         std::string text = properties->name->getText().toAnsiString();
-        map.getLayer(text).height = toInt(properties->tileHeight->getText());
+        map.getLayer(text)->height = toInt(properties->tileHeight->getText());
         map.write();
         //map.getLayer(text).init({map.width, map.height});
     });
@@ -134,7 +134,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         if(listBox-> getSelectedItemIndex() == -1)
             return;
         std::string text = properties->name->getText().toAnsiString();
-        map.getLayer(text).type = properties->combo->getSelectedItem().toAnsiString();
+        map.getLayer(text)->type = properties->combo->getSelectedItem().toAnsiString();
         map.write();
     });
 
@@ -142,7 +142,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         if(listBox-> getSelectedItemIndex() == -1)
             return;
         std::string text = properties->name->getText().toAnsiString();
-        map.getLayer(text).visible = properties->visible->isChecked();
+        map.getLayer(text)->visible = properties->visible->isChecked();
         map.write();
     });
 
@@ -150,7 +150,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         if(listBox-> getSelectedItemIndex() == -1)
             return;
         std::string text = properties->name->getText().toAnsiString();
-        map.getLayer(text).visible = properties->visible->isChecked();
+        map.getLayer(text)->visible = properties->visible->isChecked();
         map.write();
     });
 
@@ -158,7 +158,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         if(listBox-> getSelectedItemIndex() == -1)
             return;
         std::string text = properties->name->getText().toAnsiString();
-        map.getLayer(text).grid = properties->grid->isChecked();
+        map.getLayer(text)->grid = properties->grid->isChecked();
         map.write();
     });
 
@@ -166,7 +166,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         if(listBox-> getSelectedItemIndex() == -1)
             return;
         std::string text = properties->name->getText().toAnsiString();
-        map.getLayer(text).grid = properties->grid->isChecked();
+        map.getLayer(text)->grid = properties->grid->isChecked();
         map.write();
     });
 }
@@ -188,8 +188,8 @@ void EditorLayersPanel::init()
 
     for(std::size_t i = 0; i < map.getLayerCount(); ++i)
     {
-        Layer &layer = map[i];
-        listBox->addItem(layer.name);
+        std::shared_ptr<Layer> layer = map[i];
+        listBox->addItem(layer->name);
     }
 }
 
