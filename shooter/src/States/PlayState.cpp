@@ -3,6 +3,10 @@
 #include "config.h"
 #include "Settings.h"
 #include <GameUtilities/Event/Pop.h>
+#include <Box2D/Collision/Shapes/b2ChainShape.h>
+#include <Box2D/Collision/Shapes/b2PolygonShape.h>
+#include <Box2D/Dynamics/b2Body.h>
+#include <Box2D/Dynamics/b2Fixture.h>
 
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, const int &newId):
 StateBase(newWindow, newGui, newWorld, States::Id::PLAY_STATE),
@@ -10,6 +14,40 @@ map(SOURCE_DIR, BUILD_DIR)
 {
     map.name = "Temp";
     map.read();
+
+    //Create world boundries
+    b2BodyDef worldBodyDef;
+    b2Body* worldBody = world.CreateBody(&worldBodyDef);
+
+    b2ChainShape chainShape;
+    b2Vec2 vert[4];
+    vert[0].x = 0;
+    vert[0].y = 0;
+
+    vert[1].x = map.width;
+    vert[1].y = 0;
+
+    vert[2].x = map.width;
+    vert[2].y = map.height;
+
+    vert[3].x = 0;
+    vert[3].y = map.height;
+
+    chainShape.CreateChain(vert, 4);
+    b2FixtureDef fixDef;
+    fixDef.shape = &chainShape;
+    worldBody->CreateFixture(&fixDef);
+
+    //Create temp object
+    b2BodyDef tmepBodyDef;
+    b2Body* tempBody = world.CreateBody(&tmepBodyDef);
+
+    b2PolygonShape polyShape;
+    polyShape.SetAsBox(40, 40);
+    b2FixtureDef tempFixDef;
+    tempFixDef.shape = &polyShape;
+
+    tempBody->CreateFixture(&tempFixDef);
 }
 /*********************************************************************************//**
 *   \brief	Initialize the game state.
