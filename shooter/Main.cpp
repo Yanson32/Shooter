@@ -14,7 +14,7 @@
 int main()
 {
     //Initialize box2d world object
-    b2Vec2 gravity(0, 0.8);
+    b2Vec2 gravity(0, 9.8);
     b2World world(gravity);
 
     DebugDraw debugDraw(world);

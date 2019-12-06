@@ -24,14 +24,14 @@ map(SOURCE_DIR, BUILD_DIR)
     vert[0].x = 0;
     vert[0].y = 0;
 
-    vert[1].x = map.width;
+    vert[1].x = 10;
     vert[1].y = 0;
 
-    vert[2].x = map.width;
-    vert[2].y = map.height;
+    vert[2].x = 10;
+    vert[2].y = 10;
 
     vert[3].x = 0;
-    vert[3].y = map.height;
+    vert[3].y = 10;
 
     chainShape.CreateChain(vert, 4);
     b2FixtureDef fixDef;
@@ -39,8 +39,10 @@ map(SOURCE_DIR, BUILD_DIR)
     worldBody->CreateFixture(&fixDef);
 
     //Create temp object
-    b2BodyDef tmepBodyDef;
-    b2Body* tempBody = world.CreateBody(&tmepBodyDef);
+    b2BodyDef tempBodyDef;
+    tempBodyDef.type = b2_dynamicBody;
+    tempBodyDef.position = b2Vec2(5, 5);
+    b2Body* tempBody = world.CreateBody(&tempBodyDef);
 
     b2PolygonShape polyShape;
     polyShape.SetAsBox(1, 1);
@@ -97,8 +99,11 @@ void PlayState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTime)
 *************************************************************************************/
 void PlayState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 {
+
     if(!IsPaused())
     {
+        world.Step(deltaTime, Settings::velocityIterations, Settings::positionIterations);
+        debugDraw.update();
         world.DrawDebugData();
     }
 }
