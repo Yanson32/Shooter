@@ -4,8 +4,8 @@
 #include "Settings.h"
 #include <GameUtilities/Event/Pop.h>
 
-PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const int &newId):
-StateBase(newWindow, newGui, States::Id::PLAY_STATE),
+PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, const int &newId):
+StateBase(newWindow, newGui, newWorld, States::Id::PLAY_STATE),
 map(SOURCE_DIR, BUILD_DIR)
 {
     map.name = "Temp";

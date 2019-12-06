@@ -9,7 +9,7 @@
 class MapCreatorState: public PlayState
 {
     public:
-        MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const std::string newMap);
+        MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, const std::string newMap);
         /*********************************************************************************//**
         *   \brief	Initialize the game state.
         *************************************************************************************/

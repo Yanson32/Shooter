@@ -12,8 +12,8 @@
 #include "Gui/id.h"
 //tgui::Gui IntroState::gui(window);
 
-IntroState::IntroState(sf::RenderWindow &newWindow, tgui::Gui &newGui):
-StateBase(newWindow, newGui, States::Id::INTRO_STATE)
+IntroState::IntroState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld):
+StateBase(newWindow, newGui, newWorld, States::Id::INTRO_STATE)
 {
     //ctor
     //panel.reset(new IntroPanel());

@@ -7,13 +7,15 @@
 #include <Events/SFEventHandler.h>
 #include "Gui/GuiBase.h"
 #include <memory>
+#include <Box2D/Dynamics/b2World.h>
+
 class StateBase:
 public GU::Engin::GameState,
 public GU::Evt::EventHandler,
 public SFEventHandler
 {
     public:
-        StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, const int &newId);
+        StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, const int &newId);
         virtual void handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event) override;
         virtual void handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event) override;
         const int id;
@@ -23,6 +25,7 @@ public SFEventHandler
        	tgui::Gui &gui;
         std::shared_ptr<GuiBase> panel;
         tgui::Label::Ptr title;
+        b2World &world;
     private:
 
 };

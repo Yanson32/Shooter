@@ -12,8 +12,8 @@
 #include "Editor/MapCreatorPanel.h"
 #include <iostream>
 #include "Settings.h"
-MapCreatorState::MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const std::string newMap):
-PlayState(newWindow, newGui, States::Id::MAP_CREATION_STATE),
+MapCreatorState::MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, const std::string newMap):
+PlayState(newWindow, newGui, newWorld, States::Id::MAP_CREATION_STATE),
 panel(new Editor(map))
 {
     //ctor

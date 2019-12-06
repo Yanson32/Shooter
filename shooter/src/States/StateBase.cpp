@@ -21,7 +21,8 @@
 
 //sf::RenderWindow StateBase::window(sf::VideoMode({800, 600}), Settings::inst().getTitle());
 //tgui::Gui StateBase::gui(window);
-StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, const int &newId):
+StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, const int &newId):
+world(newWorld),
 window(newWindow),
 gui(newGui),
 id(newId)
@@ -49,13 +50,13 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                 switch(temp->id)
                 {
                     case States::Id::PLAY_STATE:
-                        engin.Push<PlayState>(window, gui);
+                        engin.Push<PlayState>(window, gui, world);
                     break;
                     case States::Id::MAP_CREATION_STATE:
-                        engin.Push<MapCreatorState>(window, gui, Settings::map);
+                        engin.Push<MapCreatorState>(window, gui, world, Settings::map);
                     break;
                     case States::Id::INTRO_STATE:
-                        engin.Push<IntroState>(window, gui);
+                        engin.Push<IntroState>(window, gui, world);
                     break;
                 }
             }

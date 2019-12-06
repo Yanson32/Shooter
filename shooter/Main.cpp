@@ -7,8 +7,13 @@
 #include "Settings.h"
 #include <iostream>
 #include "Settings.h"
+#include <Box2D/Dynamics/b2World.h>
+#include <Box2D/Common/b2Math.h>
 int main()
 {
+    //Initialize box2d world object
+    b2Vec2 gravity(0, 0.8);
+    b2World world(gravity);
     //Set default theme
     tgui::Theme theme{"Assets/Theme/Black.txt"};
     tgui::Theme::setDefault(&theme);
@@ -31,7 +36,7 @@ int main()
     std::cout << "time step " << Settings::timeStep << std::endl;
     std::cout << "sf time step " << deltaTime.asSeconds() << std::endl;
 	//Initialize our engin with a state
-	std::unique_ptr<IntroState> state(new IntroState(window, gui));
+	std::unique_ptr<IntroState> state(new IntroState(window, gui, world));
 	engin.ChangeState(std::move(state));
 
 
