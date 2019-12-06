@@ -8,8 +8,8 @@
 #include <Box2D/Dynamics/b2Body.h>
 #include <Box2D/Dynamics/b2Fixture.h>
 
-PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, const int &newId):
-StateBase(newWindow, newGui, newWorld, States::Id::PLAY_STATE),
+PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId):
+StateBase(newWindow, newGui, newWorld, newDebugDraw, States::Id::PLAY_STATE),
 map(SOURCE_DIR, BUILD_DIR)
 {
     map.name = "Temp";
@@ -43,7 +43,7 @@ map(SOURCE_DIR, BUILD_DIR)
     b2Body* tempBody = world.CreateBody(&tmepBodyDef);
 
     b2PolygonShape polyShape;
-    polyShape.SetAsBox(40, 40);
+    polyShape.SetAsBox(1, 1);
     b2FixtureDef tempFixDef;
     tempFixDef.shape = &polyShape;
 
@@ -99,7 +99,7 @@ void PlayState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 {
     if(!IsPaused())
     {
-
+        world.DrawDebugData();
     }
 }
 
@@ -111,6 +111,7 @@ void PlayState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear(sf::Color(map.red, map.green, map.blue));
     window.draw(map);
+    window.draw(debugDraw);
     gui.draw();
     window.display();
 }

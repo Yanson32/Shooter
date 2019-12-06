@@ -7,7 +7,7 @@
 class PlayState: public StateBase
 {
     public:
-        PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, const int &newId = States::Id::PLAY_STATE);
+        PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId = States::Id::PLAY_STATE);
 
         /*********************************************************************************//**
         *   \brief	Initialize the game state.
