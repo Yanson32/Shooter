@@ -1,6 +1,5 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Editor.h"
 		"${CMAKE_CURRENT_SOURCE_DIR}/MapCreatorPanel.h"
-		"${CMAKE_CURRENT_SOURCE_DIR}/Layer.h"
 		"${CMAKE_CURRENT_SOURCE_DIR}/Map.h"
 		"${CMAKE_CURRENT_SOURCE_DIR}/Tile.h"
 		"${CMAKE_CURRENT_SOURCE_DIR}/Grid.h"
@@ -14,7 +13,7 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Editor.h"
 		"${CMAKE_CURRENT_SOURCE_DIR}/LayersListBox.h"
 		"${CMAKE_CURRENT_SOURCE_DIR}/Functions.h"
 )
-set(SUB_DIRECTORIES ""
+set(SUB_DIRECTORIES "Layers"
 )
 
 set(RELATIVE_PATH "include")

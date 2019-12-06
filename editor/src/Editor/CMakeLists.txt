@@ -1,7 +1,6 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Editor.cpp"
 		"${CMAKE_CURRENT_SOURCE_DIR}/MapCreatorPanel.cpp"
 		"${CMAKE_CURRENT_SOURCE_DIR}/Map.cpp"
-		"${CMAKE_CURRENT_SOURCE_DIR}/Layer.cpp"
 		"${CMAKE_CURRENT_SOURCE_DIR}/Grid.cpp"
 		"${CMAKE_CURRENT_SOURCE_DIR}/Tile.cpp"
 		"${CMAKE_CURRENT_SOURCE_DIR}/EditorGeneralPanel.cpp"
@@ -14,7 +13,7 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Editor.cpp"
 		"${CMAKE_CURRENT_SOURCE_DIR}/LayersListBox.cpp"
 		"${CMAKE_CURRENT_SOURCE_DIR}/Functions.cpp"
 )
-set(SUB_DIRECTORIES ""
+set(SUB_DIRECTORIES "Layers"
 )
 
 set(RELATIVE_PATH "src")

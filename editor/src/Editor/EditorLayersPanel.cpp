@@ -1,7 +1,7 @@
 #include "Editor/EditorLayersPanel.h"
 //#include "Gui/id.h"
 #include "Editor/Map.h"
-#include "Editor/Layer.h"
+#include "Editor/Layers/Layer.h"
 #include <iostream>
 #include <boost/filesystem.hpp>
 #include <boost/range/iterator_range.hpp>
