@@ -49,4 +49,14 @@ configure_file("${CMAKE_SOURCE_DIR}/cmake/config.h.in" "${CMAKE_CURRENT_BINARY_D
 
 add_definitions(-DDEBUG)
 
-file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Assets/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/Assets/")
+#copy assets folder to build directory for multi config generators
+if(CMAKE_CONFIGURATION_TYPES)
+foreach(TYPE ${CMAKE_CONFIGURATION_TYPES})
+	file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Assets/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/${TYPE}/Assets/")
+endforeach()
+#copy assets folder to build direcotry for single config generators
+else(NOT CMAKE_CONFIGURATION_TYPES)
+	file(COPY "${CMAKE_CURRENT_SOURCE_DIR}/Assets/" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/Assets/")
+endif()
+
+
