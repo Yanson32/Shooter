@@ -118,7 +118,57 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     }
                 }
                 break;
+                case Gui::id::B2_AABB:
+                {
+                    unsigned flags = debugDraw.GetFlags();
 
+                    if(debugDraw.IsBitSet(b2Draw::e_aabbBit))
+                        debugDraw.RemoveBit(b2Draw::e_aabbBit);
+                    else
+                        debugDraw.SetBit(b2Draw::e_aabbBit);
+                }
+                break;
+                case Gui::id::B2_CENTER_OF_MASS:
+                {
+                    unsigned flags = debugDraw.GetFlags();
+
+                    if(debugDraw.IsBitSet(b2Draw::e_centerOfMassBit))
+                        debugDraw.RemoveBit(b2Draw::e_centerOfMassBit);
+                    else
+                        debugDraw.SetBit(b2Draw::e_centerOfMassBit);
+                }
+                break;
+                case Gui::id::B2_SHAPE:
+                {
+                    unsigned flags = debugDraw.GetFlags();
+
+                    if(debugDraw.IsBitSet(b2Draw::e_shapeBit))
+                        debugDraw.RemoveBit(b2Draw::e_shapeBit);
+                    else
+                        debugDraw.SetBit(b2Draw::e_shapeBit);
+                }
+                break;
+                case Gui::id::B2_JOINT:
+                {
+                    unsigned flags = debugDraw.GetFlags();
+
+                    if(debugDraw.IsBitSet(b2Draw::e_jointBit))
+                        debugDraw.RemoveBit(b2Draw::e_jointBit);
+                    else
+                        debugDraw.SetBit(b2Draw::e_jointBit);
+
+                }
+                break;
+                case Gui::id::B2_PAIR:
+                {
+                    unsigned flags = debugDraw.GetFlags();
+
+                    if(debugDraw.IsBitSet(b2Draw::e_pairBit))
+                        debugDraw.RemoveBit(b2Draw::e_pairBit);
+                    else
+                        debugDraw.SetBit(b2Draw::e_pairBit);
+                }
+                break;
             }
         break;
     }

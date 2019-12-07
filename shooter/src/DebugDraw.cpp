@@ -338,6 +338,43 @@ namespace
     }
 
 
+    /***************************************************************************************************************//**
+    *   @brief  This method determines if a bit has been previously set.
+    *   @param  The bit to be checked.
+    *******************************************************************************************************************/
+    bool DebugDraw::IsBitSet(const unsigned &flag)
+    {
+        if((GetFlags() & flag) == flag)
+            return true;
+
+        return false;
+    }
+
+
+    /***************************************************************************************************************//**
+    *   @brief  Set a bit. Valid bits are e_shapeBit, e_jointBit, e_aabbBit, e_pairBit, e_centerOfMassBit
+    *   @param  The bit to be set.
+    *******************************************************************************************************************/
+    void DebugDraw::SetBit(const unsigned &bit)
+    {
+        unsigned flags = GetFlags();
+        flags |= bit;
+        SetFlags(flags);
+    }
+
+
+    /***************************************************************************************************************//**
+    *   @brief  Remove a previously set bit
+    *   @param  The bit to be removed.
+    *******************************************************************************************************************/
+    void DebugDraw::RemoveBit(const unsigned &bit)
+    {
+        unsigned flags = GetFlags();
+        flags &= ~bit;
+        SetFlags(flags);
+    }
+
+
     /*******************************************************************************************************************
     *   Destructor
     *******************************************************************************************************************/

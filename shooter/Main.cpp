@@ -18,13 +18,8 @@ int main()
     sf::Vector2f gravity(0, 9.8);
     b2World world(toMeters(gravity));
 
+    //Set debug draw
     DebugDraw debugDraw(world, Settings::boxPixRatio);
-    debugDraw.AppendFlags(b2Draw::e_shapeBit);
-    debugDraw.AppendFlags(b2Draw::e_jointBit);
-    debugDraw.AppendFlags(b2Draw::e_aabbBit);
-    debugDraw.AppendFlags(b2Draw::e_pairBit);
-    debugDraw.AppendFlags(b2Draw::e_centerOfMassBit);
-
     world.SetDebugDraw(&debugDraw);
 
     //Set default theme

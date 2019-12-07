@@ -32,6 +32,9 @@ class DevSettingsPanel: public ContentPane
         tgui::EditBox::Ptr positionBox;
         tgui::CheckBox::Ptr shapeBox;
         tgui::CheckBox::Ptr centerOfMass;
+        tgui::CheckBox::Ptr pairBit;
+        tgui::CheckBox::Ptr joint;
+        tgui::CheckBox::Ptr aabb;
 
 };
 
