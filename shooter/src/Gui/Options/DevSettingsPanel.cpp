@@ -2,8 +2,11 @@
 #include "Gui/id.h"
 #include "Settings.h"
 #include "Editor/Functions.h"
-
-
+#include <iostream>
+#include "Events/EventManager.h"
+#include <GameUtilities/Event/Click.h>
+#include "Gui/id.h"
+#include <iostream>
 /****************************************************************************//**
 *   @brief  Constructor.
 ********************************************************************************/
@@ -24,10 +27,40 @@ DevSettingsPanel::DevSettingsPanel()//:
     positionBox->connect("TextChanged", [&](){
         Settings::positionIterations = toInt(positionBox->getText());
     });
+
+
+    //Create checkbox for shape bit
     shapeBox = this->appendCheckBox("Shape");
-    tgui::CheckBox::Ptr aabb = this->appendCheckBox("AABB");
-    tgui::CheckBox::Ptr circleShape = this->appendCheckBox("Circle Shape");
-    tgui::CheckBox::Ptr centerOfMass = this->appendCheckBox("Center Of Mass");
+//    shapeBox->connect("checked", [&](){
+//        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_SHAPE);
+//    });
+//    shapeBox->connect("unchecked", [&](){
+//        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_SHAPE);
+//    });
+
+
+    //Create checkbox for aabb bit
+    aabb = this->appendCheckBox("AABB");
+
+
+
+    //Create checkbox for joint bit
+    joint = this->appendCheckBox("joint");
+
+
+
+    //Create checkbox for center of mass bit
+    centerOfMass = this->appendCheckBox("Center Of Mass");
+//    centerOfMass->connect("checked", [&](){
+//        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_CENTER_OF_MASS);
+//    });
+//    centerOfMass->connect("unchecked", [&](){
+//        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_CENTER_OF_MASS);
+//    });
+
+
+    //Create checkbox for pair bit
+    pairBit = this->appendCheckBox("Pair");
 
 }
 
@@ -35,11 +68,54 @@ DevSettingsPanel::DevSettingsPanel()//:
 /****************************************************************************//**
 *   @brief  Initalize all properties.
 ********************************************************************************/
-void DevSettingsPanel::init()
+void DevSettingsPanel::init(DebugDraw &debugDraw)
 {
-//    sf::String text = tabs->getSelected();
-//    if(text != "Dev")
-//        tabs->select("Dev");
+    shapeBox->disconnectAll("checked");
+    shapeBox->disconnectAll("unchecked");
+    centerOfMass->disconnectAll("checked");
+    centerOfMass->disconnectAll("unchecked");
+    pairBit->disconnectAll("checked");
+    pairBit->disconnectAll("unchecked");
+    joint->disconnectAll("checked");
+    joint->disconnectAll("unchecked");
+    aabb->disconnectAll("checked");
+    aabb->disconnectAll("unchecked");
+    shapeBox->setChecked(debugDraw.IsBitSet(b2Draw::e_shapeBit));
+    centerOfMass->setChecked(debugDraw.IsBitSet(b2Draw::e_centerOfMassBit));
+    pairBit->setChecked(debugDraw.IsBitSet(b2Draw::e_pairBit));
+    joint->setChecked(debugDraw.IsBitSet(b2Draw::e_jointBit));
+    aabb->setChecked(debugDraw.IsBitSet(b2Draw::e_aabbBit));
+
+    shapeBox->connect("checked", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_SHAPE);
+    });
+    shapeBox->connect("unchecked", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_SHAPE);
+    });
+    centerOfMass->connect("checked", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_CENTER_OF_MASS);
+    });
+    centerOfMass->connect("unchecked", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_CENTER_OF_MASS);
+    });
+    pairBit->connect("checked", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_PAIR);
+    });
+    pairBit->connect("unchecked", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_PAIR);
+    });
+    joint->connect("checked", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_JOINT);
+    });
+    joint->connect("unchecked", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_JOINT);
+    });
+    aabb->connect("checked", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_AABB);
+    });
+    aabb->connect("unchecked", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_AABB);
+    });
 }
 
 

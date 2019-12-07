@@ -10,7 +10,12 @@
 *   @param  The id param is used to identify the gui panel.
 ********************************************************************************/
 OptionsPanel::OptionsPanel(const bool greyStyle, const int newId):
-GuiBase(newId)
+GuiBase(newId),
+devSettingsPanel(new DevSettingsPanel()),
+generalPanel(new GeneralPanel()),
+controlPanel(new ControlPanel()),
+soundPanel(new SoundPanel()),
+multiPlayerSettingsPanel(new MultiPlayerSettingsPanel())
 {
     //ctor
     closeBtn = tgui::Button::create("Close");
@@ -35,7 +40,7 @@ GuiBase(newId)
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-                content.reset(new GeneralPanel());
+                content = generalPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
                 this->add(content);
@@ -45,7 +50,7 @@ GuiBase(newId)
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-                content.reset(new ControlPanel());
+                content = controlPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
                 this->add(content);
@@ -55,7 +60,7 @@ GuiBase(newId)
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-                content.reset(new SoundPanel());
+                content = soundPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
                 this->add(content);
@@ -65,7 +70,7 @@ GuiBase(newId)
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-                content.reset(new MultiPlayerSettingsPanel());
+                content = multiPlayerSettingsPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
                 this->add(content);
@@ -75,7 +80,7 @@ GuiBase(newId)
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-                content.reset(new DevSettingsPanel());
+                content = devSettingsPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
                 this->add(content);
@@ -106,7 +111,10 @@ GuiBase(newId)
    tabs->select("General");
 }
 
-
+void OptionsPanel::init(DebugDraw &debugDraw)
+{
+    devSettingsPanel->init(debugDraw);
+}
 /****************************************************************************//**
 *   @brief  Destructor
 ********************************************************************************/

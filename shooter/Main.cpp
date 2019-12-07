@@ -7,8 +7,22 @@
 #include "Settings.h"
 #include <iostream>
 #include "Settings.h"
+#include <Box2D/Dynamics/b2World.h>
+#include <Box2D/Common/b2Math.h>
+#include "DebugDraw.h"
+#include <Box2D/Box2D.h>
+#include "Functions.h"
 int main()
 {
+    //Initialize box2d world object
+    sf::Vector2f gravity(0, 9.8);
+    b2World world(toMeters(gravity));
+
+
+    //Set debug draw
+    DebugDraw debugDraw(world, Settings::boxPixRatio);
+    world.SetDebugDraw(&debugDraw);
+
     //Set default theme
     tgui::Theme theme{"Assets/Theme/Black.txt"};
     tgui::Theme::setDefault(&theme);
@@ -31,7 +45,7 @@ int main()
     std::cout << "time step " << Settings::timeStep << std::endl;
     std::cout << "sf time step " << deltaTime.asSeconds() << std::endl;
 	//Initialize our engin with a state
-	std::unique_ptr<IntroState> state(new IntroState(window, gui));
+	std::unique_ptr<IntroState> state(new IntroState(window, gui, world, debugDraw));
 	engin.ChangeState(std::move(state));
 
 

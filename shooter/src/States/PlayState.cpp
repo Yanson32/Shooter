@@ -3,13 +3,51 @@
 #include "config.h"
 #include "Settings.h"
 #include <GameUtilities/Event/Pop.h>
+#include <Box2D/Collision/Shapes/b2ChainShape.h>
+#include <Box2D/Collision/Shapes/b2PolygonShape.h>
+#include <Box2D/Dynamics/b2Body.h>
+#include <Box2D/Dynamics/b2Fixture.h>
+#include "Functions.h"
 
-PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const int &newId):
-StateBase(newWindow, newGui, States::Id::PLAY_STATE),
+PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId):
+StateBase(newWindow, newGui, newWorld, newDebugDraw, States::Id::PLAY_STATE),
 map(SOURCE_DIR, BUILD_DIR)
 {
     map.name = "Temp";
     map.read();
+
+    //Create world boundries
+    b2BodyDef worldBodyDef;
+    b2Body* worldBody = world.CreateBody(&worldBodyDef);
+
+    b2ChainShape chainShape;
+    b2Vec2 vert[4];
+    vert[0].x = 0;
+    vert[0].y = 0;
+
+    vert[1] = toMeters({map.width, 0});
+
+    vert[2] = toMeters({map.width, map.height});
+
+    vert[3] = toMeters({0, map.height});
+
+    chainShape.CreateChain(vert, 4);
+    b2FixtureDef fixDef;
+    fixDef.shape = &chainShape;
+    worldBody->CreateFixture(&fixDef);
+
+    //Create temp object
+    b2BodyDef tempBodyDef;
+    tempBodyDef.type = b2_dynamicBody;
+    tempBodyDef.position = toMeters({50, 50});
+    b2Body* tempBody = world.CreateBody(&tempBodyDef);
+
+    b2PolygonShape polyShape;
+    polyShape.SetAsBox(toMeters(40), toMeters(40));
+    b2FixtureDef tempFixDef;
+    tempFixDef.shape = &polyShape;
+
+    tempBody->CreateFixture(&tempFixDef);
 }
 /*********************************************************************************//**
 *   \brief	Initialize the game state.
@@ -59,9 +97,12 @@ void PlayState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTime)
 *************************************************************************************/
 void PlayState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 {
+
     if(!IsPaused())
     {
-
+        world.Step(deltaTime, Settings::velocityIterations, Settings::positionIterations);
+        debugDraw.update();
+        world.DrawDebugData();
     }
 }
 
@@ -73,6 +114,7 @@ void PlayState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear(sf::Color(map.red, map.green, map.blue));
     window.draw(map);
+    window.draw(debugDraw);
     gui.draw();
     window.display();
 }
@@ -91,6 +133,7 @@ void PlayState::handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event)
                         gui.remove(panel);
 
                     std::shared_ptr<OptionsPanel> temp(new OptionsPanel(true));
+                    temp->init(debugDraw);
                     panel = temp;
 
                     if(temp)

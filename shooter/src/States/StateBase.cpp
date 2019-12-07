@@ -21,10 +21,12 @@
 
 //sf::RenderWindow StateBase::window(sf::VideoMode({800, 600}), Settings::inst().getTitle());
 //tgui::Gui StateBase::gui(window);
-StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, const int &newId):
+StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId):
+world(newWorld),
 window(newWindow),
 gui(newGui),
-id(newId)
+id(newId),
+debugDraw(newDebugDraw)
 {
     //ctor
     title = tgui::Label::create(Settings::title);
@@ -49,13 +51,13 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                 switch(temp->id)
                 {
                     case States::Id::PLAY_STATE:
-                        engin.Push<PlayState>(window, gui);
+                        engin.Push<PlayState>(window, gui, world, debugDraw);
                     break;
                     case States::Id::MAP_CREATION_STATE:
-                        engin.Push<MapCreatorState>(window, gui, Settings::map);
+                        engin.Push<MapCreatorState>(window, gui, world, debugDraw, Settings::map);
                     break;
                     case States::Id::INTRO_STATE:
-                        engin.Push<IntroState>(window, gui);
+                        engin.Push<IntroState>(window, gui, world, debugDraw);
                     break;
                 }
             }
@@ -69,6 +71,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                 {
                     gui.removeAllWidgets();
                     std::shared_ptr<OptionsPanel> temp(new OptionsPanel());
+                    temp->init(debugDraw);
                     panel = temp;
 
                     if(temp)
@@ -116,7 +119,57 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     }
                 }
                 break;
+                case Gui::id::B2_AABB:
+                {
+                    unsigned flags = debugDraw.GetFlags();
 
+                    if(debugDraw.IsBitSet(b2Draw::e_aabbBit))
+                        debugDraw.RemoveBit(b2Draw::e_aabbBit);
+                    else
+                        debugDraw.SetBit(b2Draw::e_aabbBit);
+                }
+                break;
+                case Gui::id::B2_CENTER_OF_MASS:
+                {
+                    unsigned flags = debugDraw.GetFlags();
+
+                    if(debugDraw.IsBitSet(b2Draw::e_centerOfMassBit))
+                        debugDraw.RemoveBit(b2Draw::e_centerOfMassBit);
+                    else
+                        debugDraw.SetBit(b2Draw::e_centerOfMassBit);
+                }
+                break;
+                case Gui::id::B2_SHAPE:
+                {
+                    unsigned flags = debugDraw.GetFlags();
+
+                    if(debugDraw.IsBitSet(b2Draw::e_shapeBit))
+                        debugDraw.RemoveBit(b2Draw::e_shapeBit);
+                    else
+                        debugDraw.SetBit(b2Draw::e_shapeBit);
+                }
+                break;
+                case Gui::id::B2_JOINT:
+                {
+                    unsigned flags = debugDraw.GetFlags();
+
+                    if(debugDraw.IsBitSet(b2Draw::e_jointBit))
+                        debugDraw.RemoveBit(b2Draw::e_jointBit);
+                    else
+                        debugDraw.SetBit(b2Draw::e_jointBit);
+
+                }
+                break;
+                case Gui::id::B2_PAIR:
+                {
+                    unsigned flags = debugDraw.GetFlags();
+
+                    if(debugDraw.IsBitSet(b2Draw::e_pairBit))
+                        debugDraw.RemoveBit(b2Draw::e_pairBit);
+                    else
+                        debugDraw.SetBit(b2Draw::e_pairBit);
+                }
+                break;
             }
         break;
     }

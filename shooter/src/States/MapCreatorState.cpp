@@ -12,8 +12,8 @@
 #include "Editor/MapCreatorPanel.h"
 #include <iostream>
 #include "Settings.h"
-MapCreatorState::MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, const std::string newMap):
-PlayState(newWindow, newGui, States::Id::MAP_CREATION_STATE),
+MapCreatorState::MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const std::string newMap):
+PlayState(newWindow, newGui, newWorld, newDebugDraw, States::Id::MAP_CREATION_STATE),
 panel(new Editor(map))
 {
     //ctor
@@ -73,6 +73,8 @@ void MapCreatorState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTi
 *************************************************************************************/
 void MapCreatorState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 {
+    PlayState::Update(engin, deltaTime);
+
     if(!IsPaused())
     {
         panel->update();
@@ -88,6 +90,7 @@ void MapCreatorState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear(sf::Color(map.red, map.green, map.blue));
     window.draw(map);
+    window.draw(debugDraw);
     gui.draw();
     window.display();
 }

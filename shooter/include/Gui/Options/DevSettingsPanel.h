@@ -1,6 +1,7 @@
 #ifndef DEVSETTINGSPANEL_H
 #define DEVSETTINGSPANEL_H
 #include "Editor/ContentPane.h"
+#include "DebugDraw.h"
 
 /****************************************************************************//**
 *   @author Wayne J Larson Jr.
@@ -19,7 +20,7 @@ class DevSettingsPanel: public ContentPane
         /****************************************************************************//**
         *   @brief  Initalize all properties.
         ********************************************************************************/
-        void init();
+        void init(DebugDraw &debugDraw);
 
         /****************************************************************************//**
         *   @brief  Destructor.
@@ -32,6 +33,9 @@ class DevSettingsPanel: public ContentPane
         tgui::EditBox::Ptr positionBox;
         tgui::CheckBox::Ptr shapeBox;
         tgui::CheckBox::Ptr centerOfMass;
+        tgui::CheckBox::Ptr pairBit;
+        tgui::CheckBox::Ptr joint;
+        tgui::CheckBox::Ptr aabb;
 
 };
 

@@ -3,10 +3,12 @@
 #include "States/StateBase.h"
 #include "Editor/PanelBase.h"
 #include "Gui/id.h"
+#include <Box2D/Dynamics/b2World.h>
+
 class IntroState: public StateBase
 {
     public:
-        IntroState(sf::RenderWindow &newWindow, tgui::Gui &newGui);
+        IntroState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw);
                 /*********************************************************************************//**
                 *   \brief	Initialize the game state.
                 *************************************************************************************/
