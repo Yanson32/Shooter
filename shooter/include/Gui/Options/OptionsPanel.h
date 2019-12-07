@@ -33,6 +33,10 @@ class OptionsPanel: public GuiBase
         tgui::Tabs::Ptr tabs;
         tgui::Button::Ptr backBtn;
         std::shared_ptr<DevSettingsPanel> devSettingsPanel = nullptr;
+        std::shared_ptr<GeneralPanel> generalPanel = nullptr;
+        std::shared_ptr<ControlPanel> controlPanel = nullptr;
+        std::shared_ptr<SoundPanel> soundPanel = nullptr;
+        std::shared_ptr<MultiPlayerSettingsPanel> multiPlayerSettingsPanel = nullptr;
         tgui::Button::Ptr closeBtn;
 };
 

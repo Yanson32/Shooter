@@ -11,7 +11,11 @@
 ********************************************************************************/
 OptionsPanel::OptionsPanel(const bool greyStyle, const int newId):
 GuiBase(newId),
-devSettingsPanel(new DevSettingsPanel())
+devSettingsPanel(new DevSettingsPanel()),
+generalPanel(new GeneralPanel()),
+controlPanel(new ControlPanel()),
+soundPanel(new SoundPanel()),
+multiPlayerSettingsPanel(new MultiPlayerSettingsPanel())
 {
     //ctor
     closeBtn = tgui::Button::create("Close");
@@ -36,7 +40,7 @@ devSettingsPanel(new DevSettingsPanel())
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-                content.reset(new GeneralPanel());
+                content = generalPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
                 this->add(content);
@@ -46,7 +50,7 @@ devSettingsPanel(new DevSettingsPanel())
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-                content.reset(new ControlPanel());
+                content = controlPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
                 this->add(content);
@@ -56,7 +60,7 @@ devSettingsPanel(new DevSettingsPanel())
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-                content.reset(new SoundPanel());
+                content = soundPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
                 this->add(content);
@@ -66,7 +70,7 @@ devSettingsPanel(new DevSettingsPanel())
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-                content.reset(new MultiPlayerSettingsPanel());
+                content = multiPlayerSettingsPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
                 this->add(content);
@@ -76,7 +80,6 @@ devSettingsPanel(new DevSettingsPanel())
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-
                 content = devSettingsPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
