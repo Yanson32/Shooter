@@ -133,6 +133,7 @@ void PlayState::handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event)
                         gui.remove(panel);
 
                     std::shared_ptr<OptionsPanel> temp(new OptionsPanel(true));
+                    temp->init(debugDraw);
                     panel = temp;
 
                     if(temp)

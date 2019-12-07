@@ -71,6 +71,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                 {
                     gui.removeAllWidgets();
                     std::shared_ptr<OptionsPanel> temp(new OptionsPanel());
+                    temp->init(debugDraw);
                     panel = temp;
 
                     if(temp)

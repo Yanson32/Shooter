@@ -10,7 +10,8 @@
 *   @param  The id param is used to identify the gui panel.
 ********************************************************************************/
 OptionsPanel::OptionsPanel(const bool greyStyle, const int newId):
-GuiBase(newId)
+GuiBase(newId),
+devSettingsPanel(new DevSettingsPanel())
 {
     //ctor
     closeBtn = tgui::Button::create("Close");
@@ -75,7 +76,8 @@ GuiBase(newId)
             {
                 this->removeAllWidgets();
                 this->add(tabLayout);
-                content.reset(new DevSettingsPanel());
+
+                content = devSettingsPanel;
                 content->setSize("95%", "70%");
                 content->setPosition("5%", "15%");
                 this->add(content);
@@ -106,7 +108,10 @@ GuiBase(newId)
    tabs->select("General");
 }
 
-
+void OptionsPanel::init(DebugDraw &debugDraw)
+{
+    devSettingsPanel->init(debugDraw);
+}
 /****************************************************************************//**
 *   @brief  Destructor
 ********************************************************************************/

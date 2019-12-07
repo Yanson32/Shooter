@@ -7,6 +7,7 @@
 #include "Gui/Options/GeneralPanel.h"
 #include "Gui/Options/MultiPlayerSettingsPanel.h"
 #include "Gui/Options/SoundPanel.h"
+#include "DebugDraw.h"
 
 /****************************************************************************//**
 *   @author Wayne J Larson Jr.
@@ -23,6 +24,7 @@ class OptionsPanel: public GuiBase
         ********************************************************************************/
         OptionsPanel(const bool greyStyle = false, const int newId = Gui::id::OPTIONS);
 
+        void init(DebugDraw &debugDraw);
         /****************************************************************************//**
         *   @brief  Destructor
         ********************************************************************************/
@@ -30,6 +32,7 @@ class OptionsPanel: public GuiBase
 
         tgui::Tabs::Ptr tabs;
         tgui::Button::Ptr backBtn;
+        std::shared_ptr<DevSettingsPanel> devSettingsPanel = nullptr;
         tgui::Button::Ptr closeBtn;
 };
 

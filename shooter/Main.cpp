@@ -18,6 +18,7 @@ int main()
     sf::Vector2f gravity(0, 9.8);
     b2World world(toMeters(gravity));
 
+
     //Set debug draw
     DebugDraw debugDraw(world, Settings::boxPixRatio);
     world.SetDebugDraw(&debugDraw);
