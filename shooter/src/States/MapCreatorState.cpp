@@ -37,6 +37,8 @@ void MapCreatorState::Init()
 *************************************************************************************/
 void MapCreatorState::Clean()
 {
+    PlayState::Clean();
+
     gui.removeAllWidgets();
 }
 

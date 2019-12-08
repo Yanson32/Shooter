@@ -48,6 +48,7 @@ map(SOURCE_DIR, BUILD_DIR)
     tempFixDef.shape = &polyShape;
 
     tempBody->CreateFixture(&tempFixDef);
+
 }
 /*********************************************************************************//**
 *   \brief	Initialize the game state.
@@ -62,7 +63,10 @@ void PlayState::Init()
 *************************************************************************************/
 void PlayState::Clean()
 {
-
+    for(b2Body *it = world.GetBodyList(); it != nullptr; it = it->GetNext())
+    {
+        world.DestroyBody(it);
+    }
 }
 
 /*********************************************************************************//**
