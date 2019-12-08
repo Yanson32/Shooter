@@ -27,6 +27,7 @@ panel(new Editor(map))
 *************************************************************************************/
 void MapCreatorState::Init()
 {
+    PlayState::Init();
     panel->init();
     gui.add(panel);
     //gui.add(collapseButton);

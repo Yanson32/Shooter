@@ -16,26 +16,6 @@ map(SOURCE_DIR, BUILD_DIR)
     map.name = "Temp";
     map.read();
 
-    //Create world boundries
-    b2BodyDef worldBodyDef;
-    b2Body* worldBody = world.CreateBody(&worldBodyDef);
-
-    b2ChainShape chainShape;
-    b2Vec2 vert[4];
-    vert[0].x = 0;
-    vert[0].y = 0;
-
-    vert[1] = toMeters({map.width, 0});
-
-    vert[2] = toMeters({map.width, map.height});
-
-    vert[3] = toMeters({0, map.height});
-
-    chainShape.CreateChain(vert, 4);
-    b2FixtureDef fixDef;
-    fixDef.shape = &chainShape;
-    worldBody->CreateFixture(&fixDef);
-
     //Create temp object
     b2BodyDef tempBodyDef;
     tempBodyDef.type = b2_dynamicBody;
@@ -55,7 +35,26 @@ map(SOURCE_DIR, BUILD_DIR)
 *************************************************************************************/
 void PlayState::Init()
 {
+    //Create world boundries
+    b2BodyDef worldBodyDef;
+    b2Body* borderBody = world.CreateBody(&worldBodyDef);
 
+    b2ChainShape chainShape;
+    b2Vec2 vert[5];
+    vert[0] = toMeters({0, 0});
+
+    vert[1] = toMeters({map.width, 0});
+
+    vert[2] = toMeters({map.width, map.height});
+
+    vert[3] = toMeters({0, map.height});
+
+    vert[4] = toMeters({0, 0});
+
+    chainShape.CreateChain(vert, 5);
+    b2FixtureDef fixDef;
+    fixDef.shape = &chainShape;
+    borderBody->CreateFixture(&fixDef);
 }
 
 /*********************************************************************************//**
