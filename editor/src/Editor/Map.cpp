@@ -85,20 +85,20 @@ void Map::write()
     for(int i = 0; i < dir.size(); ++i)
     {
         boost::filesystem::path path = dir[i];
-        if(!boost::filesystem::exists(path))
-            boost::filesystem::create_directories(path);
+//        if(!boost::filesystem::exists(path))
+//            boost::filesystem::create_directories(path);
 
         path += "Level/";
 
-        if(!boost::filesystem::exists(path))
-            boost::filesystem::create_directories(path);
+//        if(!boost::filesystem::exists(path))
+//            boost::filesystem::create_directories(path);
 
         path += name;
         path += "/";
 
 
-        if(!boost::filesystem::exists(path))
-            boost::filesystem::create_directories(path);
+//        if(!boost::filesystem::exists(path))
+//            boost::filesystem::create_directories(path);
 
         std::string fileName = name + ".map";
 

@@ -6,7 +6,7 @@ class MapLoader: public GuiBase
 {
     public:
         MapLoader();
-        void init(){}
+        void init();
         virtual ~MapLoader();
 
     protected:

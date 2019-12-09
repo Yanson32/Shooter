@@ -14,7 +14,7 @@
 MapLoader::MapLoader()
 {
     //ctor
-    std::vector<sf::String> levels;
+  std::vector<sf::String> levels;
   boost::filesystem::path p = BUILD_DIR.toAnsiString() + "/Assets/Level/";
   boost::filesystem::directory_iterator it{p};
   while (it != boost::filesystem::directory_iterator{})
@@ -79,9 +79,23 @@ MapLoader::MapLoader()
         std::cout << "dir1 " << dir1 << boost::filesystem::exists(dir1) << std::endl;
         if(!boost::filesystem::exists(dir1) && !boost::filesystem::exists(dir2))
             combo->removeItem(temp);
+
     });
 }
 
+void MapLoader::init()
+{
+    combo->removeAllItems();
+
+    boost::filesystem::path p = BUILD_DIR.toAnsiString() + "/Assets/Level/";
+    boost::filesystem::directory_iterator it{p};
+    while (it != boost::filesystem::directory_iterator{})
+    {
+        sf::String temp = it->path().stem().string();
+        it++;
+        combo->addItem(temp);
+    }
+}
 MapLoader::~MapLoader()
 {
     //dtor
