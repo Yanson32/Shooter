@@ -10,10 +10,11 @@
 #include "Functions.h"
 
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId):
-StateBase(newWindow, newGui, newWorld, newDebugDraw, States::Id::PLAY_STATE),
-map(SOURCE_DIR, BUILD_DIR)
+StateBase(newWindow, newGui, newWorld, newDebugDraw, States::Id::PLAY_STATE)
 {
     map.name = "Temp";
+    map.addAssetDirectory(boost::filesystem::path(SOURCE_DIR + "/Assets/"));
+    map.addAssetDirectory(boost::filesystem::path(BUILD_DIR + "/Assets/"));
     map.read();
 
     //Create temp object

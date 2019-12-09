@@ -15,15 +15,18 @@ Layer::Layer()
     zOrder = -1;
 }
 
-void Layer::read(const std::string &newBuildDir, const std::string &map)
+void Layer::read(boost::filesystem::path path, const std::string &map)
 {
-    std::string layer = getFullPath(newBuildDir, map);
-    std::ifstream source(layer);
+    path.append("Level");
+    path.append(map);
+    path /= map + ".lay";
+
+    boost::filesystem::ifstream source(path);
 
     if(!source)
     {
         std::string msg("Unable to read layer ");
-        msg += layer;
+        msg += path.string();
         throw std::runtime_error(msg);
     }
     source >> name;
@@ -33,16 +36,21 @@ void Layer::read(const std::string &newBuildDir, const std::string &map)
     source >> width;
     source >> height;
     source >> zOrder;
+
+    source.close();
 }
 
-void Layer::write(const std::string &newBuildDir, const std::string &newSourceDir, const std::string &map)
+void Layer::write(const std::vector<boost::filesystem::path> &directories, const std::string &map)
 {
-    std::vector<std::string> dir = getAllPaths(newBuildDir, newSourceDir, map);
-    for(std::size_t i = 0; i < dir.size(); ++i)
+    for(std::size_t i = 0; i < directories.size(); ++i)
     {
-        std::string temp = dir[i] + name + ".lay";
-        std::cout << "Layer output " << temp << std::endl;
-        std::ofstream steam(temp);
+        boost::filesystem::path path = directories[i];
+        path.append("Level");
+        path.append(map);
+        path /= map;
+        path /= ".lay";
+
+        boost::filesystem::ofstream steam(path);
 
         steam << name << std::endl;
         steam << visible << std::endl;
@@ -55,36 +63,6 @@ void Layer::write(const std::string &newBuildDir, const std::string &newSourceDi
     }
 }
 
-std::string Layer::getFullPath(const std::string dir, const std::string &map) const
-{
-    std::string temp = dir;
-//    temp += "Assets/Level/";
-//    temp += map;
-//    temp += "/";
-    temp += name;
-    temp += ".lay";
-
-    return temp;
-}
-
-std::string Layer::getSourceDir(const std::string &map) const
-{
-    std::string temp =  source_directory + "/Assets/Level/" + map + "/";
-    boost::filesystem::create_directory(temp);
-    return temp;
-}
-
-std::string Layer::getBuildDir(const std::string &map) const
-{
-    std::string temp =  build_directory + "/Assets/Level/" + map + "/";
-    boost::filesystem::create_directory(temp);
-    return temp;
-}
-
-std::vector<std::string> Layer::getAllPaths(const std::string &newBuildDir, const std::string &newSourceDir, const std::string &map) const
-{
-    return {newSourceDir, newBuildDir};
-}
 
 void Layer::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {

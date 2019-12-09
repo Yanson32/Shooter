@@ -6,25 +6,44 @@
 #include <boost/filesystem.hpp>
 #include <cassert>
 
-Map::Map(const std::string &newSourceDir, const std::string newBuildDir):
-source_directory(newSourceDir),
-build_directory(newBuildDir)
+Map::Map()
 {
     //ctor
-    if(source_directory.back() != '/');
-        source_directory.push_back('/');
-
-    if(source_directory.back() != '/');
-        build_directory.push_back('/');
-
 
 }
 
 void Map::read()
 {
-    std::string sourceDir = getSourceDir() + name + ".map";;
-    std::cout << "source dir " << sourceDir << std::endl;
-    std::ifstream sourceStream(sourceDir);
+    std::vector<boost::filesystem::path> dir = getAssetDirectory();
+
+    if(dir.empty())
+        throw std::runtime_error("Error: There must be at least one directory");
+
+    boost::filesystem::path path = dir[0];
+
+    if(!boost::filesystem::exists(path))
+        throw std::runtime_error("Error: Directory does not exist");
+
+
+    path.append("Level/");
+
+    if(!boost::filesystem::exists(path))
+        throw std::runtime_error("Error: Directory does not exist");
+
+    path.append(name);
+    path.append("/");
+
+    if(!boost::filesystem::exists(path))
+        throw std::runtime_error("Error: Directory does not exist");
+
+    std::string fileName = name + ".map";
+    //path /= fileName;
+    std::cout << "path " << path << std::endl;
+    if(!boost::filesystem::exists((path.string() + fileName)))
+        throw std::runtime_error("Error: file does not exist");
+
+
+    boost::filesystem::ifstream sourceStream(path.string() + fileName);
     if(!sourceStream)
         return;
 
@@ -43,13 +62,13 @@ void Map::read()
         sourceStream >> temp;
         if(layerExists(temp))
         {
-            layers[temp]->read(getBuildDir(), name);
+            layers[temp]->read(path, name);
         }
         else
         {
             std::shared_ptr<Layer> layer(new Layer());
             layer->name = temp;
-            layer->read(getBuildDir(), name);
+            layer->read(path.string(), name);
             layers[temp] = layer;
         }
     }
@@ -58,12 +77,33 @@ void Map::read()
 
 void Map::write()
 {
-    std::vector<std::string> dir = getAllDir();
+    std::vector<boost::filesystem::path> dir = getAssetDirectory();
+
+    if(dir.empty())
+        throw std::runtime_error("Asset directory has not been set");
 
     for(int i = 0; i < dir.size(); ++i)
     {
-        std::string file = dir[i] + name + ".map";
-        std::ofstream steam(file);
+        boost::filesystem::path path = dir[i];
+        if(!boost::filesystem::exists(path))
+            boost::filesystem::create_directories(path);
+
+        path += "Level/";
+
+        if(!boost::filesystem::exists(path))
+            boost::filesystem::create_directories(path);
+
+        path += name;
+        path += "/";
+
+
+        if(!boost::filesystem::exists(path))
+            boost::filesystem::create_directories(path);
+
+        std::string fileName = name + ".map";
+
+
+        boost::filesystem::ofstream steam(path.string() + fileName);
 
         steam << name << std::endl;
         steam << width << std::endl;
@@ -77,7 +117,7 @@ void Map::write()
         for(auto &element : layers)
         {
             steam << element.first << std::endl;
-            element.second->write(getBuildDir(), getSourceDir(), name);
+            element.second->write(getAssetDirectory(), name);
         }
         steam.close();
     }
@@ -86,32 +126,16 @@ void Map::write()
 void Map::remove()
 {
     layers.clear();
-    boost::filesystem::path source(getSourceDir());
-    boost::filesystem::path build(getBuildDir());
-    boost::filesystem::remove_all(source);
-    boost::filesystem::remove_all(build);
+    for(std::size_t i = 0; i < getAssetDirectory().size(); ++i)
+    {
+        boost::filesystem::path path = getAssetDirectory()[i];
+        path.append("Level/");
+        path.append(name);
+        path.append("/");
+        boost::filesystem::remove_all(path);
+    }
 }
 
-std::string Map::getSourceDir() const
-{
-    std::string temp = source_directory;
-    temp += "Assets/Level/";
-    temp += name;
-    temp += "/";
-    boost::filesystem::create_directory(temp);
-    return temp;
-}
-
-
-std::string Map::getBuildDir() const
-{
-    std::string temp = build_directory;
-    temp += "Assets/Level/";
-    temp += name;
-    temp += "/";
-    boost::filesystem::create_directory(temp);
-    return temp;
-}
 
 void Map::addLayer(Layer layer)
 {
@@ -162,12 +186,14 @@ bool Map::removeLayer(const std::string &layer)
 {
     assert(layerExists(layer));
     layers.erase(layers.find(layer));
-    std::vector<std::string> dir = getAllDir();
+    std::vector<boost::filesystem::path> dir = getAssetDirectory();
 
     for(int i = 0; i < dir.size(); ++i)
     {
-        std::string file = dir[i] + layer + ".lay";
-        boost::filesystem::path path(file);
+        boost::filesystem::path path = dir[i];
+        path.append("Level");
+        path.append(name);
+        path /= name + ".lay";
         boost::filesystem::remove(path);
     }
 
@@ -176,10 +202,10 @@ bool Map::removeLayer(const std::string &layer)
     return true;
 }
 
-std::vector<std::string> Map::getAllDir() const
-{
-    return {getSourceDir(), getBuildDir()};
-}
+//std::vector<std::string> Map::getAllDir() const
+//{
+//    return {getSourceDir(), getBuildDir()};
+//}
 
 void Map::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -205,6 +231,15 @@ void Map::init()
     }
 }
 
+void Map::addAssetDirectory(const boost::filesystem::path &newPath)
+{
+    assetDirectories.push_back(newPath);
+}
+
+std::vector<boost::filesystem::path> Map::getAssetDirectory() const
+{
+    return assetDirectories;
+}
 
 Map::~Map()
 {

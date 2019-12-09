@@ -1,7 +1,7 @@
 #ifndef LAYERPROPERTIESPANEL_H
 #define LAYERPROPERTIESPANEL_H
 #include "Editor/PropertiesPanel.h"
-#include "Layer.h"
+#include "Editor/Layers/Layer.h"
 class LayerPropertiesPanel: public PropertiesPanel
 {
     public:

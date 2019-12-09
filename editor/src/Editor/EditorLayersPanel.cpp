@@ -29,9 +29,13 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
                 layer.name = text;
                 map.addLayer(layer);
             }
-            map.getLayer(text)->read(map.getBuildDir(), map.name);
-            map.layerSelected(text);
-            map.getLayer(text)->init({map.width, map.height});
+
+            if(map.getAssetDirectory().empty())
+                throw std::runtime_error("Error: Asset directory must not be empty");
+
+            //map.getLayer(text)->read(map.getAssetDirectory()[0], map.name);
+            //map.layerSelected(text);
+            //map.getLayer(text)->init({map.width, map.height});
             //properties->init(map.getLayer(text));
         }
     });

@@ -37,13 +37,13 @@ NewLevelSettingsPanel::NewLevelSettingsPanel()
                 {
                     if(!ordering->getText().isEmpty())
                     {
-                        Map map(BUILD_DIR, SOURCE_DIR);
-                        map.name = newLevel->getText().toAnsiString();
-                        map.width = toInt(widthBox->getText());
-                        map.height = toInt(heightBox->getText());
-                        map.ordering = toInt(ordering->getText());
-                        map.write();
-                        Settings::map = map.name;
+//                        Map map(BUILD_DIR, SOURCE_DIR);
+//                        map.name = newLevel->getText().toAnsiString();
+//                        map.width = toInt(widthBox->getText());
+//                        map.height = toInt(heightBox->getText());
+//                        map.ordering = toInt(ordering->getText());
+//                        map.write();
+//                        Settings::map = map.name;
                         EventManager::inst().Post<GU::Evt::PushState>(States::Id::MAP_CREATION_STATE);
                     }
                 }

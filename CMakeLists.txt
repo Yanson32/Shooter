@@ -2,6 +2,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.1.0)
 
 PROJECT("Shooter")
 
+set(CMAKE_CXX_STANDARD 17)
+
 add_subdirectory("extlibs")
 add_subdirectory("editor")
 add_subdirectory("shooter")

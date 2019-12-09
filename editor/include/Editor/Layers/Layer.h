@@ -1,11 +1,13 @@
 #ifndef LAYER_H
 #define LAYER_H
 #include <string>
-#include "Tile.h"
+#include "Editor/Tile.h"
 #include <vector>
 #include <string>
 #include <SFML/Graphics/Drawable.hpp>
 #include "Editor/Grid.h"
+#include <boost/filesystem.hpp>
+
 class Layer: public sf::Drawable
 {
     public:
@@ -20,12 +22,8 @@ class Layer: public sf::Drawable
         bool selected = false;
         std::vector<Tile> tiles;
         void init(const sf::Vector2f &mapSize);
-        void read(const std::string &newBuildDir, const std::string &map);
-        void write(const std::string &newBuildDir, const std::string &newSourceDir, const std::string &map);
-        std::string getSourceDir(const std::string &map) const;
-        std::string getBuildDir(const std::string &map) const;
-        std::vector<std::string> getAllPaths(const std::string &newBuildDir, const std::string &newSourceDir, const std::string &map) const;
-        std::string getFullPath(const std::string dir, const std::string &map) const;
+        void read(boost::filesystem::path path, const std::string &map);
+        void write(const std::vector<boost::filesystem::path> &directories, const std::string &map);
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
         virtual ~Layer();
         Grid layerGrid;

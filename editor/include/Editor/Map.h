@@ -3,21 +3,23 @@
 
 //#include "Settings.h"
 #include <string>
-#include "Layer.h"
+#include "Editor/Layers/Layer.h"
 #include <SFML/Graphics/Drawable.hpp>
 #include <memory>
+#include <vector>
+#include <boost/filesystem.hpp>
 class Map: public sf::Drawable
 {
     public:
-        Map(const std::string &newSourceDir, const std::string newBuildDir);
+        Map();
+        void addAssetDirectory(const boost::filesystem::path &newPath);
+        std::vector<boost::filesystem::path> getAssetDirectory() const;
         void init();
         void read();
         void write();
         void remove();
         void layerSelected(const std::string &name);
         bool layerExists(const std::string &name);
-        std::string getSourceDir() const;
-        std::string getBuildDir() const;
         void addLayer(Layer layer);
         bool removeLayer(const std::string &layer);
         std::shared_ptr<Layer> getLayer(const std::string &name);
@@ -35,8 +37,7 @@ class Map: public sf::Drawable
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     private:
         std::map<std::string, std::shared_ptr<Layer>> layers;
-        std::string source_directory = "";
-        std::string build_directory = "";
+        std::vector<boost::filesystem::path> assetDirectories;
 
 };
 
