@@ -14,9 +14,11 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Editor.h"
 		"${CMAKE_CURRENT_SOURCE_DIR}/Functions.h"
 )
 set(SUB_DIRECTORIES "Layers"
+                    "Events"
+		    "AssetManager"
 )
 
-set(RELATIVE_PATH "include")
+set(RELATIVE_PATH "include/Editor")
 
 #Add subdirectories
 foreach(LOOP_VAR ${SUB_DIRECTORIES})

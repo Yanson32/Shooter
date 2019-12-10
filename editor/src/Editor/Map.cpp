@@ -241,6 +241,93 @@ std::vector<boost::filesystem::path> Map::getAssetDirectory() const
     return assetDirectories;
 }
 
+std::vector<boost::filesystem::path> Map::getImageDirectory() const
+{
+    std::vector<boost::filesystem::path> directory;
+
+    for(std::size_t i = 0; i < assetDirectories.size(); ++i)
+    {
+        boost::filesystem::path path = assetDirectories[i];
+
+        path /= "Image";
+        directory.push_back(path);
+    }
+
+    return directory;
+}
+
+std::vector<boost::filesystem::path> Map::getLevelDirectory() const
+{
+    std::vector<boost::filesystem::path> directory;
+
+    for(std::size_t i = 0; i < assetDirectories.size(); ++i)
+    {
+        boost::filesystem::path path = assetDirectories[i];
+
+        path /= "Level";
+        directory.push_back(path);
+    }
+
+    return directory;
+}
+std::vector<boost::filesystem::path> Map::getThemeDirectory() const
+{
+    std::vector<boost::filesystem::path> directory;
+
+    for(std::size_t i = 0; i < assetDirectories.size(); ++i)
+    {
+        boost::filesystem::path path = assetDirectories[i];
+
+        path /= "Theme";
+        directory.push_back(path);
+    }
+
+    return directory;
+}
+std::vector<boost::filesystem::path> Map::getEffectsDirectory() const
+{
+    std::vector<boost::filesystem::path> directory;
+
+    for(std::size_t i = 0; i < assetDirectories.size(); ++i)
+    {
+        boost::filesystem::path path = assetDirectories[i];
+
+        path /= "Effects";
+        directory.push_back(path);
+    }
+
+    return directory;
+}
+std::vector<boost::filesystem::path> Map::getMusicDirectory() const
+{
+    std::vector<boost::filesystem::path> directory;
+
+    for(std::size_t i = 0; i < assetDirectories.size(); ++i)
+    {
+        boost::filesystem::path path = assetDirectories[i];
+
+        path /= "Music";
+        directory.push_back(path);
+    }
+
+    return directory;
+}
+
+std::vector<boost::filesystem::path> Map::getTilesheetDirectory() const
+{
+    std::vector<boost::filesystem::path> directory;
+
+    for(std::size_t i = 0; i < assetDirectories.size(); ++i)
+    {
+        boost::filesystem::path path = assetDirectories[i];
+
+        path /= "Tilesheet";
+        directory.push_back(path);
+    }
+
+    return directory;
+}
+
 Map::~Map()
 {
     //dtor

@@ -34,6 +34,12 @@ class Map: public sf::Drawable
         int green = 0;
         std::size_t getLayerCount() const;
         std::shared_ptr<Layer> operator [] (const std::size_t index);
+        std::vector<boost::filesystem::path> getImageDirectory() const;
+        std::vector<boost::filesystem::path> getLevelDirectory() const;
+        std::vector<boost::filesystem::path> getThemeDirectory() const;
+        std::vector<boost::filesystem::path> getEffectsDirectory() const;
+        std::vector<boost::filesystem::path> getMusicDirectory() const;
+        std::vector<boost::filesystem::path> getTilesheetDirectory() const;
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     private:
         std::map<std::string, std::shared_ptr<Layer>> layers;

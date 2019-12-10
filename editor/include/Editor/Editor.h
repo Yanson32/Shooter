@@ -3,16 +3,20 @@
 #include "Editor/MapCreatorPanel.h"
 #include <memory>
 #include "Map.h"
-class Editor: public tgui::Panel
+#include "GameUtilities/Event/EventHandler.h"
+#include "Editor/AssetManager/AssetManager.h"
+
+class Editor: public tgui::Panel, public GU::Evt::EventHandler
 {
     public:
-        Editor(Map &newMap);
+        Editor(Map &newMap, tgui::Gui &newGui);
         void init();
         void update();
         bool drawGrid() const;
         void write() const;
         void read();
         void remove();
+        virtual void handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event);
         virtual ~Editor();
 
     protected:
@@ -24,6 +28,8 @@ class Editor: public tgui::Panel
         std::shared_ptr<MapCreatorPanel> panel;
         void onCollapsePressed();
         Map &map;
+        tgui::Gui &gui;
+        std::shared_ptr<AssetManager> assetManager;
 };
 
 #endif

@@ -1,10 +1,16 @@
 #include "Editor/Editor.h"
 //#include "Settings.h"
 #include <iostream>
-Editor::Editor(Map &newMap):
-map(newMap)
+#include "Editor/Events/id.h"
+#include <GameUtilities/Event/Id.h>
+#include <GameUtilities/Event/Click.h>
+Editor::Editor(Map &newMap, tgui::Gui &newGui):
+map(newMap),
+gui(newGui),
+assetManager(new AssetManager(map))
 {
     //ctor
+
     panel.reset(new MapCreatorPanel(map));
     this->add(panel);
     setSize({350, 600});
@@ -78,6 +84,26 @@ void Editor::read()
 void Editor::remove()
 {
     map.remove();
+}
+
+void Editor::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
+{
+    switch(event->id)
+    {
+        case GU::Evt::Id::CLICK:
+            std::shared_ptr<GU::Evt::Click> temp =  std::dynamic_pointer_cast<GU::Evt::Click>(event);
+            switch(temp->buttonId)
+            {
+                case Button::ASSET_DIALOG_CLOSE:
+                    gui.remove(assetManager);
+                break;
+                case Button::ASSET:
+                    gui.add(assetManager);
+                break;
+            }
+
+        break;
+    }
 }
 
 Editor::~Editor()

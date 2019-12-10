@@ -14,7 +14,7 @@
 #include "Settings.h"
 MapCreatorState::MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const std::string newMap):
 PlayState(newWindow, newGui, newWorld, newDebugDraw, States::Id::MAP_CREATION_STATE),
-panel(new Editor(map))
+panel(new Editor(map, newGui))
 {
     //ctor
     Settings::currentMap = Settings::map;
@@ -66,6 +66,7 @@ void MapCreatorState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTi
     while(EventManager::inst().Poll((evtPtr)))
     {
         handleGUEvent(engin, evtPtr);
+        panel->handleGUEvent(engin, evtPtr);
     }
 }
 

@@ -7,7 +7,7 @@ class PropertiesPanel: public tgui::ScrollablePanel
 {
     public:
         PropertiesPanel(const int width, const int height);
-                /****************************************************************************//**
+        /****************************************************************************//**
         *   @brief Create a space in the panel.
         ********************************************************************************/
         void appendSpacer();

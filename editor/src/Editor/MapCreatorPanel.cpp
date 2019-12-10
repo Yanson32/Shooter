@@ -4,10 +4,12 @@
 //#include "States/Id.h"
 #include <GameUtilities/Event/Click.h>
 //#include "Gui/id.h"
-//#include "Events/EventManager.h"
+#include "Events/EventManager.h"
 #include <GameUtilities/Event/Click.h>
 //#include "Settings.h"
 #include "Editor/Functions.h"
+#include "Editor/Events/id.h"
+
 MapCreatorPanel::MapCreatorPanel(Map &map)
 {
     const int HEIGHT = 450;
@@ -52,6 +54,12 @@ MapCreatorPanel::MapCreatorPanel(Map &map)
     loadButton = tgui::Button::create("Load");
     buttonLayout->add(loadButton);
 
+
+    tgui::Button::Ptr assetButton = tgui::Button::create("Assets");
+    assetButton->connect("pressed", [&](){
+        EventManager::inst().Post<GU::Evt::Click>(Button::ASSET);
+    });
+    buttonLayout->add(assetButton);
     this->add(buttonLayout);
 
     generalPanel.reset(new EditorGeneralPanel(300, HEIGHT - 150, map));

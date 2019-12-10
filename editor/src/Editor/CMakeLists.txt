@@ -14,6 +14,7 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Editor.cpp"
 		"${CMAKE_CURRENT_SOURCE_DIR}/Functions.cpp"
 )
 set(SUB_DIRECTORIES "Layers"
+		    "AssetManager"
 )
 
 set(RELATIVE_PATH "src")

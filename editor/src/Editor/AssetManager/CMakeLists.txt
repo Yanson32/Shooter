@@ -1,0 +1,24 @@
+set(FILES	"${CMAKE_CURRENT_SOURCE_DIR}/AssetManager.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/AssetManagerImagePanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/AssetManagerTilesheetPanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/AssetManagerEffectPanel.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/AssetManagerMusicPanel.cpp"
+)
+set(SUB_DIRECTORIES ""
+)
+
+set(RELATIVE_PATH "src")
+
+#Add subdirectories
+foreach(LOOP_VAR ${SUB_DIRECTORIES})
+    add_subdirectory("${LOOP_VAR}")
+endforeach()
+
+
+if(FILES)
+	#Add source file to target
+	target_sources(	"${PROJECT_NAME}" PRIVATE ${FILES})
+
+	#Install source files
+	install(FILES ${FILES} DESTINATION "${CMAKE_INSTALL_PREFIX}/${RELATIVE_PATH}")
+endif()
