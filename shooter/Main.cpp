@@ -12,8 +12,15 @@
 #include "DebugDraw.h"
 #include <Box2D/Box2D.h>
 #include "Functions.h"
+#include <Editor/Map.h>
+#include "config.h"
 int main()
 {
+    //Create map
+    Map map;
+    map.addAssetDirectory(boost::filesystem::path(SOURCE_DIR + "/Assets/"));
+    map.addAssetDirectory(boost::filesystem::path(BUILD_DIR + "/Assets/"));
+
     //Initialize box2d world object
     sf::Vector2f gravity(0, 9.8);
     b2World world(toMeters(gravity));
@@ -45,7 +52,7 @@ int main()
     std::cout << "time step " << Settings::timeStep << std::endl;
     std::cout << "sf time step " << deltaTime.asSeconds() << std::endl;
 	//Initialize our engin with a state
-	std::unique_ptr<IntroState> state(new IntroState(window, gui, world, debugDraw));
+	std::unique_ptr<IntroState> state(new IntroState(window, gui, world, debugDraw, map));
 	engin.ChangeState(std::move(state));
 
 

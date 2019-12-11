@@ -7,7 +7,7 @@
 class PlayState: public StateBase
 {
     public:
-        PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId = States::Id::PLAY_STATE);
+        PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId = States::Id::PLAY_STATE);
 
         /*********************************************************************************//**
         *   \brief	Initialize the game state.
@@ -40,8 +40,6 @@ class PlayState: public StateBase
         *************************************************************************************/
         virtual void Draw(GU::Engin::Engin& engin, const float &deltaTime) override;
         virtual ~PlayState();
-    protected:
-        Map map;
 };
 
 #endif // SHOOTER_PLAYSTATE_H

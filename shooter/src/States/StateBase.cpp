@@ -20,20 +20,25 @@
 #include "Gui/NewLevelSettingsPanel.h"
 #include "Gui/PlayerInfo.h"
 #include "States/LevelSelectState.h"
+#include "config.h"
 //sf::RenderWindow StateBase::window(sf::VideoMode({800, 600}), Settings::inst().getTitle());
 //tgui::Gui StateBase::gui(window);
-StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId):
+StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
 world(newWorld),
 window(newWindow),
 gui(newGui),
 id(newId),
-debugDraw(newDebugDraw)
+debugDraw(newDebugDraw),
+map(newMap)
 {
     //ctor
     title = tgui::Label::create(Settings::title);
     gui.add(title);
     title->setPosition({320, 25});
     title->setTextSize(40);
+
+    map.name = "Temp";
+    map.read();
 }
 
 
@@ -52,16 +57,16 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                 switch(temp->id)
                 {
                     case States::Id::PLAY_STATE:
-                        engin.Push<PlayState>(window, gui, world, debugDraw);
+                        engin.Push<PlayState>(window, gui, world, debugDraw, map);
                     break;
                     case States::Id::MAP_CREATION_STATE:
-                        engin.Push<MapCreatorState>(window, gui, world, debugDraw, Settings::map);
+                        engin.Push<MapCreatorState>(window, gui, world, debugDraw, map);
                     break;
                     case States::Id::INTRO_STATE:
-                        engin.Push<IntroState>(window, gui, world, debugDraw);
+                        engin.Push<IntroState>(window, gui, world, debugDraw, map);
                     break;
                     case States::Id::LEVEL_SELECT_STATE:
-                        engin.Push<LevelSelectState>(window, gui, world, debugDraw);
+                        engin.Push<LevelSelectState>(window, gui, world, debugDraw, map);
                     break;
                 }
             }

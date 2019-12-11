@@ -8,7 +8,7 @@
 class IntroState: public StateBase
 {
     public:
-        IntroState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw);
+        IntroState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap);
                 /*********************************************************************************//**
                 *   \brief	Initialize the game state.
                 *************************************************************************************/

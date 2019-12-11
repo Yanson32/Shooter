@@ -2,8 +2,8 @@
 #include "Events/EventManager.h"
 #include "Settings.h"
 #include "Editor/Map.h"
-LevelSelectState::LevelSelectState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId):
-StateBase(newWindow, newGui, newWorld, newDebugDraw, newId)
+LevelSelectState::LevelSelectState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
+StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, newId)
 {
     //ctor
 }
@@ -13,6 +13,27 @@ StateBase(newWindow, newGui, newWorld, newDebugDraw, newId)
 void LevelSelectState::Init()
 {
 
+    sf::CircleShape circle;
+    circle.setRadius(5);
+    circle.setFillColor(sf::Color::Green);
+    circle.setPosition({100, 50});
+    dots.push_back(circle);
+    circle.setPosition({400, 50});
+    dots.push_back(circle);
+    circle.setPosition({700, 50});
+    dots.push_back(circle);
+    circle.setPosition({100, 200});
+    dots.push_back(circle);
+    circle.setPosition({400, 200});
+    dots.push_back(circle);
+    circle.setPosition({700, 200});
+    dots.push_back(circle);
+    circle.setPosition({100, 300});
+    dots.push_back(circle);
+    circle.setPosition({400, 300});
+    dots.push_back(circle);
+    circle.setPosition({700, 300});
+    dots.push_back(circle);
 }
 
 /*********************************************************************************//**
@@ -71,7 +92,10 @@ void LevelSelectState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 void LevelSelectState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear(sf::Color::Black);
-
+    for(size_t i = 0; i < dots.size(); ++i)
+    {
+        window.draw(dots[i]);
+    }
     window.display();
 }
 

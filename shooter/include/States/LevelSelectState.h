@@ -4,10 +4,12 @@
 #include "States/Id.h"
 #include "Editor/Map.h"
 #include "Gui/Options/OptionsPanel.h"
+#include <vector>
+#include <SFML/Graphics/CircleShape.hpp>
 class LevelSelectState: public StateBase
 {
     public:
-        LevelSelectState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId = States::Id::LEVEL_SELECT_STATE);
+        LevelSelectState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId = States::Id::LEVEL_SELECT_STATE);
         /*********************************************************************************//**
         *   \brief	Initialize the game state.
         *************************************************************************************/
@@ -41,7 +43,7 @@ class LevelSelectState: public StateBase
         virtual ~LevelSelectState();
 
     protected:
-
+        std::vector<sf::CircleShape> dots;
     private:
 };
 
