@@ -33,7 +33,7 @@ void IntroState::Init()
     switch(panelId)
     {
         case Gui::id::MAP_LOADER:
-            panel.reset(new MapLoader());
+            panel.reset(new MapLoader(map));
         break;
         default:
             panel.reset(new IntroPanel());

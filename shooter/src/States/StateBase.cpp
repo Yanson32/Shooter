@@ -109,7 +109,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     if(panel->id != Gui::id::MAP_LOADER)
                     {
                         gui.removeAllWidgets();
-                        std::shared_ptr<MapLoader> tempPanel = std::shared_ptr<MapLoader>(new MapLoader());
+                        std::shared_ptr<MapLoader> tempPanel = std::shared_ptr<MapLoader>(new MapLoader(map));
                         tempPanel->init();
                         panel = tempPanel;
                         gui.add(panel);

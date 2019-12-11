@@ -1,11 +1,11 @@
 #ifndef MAPLOADER_H
 #define MAPLOADER_H
 #include "Gui/GuiBase.h"
-
+#include "Editor/Map.h"
 class MapLoader: public GuiBase
 {
     public:
-        MapLoader();
+        MapLoader(Map &newMap);
         void init();
         virtual ~MapLoader();
 
@@ -15,6 +15,7 @@ class MapLoader: public GuiBase
         tgui::Button::Ptr loadButton;
         tgui::ComboBox::Ptr combo;
         tgui::Button::Ptr deleteButton;
+        Map &map;
 };
 
 #endif // MAPLOADER_H

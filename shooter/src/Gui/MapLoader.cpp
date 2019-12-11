@@ -11,7 +11,8 @@
 #include <GameUtilities/Event/PushState.h>
 #include "States/Id.h"
 
-MapLoader::MapLoader()
+MapLoader::MapLoader(Map &newMap):
+map(newMap)
 {
     //ctor
   std::vector<sf::String> levels;
@@ -45,6 +46,9 @@ MapLoader::MapLoader()
         if(combo->getSelectedItem() != "")
         {
             Settings::map = combo->getSelectedItem();
+            map.name = Settings::map;
+            map.read();
+            Settings::currentLevel = map.ordering;
             EventManager::inst().Post<GU::Evt::PushState>(States::Id::MAP_CREATION_STATE);
         }
 

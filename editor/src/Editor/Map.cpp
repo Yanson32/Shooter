@@ -346,6 +346,7 @@ bool Map::loadLayer(const unsigned newOrdering)
     return false;
 }
 
+
 Map::~Map()
 {
     //dtor
