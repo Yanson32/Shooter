@@ -17,6 +17,7 @@ StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, newId)
 *************************************************************************************/
 void LevelSelectState::Init()
 {
+    path.clear();
     path.setPrimitiveType(sf::LineStrip);
 
     sf::Vertex vert0;
@@ -98,7 +99,7 @@ void LevelSelectState::Init()
 *************************************************************************************/
 void LevelSelectState::Clean()
 {
-
+    path.clear();
 }
 
 /*********************************************************************************//**
