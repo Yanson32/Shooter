@@ -20,7 +20,8 @@ namespace Gui
         B2_SHAPE,
         B2_CIRCLE_SHAPE,
         B2_JOINT,
-        B2_PAIR
+        B2_PAIR,
+        PLAYER_INFO
     };
 }
 #endif // ID_H_INCLUDED

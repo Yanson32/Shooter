@@ -18,7 +18,7 @@
 #include "Gui/Options/DevSettingsPanel.h"
 #include "Gui/MapLoader.h"
 #include "Gui/NewLevelSettingsPanel.h"
-
+#include "Gui/PlayerInfo.h"
 //sf::RenderWindow StateBase::window(sf::VideoMode({800, 600}), Settings::inst().getTitle());
 //tgui::Gui StateBase::gui(window);
 StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId):
@@ -168,6 +168,18 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                         debugDraw.RemoveBit(b2Draw::e_pairBit);
                     else
                         debugDraw.SetBit(b2Draw::e_pairBit);
+                }
+                break;
+                case Gui::id::PLAYER_INFO:
+                {
+                    if(panel->id != Gui::id::PLAYER_INFO)
+                    {
+                        gui.removeAllWidgets();
+                        std::shared_ptr<PlayerInfo> tempPanel = std::shared_ptr<PlayerInfo>(new PlayerInfo());
+                        //tempPanel->init();
+                        panel = tempPanel;
+                        gui.add(panel);
+                    }
                 }
                 break;
             }
