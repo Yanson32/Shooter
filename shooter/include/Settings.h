@@ -31,5 +31,8 @@ namespace Settings
     extern sf::String currentMap;
     extern std::string map;
     extern float boxPixRatio;
+    extern unsigned currentWorld;
+    extern unsigned maxLevel;
+    extern unsigned currentLevel;
 }
 #endif // SETTINGS_H

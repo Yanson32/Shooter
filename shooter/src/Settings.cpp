@@ -24,4 +24,7 @@ namespace Settings
     sf::String currentMap = "";
     std::string map;
     float boxPixRatio = 30;
+    unsigned currentWorld = 0;
+    unsigned maxLevel = 9;
+    unsigned currentLevel = 0;
 }

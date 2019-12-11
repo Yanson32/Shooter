@@ -3,6 +3,7 @@
 #include "Settings.h"
 #include "Editor/Map.h"
 #include <iostream>
+#include <GameUtilities/Event/PushState.h>
 LevelSelectState::LevelSelectState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
 StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, newId)
 {
@@ -115,100 +116,107 @@ void LevelSelectState::HandleEvents(GU::Engin::Engin& engin, const float &deltaT
             handleSFEvent(engin, event);
             gui.handleEvent(event);
 
-                    switch(event.type)
-        {
-            case sf::Event::KeyPressed:
-//            if(event.key.code == Settings::right)
-//            {
-//                if(position == 2 ||
-//                    position == 5 ||
-//                    position == 8)
-//                    return;
-//                position += 1;
-//                if(position >= dots.size())
-//                    position = 0;
-//
-//                icon.setPosition(dots[position].getPosition());
-//            }
-//            else if(event.key.code == Settings::down)
-//            {
-//                if(position == 2 ||
-//                    position == 5 ||
-//                    position == 8)
-//                    {
-//                        position += 1;
-//                        if(position >= dots.size())
-//                            position = 0;
-//
-//                        icon.setPosition(dots[position].getPosition());
-//                    }
-//            }
-
-            if(position == 0)
+            switch(event.type)
             {
-                if(event.key.code == Settings::right)
+                case sf::Event::KeyPressed:
+    //            if(event.key.code == Settings::right)
+    //            {
+    //                if(position == 2 ||
+    //                    position == 5 ||
+    //                    position == 8)
+    //                    return;
+    //                position += 1;
+    //                if(position >= dots.size())
+    //                    position = 0;
+    //
+    //                icon.setPosition(dots[position].getPosition());
+    //            }
+    //            else if(event.key.code == Settings::down)
+    //            {
+    //                if(position == 2 ||
+    //                    position == 5 ||
+    //                    position == 8)
+    //                    {
+    //                        position += 1;
+    //                        if(position >= dots.size())
+    //                            position = 0;
+    //
+    //                        icon.setPosition(dots[position].getPosition());
+    //                    }
+    //            }
+
+                if(position == 0)
                 {
-                    position = 1;
+                    if(event.key.code == Settings::right)
+                    {
+                        position = 1;
 
+                    }
                 }
+                else if(position == 1)
+                {
+                    if(event.key.code == Settings::right)
+                        position = 2;
+                    else if(event.key.code == Settings::left)
+                        position = 0;
+                }
+                else if(position == 2)
+                {
+                    if(event.key.code == Settings::down)
+                        position = 3;
+                    else if(event.key.code == Settings::left)
+                        position = 1;
+                }
+                else if(position == 3)
+                {
+                    if(event.key.code == Settings::left)
+                        position = 4;
+                    else if(event.key.code == Settings::up)
+                        position = 2;
+                }
+                else if(position == 4)
+                {
+                    if(event.key.code == Settings::left)
+                        position = 5;
+                    else if(event.key.code == Settings::right)
+                        position = 3;
+                }
+                else if(position == 5)
+                {
+                    if(event.key.code == Settings::down)
+                        position = 6;
+                    else if(event.key.code == Settings::right)
+                        position = 4;
+                }
+                else if(position == 6)
+                {
+                    if(event.key.code == Settings::up)
+                        position = 5;
+                    else if(event.key.code == Settings::right)
+                        position = 7;
+                }
+                else if(position == 7)
+                {
+                    if(event.key.code == Settings::left)
+                        position = 6;
+                    else if(event.key.code == Settings::right)
+                        position = 8;
+                }
+                else if(position == 8)
+                {
+                    if(event.key.code == Settings::left)
+                        position = 7;
+                }
+                icon.setPosition(path[position].position);
+                break;
             }
-            else if(position == 1)
+
+            if(event.key.code == sf::Keyboard::Enter)
             {
-                if(event.key.code == Settings::right)
-                    position = 2;
-                else if(event.key.code == Settings::left)
-                    position = 0;
+                unsigned currentLevel = Settings::currentWorld * Settings::maxLevel + position;
+                Settings::currentLevel = currentLevel;
+                EventManager::inst().Post<GU::Evt::PushState>(States::Id::PLAY_STATE);
             }
-            else if(position == 2)
-            {
-                if(event.key.code == Settings::down)
-                    position = 3;
-                else if(event.key.code == Settings::left)
-                    position = 1;
-            }
-            else if(position == 3)
-            {
-                if(event.key.code == Settings::left)
-                    position = 4;
-                else if(event.key.code == Settings::up)
-                    position = 2;
-            }
-            else if(position == 4)
-            {
-                if(event.key.code == Settings::left)
-                    position = 5;
-                else if(event.key.code == Settings::right)
-                    position = 3;
-            }
-            else if(position == 5)
-            {
-                if(event.key.code == Settings::down)
-                    position = 6;
-                else if(event.key.code == Settings::right)
-                    position = 4;
-            }
-            else if(position == 6)
-            {
-                if(event.key.code == Settings::up)
-                    position = 5;
-                else if(event.key.code == Settings::right)
-                    position = 7;
-            }
-            else if(position == 7)
-            {
-                if(event.key.code == Settings::left)
-                    position = 6;
-                else if(event.key.code == Settings::right)
-                    position = 8;
-            }
-            else if(position == 8)
-            {
-                if(event.key.code == Settings::left)
-                    position = 7;
-            }
-            icon.setPosition(path[position].position);
-            break;
-        }
         }
     }
 
