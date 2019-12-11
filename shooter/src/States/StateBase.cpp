@@ -19,6 +19,7 @@
 #include "Gui/MapLoader.h"
 #include "Gui/NewLevelSettingsPanel.h"
 #include "Gui/PlayerInfo.h"
+#include "States/LevelSelectState.h"
 //sf::RenderWindow StateBase::window(sf::VideoMode({800, 600}), Settings::inst().getTitle());
 //tgui::Gui StateBase::gui(window);
 StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId):
@@ -58,6 +59,9 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     break;
                     case States::Id::INTRO_STATE:
                         engin.Push<IntroState>(window, gui, world, debugDraw);
+                    break;
+                    case States::Id::LEVEL_SELECT_STATE:
+                        engin.Push<LevelSelectState>(window, gui, world, debugDraw);
                     break;
                 }
             }

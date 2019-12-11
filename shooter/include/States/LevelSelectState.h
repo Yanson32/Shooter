@@ -1,14 +1,13 @@
-#ifndef SHOOTER_PLAYSTATE_H
-#define SHOOTER_PLAYSTATE_H
+#ifndef LEVELSELECTSTATE_H
+#define LEVELSELECTSTATE_H
 #include "States/StateBase.h"
 #include "States/Id.h"
 #include "Editor/Map.h"
 #include "Gui/Options/OptionsPanel.h"
-class PlayState: public StateBase
+class LevelSelectState: public StateBase
 {
     public:
-        PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId = States::Id::PLAY_STATE);
-
+        LevelSelectState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, const int &newId = States::Id::LEVEL_SELECT_STATE);
         /*********************************************************************************//**
         *   \brief	Initialize the game state.
         *************************************************************************************/
@@ -32,16 +31,18 @@ class PlayState: public StateBase
         *************************************************************************************/
         virtual void Update(GU::Engin::Engin& engin, const float &deltaTime) override;
 
-        void handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event);
 
         /*********************************************************************************//**
         *   \brief	This method draws the current game state.
         *	\param	engin is a reference to the game's Engin object.
         *************************************************************************************/
         virtual void Draw(GU::Engin::Engin& engin, const float &deltaTime) override;
-        virtual ~PlayState();
+
+        virtual ~LevelSelectState();
+
     protected:
-        Map map;
+
+    private:
 };
 
-#endif // SHOOTER_PLAYSTATE_H
+#endif // LEVELSELECTSTATE_H

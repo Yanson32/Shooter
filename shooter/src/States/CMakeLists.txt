@@ -1,6 +1,7 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/IntroState.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/PlayState.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/MapCreatorState.cpp"
+            "${CMAKE_CURRENT_SOURCE_DIR}/LevelSelectState.cpp"
 			"${CMAKE_CURRENT_SOURCE_DIR}/StateBase.cpp"
 )
 set(SUB_DIRECTORIES ""
