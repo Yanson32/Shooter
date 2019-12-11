@@ -328,6 +328,24 @@ std::vector<boost::filesystem::path> Map::getTilesheetDirectory() const
     return directory;
 }
 
+bool Map::loadLayer(const unsigned newOrdering)
+{
+    boost::filesystem::directory_iterator end;
+
+    boost::filesystem::directory_iterator it{getLevelDirectory()[0]};
+    while (it != boost::filesystem::directory_iterator{})
+    {
+        this->name = it->path().stem().string();
+        read();
+        if(this->ordering == newOrdering)
+            return true;
+
+        ++it;
+    }
+
+    return false;
+}
+
 Map::~Map()
 {
     //dtor

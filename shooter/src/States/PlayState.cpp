@@ -8,10 +8,13 @@
 #include <Box2D/Dynamics/b2Body.h>
 #include <Box2D/Dynamics/b2Fixture.h>
 #include "Functions.h"
-
+#include <iostream>
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
 StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::PLAY_STATE)
 {
+
+    if(map.loadLayer(Settings::currentLevel))
+        std::cout << "level loaded" << std::endl;
 
     //Create temp object
     b2BodyDef tempBodyDef;

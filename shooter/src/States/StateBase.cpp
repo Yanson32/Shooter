@@ -37,8 +37,8 @@ map(newMap)
     title->setPosition({320, 25});
     title->setTextSize(40);
 
-    map.name = "Temp";
-    map.read();
+//    map.name = "Temp";
+//    map.read();
 }
 
 

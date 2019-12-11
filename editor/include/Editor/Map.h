@@ -18,6 +18,7 @@ class Map: public sf::Drawable
         void read();
         void write();
         void remove();
+        bool loadLayer(const unsigned newOrdering);
         void layerSelected(const std::string &name);
         bool layerExists(const std::string &name);
         void addLayer(Layer layer);
