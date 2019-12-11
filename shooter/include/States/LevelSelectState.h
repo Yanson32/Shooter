@@ -44,6 +44,8 @@ class LevelSelectState: public StateBase
 
     protected:
         std::vector<sf::CircleShape> dots;
+        sf::RectangleShape icon;
+        unsigned position = 0;
     private:
 };
 
