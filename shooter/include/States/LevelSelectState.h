@@ -43,8 +43,10 @@ class LevelSelectState: public StateBase
         virtual ~LevelSelectState();
 
     protected:
-        std::vector<sf::CircleShape> dots;
+        //std::vector<sf::CircleShape> dots;
         sf::RectangleShape icon;
+        sf::VertexArray path;
+        sf::CircleShape circle;
         unsigned position = 0;
     private:
 };
