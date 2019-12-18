@@ -252,12 +252,12 @@ void LevelSelectState::Update(GU::Engin::Engin& engin, const float &deltaTime)
 void LevelSelectState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear(sf::Color::Black);
+    window.draw(path);
     for(size_t i = 0; i < path.getVertexCount(); ++i)
     {
         circle.setPosition(path[i].position);
         window.draw(circle);
     }
-    window.draw(path);
     window.draw(icon);
     window.display();
 }
