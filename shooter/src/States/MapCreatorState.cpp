@@ -36,7 +36,6 @@ void MapCreatorState::Init()
 void MapCreatorState::Clean()
 {
     PlayState::Clean();
-
     gui.removeAllWidgets();
 }
 
@@ -62,8 +61,10 @@ void MapCreatorState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTi
     GU::Evt::EventPtr evtPtr;
     while(EventManager::inst().Poll((evtPtr)))
     {
-        handleGUEvent(engin, evtPtr);
+        assert(panel != nullptr);
         panel->handleGUEvent(engin, evtPtr);
+        handleGUEvent(engin, evtPtr);
+
     }
 }
 
