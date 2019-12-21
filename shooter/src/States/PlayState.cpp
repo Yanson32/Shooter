@@ -17,9 +17,6 @@ PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &ne
 StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::PLAY_STATE)
 {
 
-    if(map.loadLayer(Settings::currentLevel))
-        std::cout << "level loaded" << std::endl;
-
     //Create temp object
     b2BodyDef tempBodyDef;
     tempBodyDef.type = b2_dynamicBody;
