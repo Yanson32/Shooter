@@ -23,7 +23,7 @@ NewLevelSettingsPanel::NewLevelSettingsPanel()
 
     okButton = tgui::Button::create("Ok");
     okButton->connect("pressed", [&](){
-        newLevel->setText(normalizeChar(newLevel->getText()));
+        newLevel->setText((newLevel->getText()));
         widthBox->setText(normalizeDigit(widthBox->getText()));
         heightBox->setText(normalizeDigit(heightBox->getText()));
         ordering->setText(normalizeDigit(ordering->getText()));
