@@ -9,6 +9,10 @@
 #include <Box2D/Dynamics/b2Fixture.h>
 #include "Functions.h"
 #include <iostream>
+#include "Entity/Components/PhysicsComponent.h"
+#include "Entity/Components/SpriteComponent.h"
+#include "Entity/Systems/DrawingSystem.h"
+
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
 StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::PLAY_STATE)
 {
@@ -29,6 +33,30 @@ StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::PLAY_ST
 
     tempBody->CreateFixture(&tempFixDef);
 
+    ecs.addEntity(1);
+
+    std::shared_ptr<PhysicsComponent> pComp(new PhysicsComponent());
+    pComp->body = tempBody;
+    ecs.addComponent(1, pComp);
+
+
+    if (!texture.loadFromFile("Assets/Image/moon_overlay.png"))
+    {
+        // error...
+        std::cout << "Unable to load texture" << std::endl;
+    }
+
+    std::shared_ptr<SpriteComponent> sComp(new SpriteComponent());
+    sComp->sprite.setTexture(texture);
+    //sComp->sprite.setSize(40, 40);
+    sComp->sprite.setScale(0.2, 0.2);
+    sComp->sprite.setOrigin(texture.getSize().x / 2, texture.getSize().y / 2);
+    sComp->sprite.setPosition(toPixles(tempBody->GetPosition()));
+    ecs.addComponent(1, sComp);
+
+    std::shared_ptr<DrawingSystem> dSystem(new DrawingSystem());
+    dSystem->registerEntity(1);
+    ecs.addSystem(dSystem);
 }
 /*********************************************************************************//**
 *   \brief	Initialize the game state.
@@ -106,6 +134,7 @@ void PlayState::Update(GU::Engin::Engin& engin, const float &deltaTime)
         world.Step(deltaTime, Settings::velocityIterations, Settings::positionIterations);
         debugDraw.update();
         world.DrawDebugData();
+        ecs.update(engin, deltaTime);
     }
 }
 
@@ -117,6 +146,7 @@ void PlayState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear(sf::Color(map.red, map.green, map.blue));
     window.draw(map);
+    window.draw(ecs);
     window.draw(debugDraw);
     gui.draw();
     window.display();

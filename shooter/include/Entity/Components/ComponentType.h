@@ -1,0 +1,11 @@
+#ifndef COMPONENTTYPE_H_INCLUDED
+#define COMPONENTTYPE_H_INCLUDED
+
+enum ComponentType
+{
+    NONE,
+    PHYSICS,
+    SPRITE
+};
+
+#endif // COMPONENTTYPE_H_INCLUDED

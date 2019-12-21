@@ -92,6 +92,7 @@ void MapCreatorState::Draw(GU::Engin::Engin& engin, const float &deltaTime)
 {
     window.clear(sf::Color(map.red, map.green, map.blue));
     window.draw(map);
+    window.draw(ecs);
     window.draw(debugDraw);
     gui.draw();
     window.display();

@@ -4,6 +4,7 @@
 #include "States/Id.h"
 #include "Editor/Map.h"
 #include "Gui/Options/OptionsPanel.h"
+#include <SFML/Graphics.hpp>
 class PlayState: public StateBase
 {
     public:
@@ -40,6 +41,7 @@ class PlayState: public StateBase
         *************************************************************************************/
         virtual void Draw(GU::Engin::Engin& engin, const float &deltaTime) override;
         virtual ~PlayState();
+        sf::Texture texture;
 };
 
 #endif // SHOOTER_PLAYSTATE_H

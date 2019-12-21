@@ -8,6 +8,7 @@ set(SUB_DIRECTORIES "Engin"
 					"States"
 					"Widget"
 					"Gui"
+					"Entity"
 )
 
 

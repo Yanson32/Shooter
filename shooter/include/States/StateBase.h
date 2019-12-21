@@ -10,6 +10,7 @@
 #include <Box2D/Dynamics/b2World.h>
 #include "DebugDraw.h"
 #include <Editor/Map.h>
+#include "Entity/ECS.h"
 class StateBase:
 public GU::Engin::GameState,
 public GU::Evt::EventHandler,
@@ -29,6 +30,7 @@ public SFEventHandler
         b2World &world;
         DebugDraw &debugDraw;
         Map &map;
+        ECS ecs;
     private:
 
 };
