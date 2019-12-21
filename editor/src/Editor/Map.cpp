@@ -336,10 +336,12 @@ bool Map::loadLayer(const unsigned newOrdering)
     while (it != boost::filesystem::directory_iterator{})
     {
         this->name = it->path().stem().string();
-        read();
-        if(this->ordering == newOrdering)
-            return true;
-
+        if(this->name != "")
+        {
+            read();
+            if(this->ordering == newOrdering)
+                return true;
+        }
         ++it;
     }
 

@@ -60,6 +60,8 @@ StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::PLAY_ST
 *************************************************************************************/
 void PlayState::Init()
 {
+    map.loadLayer(Settings::currentLevel);
+
     //Create world boundries
     b2BodyDef worldBodyDef;
     b2Body* borderBody = world.CreateBody(&worldBodyDef);
