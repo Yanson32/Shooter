@@ -145,10 +145,11 @@ void LevelSelectState::HandleEvents(GU::Engin::Engin& engin, const float &deltaT
     //                        icon.setPosition(dots[position].getPosition());
     //                    }
     //            }
-
+                unsigned nextLevel = Settings::currentWorld * Settings::maxLevel + position + 1;
                 if(position == 0)
                 {
-                    if(event.key.code == Settings::right)
+
+                    if(event.key.code == Settings::right && nextLevel < Settings::unlocked)
                     {
                         position = 1;
 
@@ -156,35 +157,35 @@ void LevelSelectState::HandleEvents(GU::Engin::Engin& engin, const float &deltaT
                 }
                 else if(position == 1)
                 {
-                    if(event.key.code == Settings::right)
+                    if(event.key.code == Settings::right && nextLevel < Settings::unlocked)
                         position = 2;
                     else if(event.key.code == Settings::left)
                         position = 0;
                 }
                 else if(position == 2)
                 {
-                    if(event.key.code == Settings::down)
+                    if(event.key.code == Settings::down && nextLevel < Settings::unlocked)
                         position = 3;
                     else if(event.key.code == Settings::left)
                         position = 1;
                 }
                 else if(position == 3)
                 {
-                    if(event.key.code == Settings::left)
+                    if(event.key.code == Settings::left && nextLevel < Settings::unlocked)
                         position = 4;
                     else if(event.key.code == Settings::up)
                         position = 2;
                 }
                 else if(position == 4)
                 {
-                    if(event.key.code == Settings::left)
+                    if(event.key.code == Settings::left && nextLevel < Settings::unlocked)
                         position = 5;
                     else if(event.key.code == Settings::right)
                         position = 3;
                 }
                 else if(position == 5)
                 {
-                    if(event.key.code == Settings::down)
+                    if(event.key.code == Settings::down && nextLevel < Settings::unlocked)
                         position = 6;
                     else if(event.key.code == Settings::right)
                         position = 4;
@@ -193,14 +194,14 @@ void LevelSelectState::HandleEvents(GU::Engin::Engin& engin, const float &deltaT
                 {
                     if(event.key.code == Settings::up)
                         position = 5;
-                    else if(event.key.code == Settings::right)
+                    else if(event.key.code == Settings::right && nextLevel < Settings::unlocked)
                         position = 7;
                 }
                 else if(position == 7)
                 {
                     if(event.key.code == Settings::left)
                         position = 6;
-                    else if(event.key.code == Settings::right)
+                    else if(event.key.code == Settings::right && nextLevel < Settings::unlocked)
                         position = 8;
                 }
                 else if(position == 8)

@@ -34,5 +34,6 @@ namespace Settings
     extern unsigned currentWorld;
     extern unsigned maxLevel;
     extern unsigned currentLevel;
+    extern unsigned unlocked;
 }
 #endif // SETTINGS_H
