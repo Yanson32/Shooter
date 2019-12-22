@@ -94,6 +94,10 @@ void PlayState::Clean()
     {
         world.DestroyBody(it);
     }
+
+    sf::View view = window.getView();
+    view.setCenter({Settings::screen.x / 2, Settings::screen.y / 2});
+    window.setView(view);
 }
 
 /*********************************************************************************//**
