@@ -206,6 +206,10 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     Settings::unlocked += 1;
                     GU::Evt::EventManager::inst().Post<GU::Evt::Pop>();
                 }
+                else
+                {
+                    GU::Evt::EventManager::inst().Post<GU::Evt::Pop>();
+                }
             }
         break;
     }
