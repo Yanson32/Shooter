@@ -135,6 +135,11 @@ void PlayState::Update(GU::Engin::Engin& engin, const float &deltaTime)
         debugDraw.update();
         world.DrawDebugData();
         ecs.update(engin, deltaTime);
+        ComponentSet player = ecs.getComponents(1);
+        auto pComp = component_cast<PhysicsComponent>(player.getComponent(ComponentType::PHYSICS));
+        sf::View view = window.getView();
+        view.setCenter(toPixles(pComp->body->GetPosition()));
+        window.setView(view);
     }
 }
 
@@ -219,6 +224,7 @@ void PlayState::handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event)
                 std::shared_ptr<PhysicsComponent> comp = component_cast<PhysicsComponent>(set.getComponent(ComponentType::PHYSICS));
                 comp->body->ApplyLinearImpulseToCenter({20, 0}, true);
             }
+
         break;
     }
 }
