@@ -23,7 +23,7 @@ int main()
 
     //Initialize box2d world object
     sf::Vector2f gravity(0, 9.8);
-    b2World world(toMeters(gravity));
+    b2World world(b2Vec2(0, 9.8));
 
 
     //Set debug draw

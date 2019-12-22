@@ -12,6 +12,7 @@
 #include "Entity/Components/PhysicsComponent.h"
 #include "Entity/Components/SpriteComponent.h"
 #include "Entity/Systems/DrawingSystem.h"
+#include "Functions.h"
 
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
 StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::PLAY_STATE)
@@ -182,6 +183,41 @@ void PlayState::handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event)
 
                     gui.add(panel);
                 break;
+            }
+
+
+            //Movement when the up key is pressed.
+            if(event.key.code == Settings::up)
+            {
+                ComponentSet set = ecs.getComponents(1);
+                std::shared_ptr<PhysicsComponent> comp = component_cast<PhysicsComponent>(set.getComponent(ComponentType::PHYSICS));
+                comp->body->ApplyLinearImpulseToCenter({0, -20}, true);
+            }
+
+
+            //Movement when the down key is pressed.
+            if(event.key.code == Settings::down)
+            {
+                std::cout << "Player Down " << std::endl;
+            }
+
+
+            //Movement when the left key is pressed.
+            if(event.key.code == Settings::left)
+            {
+                ComponentSet set = ecs.getComponents(1);
+                std::shared_ptr<PhysicsComponent> comp = component_cast<PhysicsComponent>(set.getComponent(ComponentType::PHYSICS));
+
+                comp->body->ApplyLinearImpulseToCenter({-20, 0}, true);
+            }
+
+
+            //Movement when the right key is pressed.
+            if(event.key.code == Settings::right)
+            {
+                ComponentSet set = ecs.getComponents(1);
+                std::shared_ptr<PhysicsComponent> comp = component_cast<PhysicsComponent>(set.getComponent(ComponentType::PHYSICS));
+                comp->body->ApplyLinearImpulseToCenter({20, 0}, true);
             }
         break;
     }

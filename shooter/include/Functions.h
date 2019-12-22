@@ -9,7 +9,7 @@
 
 #include <Box2D/Box2D.h>
 #include <SFML/System/Vector2.hpp>
-
+#include "Entity/Components/Component.h"
 
 /**********************************************************//**
 *   @brief  Convert pixles to Box2D meters.
@@ -39,5 +39,20 @@ b2Vec2 toMeters(const sf::Vector2f &pixles);
 *   @param  pixles Coordinate in pixles.
 **************************************************************/
 sf::Vector2f toPixles(const b2Vec2 &meters);
+
+
+/**********************************************************//**
+*   @brief  Cast a component to a componnent subclass.
+*   @param  Pointer to Component.
+**************************************************************/
+template<class T>
+std::shared_ptr<T> component_cast(std::shared_ptr<Component> comp)
+{
+    std::shared_ptr<T>temp = std::dynamic_pointer_cast<T>(comp);
+    if(!temp)
+        throw std::runtime_error("Unable to cast component");
+
+    return temp;
+}
 
 #endif // FUNCTIONS_H
