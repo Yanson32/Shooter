@@ -1,5 +1,5 @@
 #include "States/MapCreatorState.h"
-#include "Events/Events.h"
+#include <GameUtilities/Event/EventManager.h>
 #include <cassert>
 #include <iostream>
 #include "Editor/Map.h"
@@ -10,8 +10,13 @@
 #include "Editor/EditorObjectPanel.h"
 #include "Editor/EditorGeneralPanel.h"
 #include "Editor/MapCreatorPanel.h"
+#include "Events/Id.h"
 #include <iostream>
 #include "Settings.h"
+#include "Events/ShowGrid.h"
+#include "Events/SnapToGrid.h"
+
+
 MapCreatorState::MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap):
 PlayState(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::MAP_CREATION_STATE),
 panel(new Editor(map, newGui))
@@ -59,7 +64,7 @@ void MapCreatorState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTi
 
     //GameUtilities event loop
     GU::Evt::EventPtr evtPtr;
-    while(EventManager::inst().Poll((evtPtr)))
+    while(GU::Evt::EventManager::inst().Poll((evtPtr)))
     {
         assert(panel != nullptr);
         panel->handleGUEvent(engin, evtPtr);

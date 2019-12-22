@@ -1,5 +1,5 @@
 #include "States/LevelSelectState.h"
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include "Settings.h"
 #include "Editor/Map.h"
 #include <iostream>
@@ -217,14 +217,14 @@ void LevelSelectState::HandleEvents(GU::Engin::Engin& engin, const float &deltaT
             {
                 unsigned currentLevel = Settings::currentWorld * Settings::maxLevel + position;
                 Settings::currentLevel = currentLevel;
-                EventManager::inst().Post<GU::Evt::PushState>(States::Id::PLAY_STATE);
+                GU::Evt::EventManager::inst().Post<GU::Evt::PushState>(States::Id::PLAY_STATE);
             }
         }
     }
 
     //GameUtilities event loop
     GU::Evt::EventPtr evtPtr;
-    while(EventManager::inst().Poll((evtPtr)))
+    while(GU::Evt::EventManager::inst().Poll((evtPtr)))
     {
         handleGUEvent(engin, evtPtr);
     }

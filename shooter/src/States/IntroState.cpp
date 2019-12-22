@@ -1,7 +1,7 @@
 #include "States/IntroState.h"
 #include "States/Id.h"
 #include <SFML/Window/Event.hpp>
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include <iostream>
 #include "Settings.h"
 #include "Events/Events.h"
@@ -69,7 +69,7 @@ void IntroState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTime)
 
     //GameUtilities event loop
     GU::Evt::EventPtr evtPtr;
-    while(EventManager::inst().Poll((evtPtr)))
+    while(GU::Evt::EventManager::inst().Poll((evtPtr)))
     {
         handleGUEvent(engin, evtPtr);
     }

@@ -1,5 +1,5 @@
 #include "Gui/MapLoader.h"
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include <GameUtilities/Event/Click.h>
 #include "Gui/id.h"
 #include "Settings.h"
@@ -31,13 +31,13 @@ map(newMap)
 
     tgui::Button::Ptr backButton = tgui::Button::create("Back");
     backButton->connect("pressed", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
     });
     buttonLayout->add(backButton);
     tgui::Button::Ptr createButton = tgui::Button::create("Create");
     buttonLayout->add(createButton);
     createButton->connect("pressed", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::NEW_LEVEL);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::NEW_LEVEL);
     });
     loadButton = tgui::Button::create("Load");
     buttonLayout->add(loadButton);
@@ -49,7 +49,7 @@ map(newMap)
             map.name = Settings::map;
             map.read();
             Settings::currentLevel = map.ordering;
-            EventManager::inst().Post<GU::Evt::PushState>(States::Id::MAP_CREATION_STATE);
+            GU::Evt::EventManager::inst().Post<GU::Evt::PushState>(States::Id::MAP_CREATION_STATE);
         }
 
     });

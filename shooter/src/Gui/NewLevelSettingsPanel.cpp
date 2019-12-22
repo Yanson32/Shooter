@@ -1,7 +1,7 @@
 #include "Gui/NewLevelSettingsPanel.h"
 #include <algorithm>
 #include <string>
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include <GameUtilities/Event/PushState.h>
 #include <GameUtilities/Event/Click.h>
 #include "States/Id.h"
@@ -63,7 +63,7 @@ NewLevelSettingsPanel::NewLevelSettingsPanel()
 
                         map.write();
                         Settings::map = map.name;
-                        EventManager::inst().Post<GU::Evt::PushState>(States::Id::MAP_CREATION_STATE);
+                        GU::Evt::EventManager::inst().Post<GU::Evt::PushState>(States::Id::MAP_CREATION_STATE);
                     }
                 }
             }
@@ -71,7 +71,7 @@ NewLevelSettingsPanel::NewLevelSettingsPanel()
     });
     tgui::Button::Ptr backButton = tgui::Button::create("Back");
     backButton->connect("pressed", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::MAP_LOADER);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::MAP_LOADER);
     });
     buttonLayout->add(spacer);
     buttonLayout->add(okButton);

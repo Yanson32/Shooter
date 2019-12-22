@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Engin/Game.h"
 #include "States/IntroState.h"
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include <memory>
 #include <TGUI/TGUI.hpp>
 #include "Settings.h"

@@ -1,5 +1,5 @@
 #include "Gui/PlayerInfo.h"
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include <GameUtilities/Event/Click.h>
 #include "Gui/id.h"
 #include <iostream>
@@ -37,7 +37,7 @@ PlayerInfo::PlayerInfo()
     difficultyBox->setSelectedItem(Settings::difficulty);
     backButton = tgui::Button::create("Back");
     backButton->connect("pressed", [](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
     });
     okButton = tgui::Button::create("Ok");
     okButton->connect("pressed",[&](){
@@ -45,7 +45,7 @@ PlayerInfo::PlayerInfo()
         Settings::name = text;
         Settings::difficulty = difficultyBox->getSelectedItem().toAnsiString();
 
-        EventManager::inst().Post<GU::Evt::PushState>(States::Id::LEVEL_SELECT_STATE);
+        GU::Evt::EventManager::inst().Post<GU::Evt::PushState>(States::Id::LEVEL_SELECT_STATE);
     });
 
     buttonLayout->add(backButton);

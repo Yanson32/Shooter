@@ -3,7 +3,7 @@
 #include "Settings.h"
 #include "Editor/Functions.h"
 #include <iostream>
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include <GameUtilities/Event/Click.h>
 #include "Gui/id.h"
 #include <iostream>
@@ -87,34 +87,34 @@ void DevSettingsPanel::init(DebugDraw &debugDraw)
     aabb->setChecked(debugDraw.IsBitSet(b2Draw::e_aabbBit));
 
     shapeBox->connect("checked", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_SHAPE);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_SHAPE);
     });
     shapeBox->connect("unchecked", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_SHAPE);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_SHAPE);
     });
     centerOfMass->connect("checked", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_CENTER_OF_MASS);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_CENTER_OF_MASS);
     });
     centerOfMass->connect("unchecked", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_CENTER_OF_MASS);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_CENTER_OF_MASS);
     });
     pairBit->connect("checked", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_PAIR);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_PAIR);
     });
     pairBit->connect("unchecked", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_PAIR);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_PAIR);
     });
     joint->connect("checked", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_JOINT);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_JOINT);
     });
     joint->connect("unchecked", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_JOINT);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_JOINT);
     });
     aabb->connect("checked", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_AABB);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_AABB);
     });
     aabb->connect("unchecked", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_AABB);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::B2_AABB);
     });
 }
 

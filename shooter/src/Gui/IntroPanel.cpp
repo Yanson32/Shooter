@@ -1,7 +1,7 @@
 #include "Gui/IntroPanel.h"
 #include "Settings.h"
 //#include "Event/Object.h"
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 //#include "State/Id.h"
 #include "GameUtilities/Event/Click.h"
 #include "GameUtilities/Event/PushState.h"
@@ -22,7 +22,7 @@ GuiBase(Gui::id::INTRO)
     startBtn = tgui::Button::create("Start");
     startBtn->setSize(Settings::buttonSize);
     startBtn->connect("pressed", [](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::PLAYER_INFO);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::PLAYER_INFO);
     });
 
 
@@ -38,7 +38,7 @@ GuiBase(Gui::id::INTRO)
 
     hostButton = tgui::Button::create("Host");
     hostButton->connect("pressed", [](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::MULTIPLAYER);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::MULTIPLAYER);
 
     });
 
@@ -60,7 +60,7 @@ GuiBase(Gui::id::INTRO)
     optionsBtn = tgui::Button::create("Options");
     optionsBtn->setSize(Settings::buttonSize);
     optionsBtn->connect("pressed", [](){
-        EventManager::inst().Post<GU::Evt::Click>(Gui::id::OPTIONS);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::OPTIONS);
     });
 
     tgui::HorizontalLayout::Ptr layout5 = content->appendLayout();
@@ -80,7 +80,7 @@ GuiBase(Gui::id::INTRO)
         layout6->add(mapButton);
         layout6->add(spacer);
         mapButton->connect("pressed", [&](){
-            EventManager::inst().Post<GU::Evt::Click>(Gui::id::MAP_LOADER);
+            GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::MAP_LOADER);
         });
     #endif
 }

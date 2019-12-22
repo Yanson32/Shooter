@@ -1,5 +1,5 @@
 #include "States/PlayState.h"
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include "config.h"
 #include "Settings.h"
 #include <GameUtilities/Event/Pop.h>
@@ -114,7 +114,7 @@ void PlayState::HandleEvents(GU::Engin::Engin& engin, const float &deltaTime)
 
     //GameUtilities event loop
     GU::Evt::EventPtr evtPtr;
-    while(EventManager::inst().Poll((evtPtr)))
+    while(GU::Evt::EventManager::inst().Poll((evtPtr)))
     {
         handleGUEvent(engin, evtPtr);
     }
@@ -171,7 +171,7 @@ void PlayState::handleSFEvent(GU::Engin::Engin& engin, const sf::Event &event)
                     if(temp)
                     {
                         temp->backBtn->connect("pressed", [&](){
-                            EventManager::inst().Post<GU::Evt::Pop>();
+                            GU::Evt::EventManager::inst().Post<GU::Evt::Pop>();
                             gui.removeAllWidgets();
                         });
 

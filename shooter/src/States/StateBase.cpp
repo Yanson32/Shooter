@@ -21,6 +21,7 @@
 #include "Gui/PlayerInfo.h"
 #include "States/LevelSelectState.h"
 #include "config.h"
+#include <GameUtilities/Event/EventManager.h>
 //sf::RenderWindow StateBase::window(sf::VideoMode({800, 600}), Settings::inst().getTitle());
 //tgui::Gui StateBase::gui(window);
 StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
@@ -86,7 +87,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     if(temp)
                     {
                         temp->closeBtn->connect("pressed", [&](){
-                            EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
+                            GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::INTRO);
                             gui.removeAllWidgets();
                         });
                     }

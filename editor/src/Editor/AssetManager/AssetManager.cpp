@@ -1,5 +1,5 @@
 #include "Editor/AssetManager/AssetManager.h"
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include <GameUtilities/Event/Click.h>
 #include "Editor/Events/id.h"
 
@@ -40,7 +40,7 @@ effectPanel(new AssetManagerEffectPanel(AssetManager::WIDTH, AssetManager::DIALO
 
     closeButton = tgui::Button::create("Close");
     closeButton->connect("pressed", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Button::ASSET_DIALOG_CLOSE);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Button::ASSET_DIALOG_CLOSE);
     });
     buttonLayout->add(closeButton);
 

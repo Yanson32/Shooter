@@ -4,7 +4,7 @@
 //#include "States/Id.h"
 #include <GameUtilities/Event/Click.h>
 //#include "Gui/id.h"
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include <GameUtilities/Event/Click.h>
 //#include "Settings.h"
 #include "Editor/Functions.h"
@@ -57,7 +57,7 @@ MapCreatorPanel::MapCreatorPanel(Map &map)
 
     tgui::Button::Ptr assetButton = tgui::Button::create("Assets");
     assetButton->connect("pressed", [&](){
-        EventManager::inst().Post<GU::Evt::Click>(Button::ASSET);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Button::ASSET);
     });
     buttonLayout->add(assetButton);
     this->add(buttonLayout);

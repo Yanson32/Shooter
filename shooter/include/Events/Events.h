@@ -9,7 +9,7 @@
 #include "GameUtilities/Event/Pop.h"
 #include "GameUtilities/Event/PushState.h"
 
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include "Events/Id.h"
 #include "Events/ShowGrid.h"
 #include "Events/SnapToGrid.h"

@@ -1,6 +1,6 @@
 #include "Gui/Options/OptionsPanel.h"
 #include "Settings.h"
-#include "Events/EventManager.h"
+#include <GameUtilities/Event/EventManager.h>
 #include "Gui/id.h"
 #include "GameUtilities/Event/Click.h"
 
