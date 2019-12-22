@@ -1,6 +1,7 @@
 set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Settings.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/DebugDraw.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/Functions.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/ObjectType.h"
 
 )
 set(SUB_DIRECTORIES "Engin"

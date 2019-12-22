@@ -13,6 +13,8 @@
 #include "Entity/Components/SpriteComponent.h"
 #include "Entity/Systems/DrawingSystem.h"
 #include "Functions.h"
+#include "ObjectType.h"
+
 
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
 StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::PLAY_STATE)
@@ -22,6 +24,7 @@ StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::PLAY_ST
     b2BodyDef tempBodyDef;
     tempBodyDef.type = b2_dynamicBody;
     tempBodyDef.position = toMeters({50, 50});
+    tempBodyDef.userData = new ObjectType(ObjectType::PLAYER);
     b2Body* tempBody = world.CreateBody(&tempBodyDef);
 
     b2PolygonShape polyShape;
@@ -55,6 +58,18 @@ StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::PLAY_ST
     std::shared_ptr<DrawingSystem> dSystem(new DrawingSystem());
     dSystem->registerEntity(1);
     ecs.addSystem(dSystem);
+
+    b2BodyDef exitBodyDef;
+    exitBodyDef.userData = new ObjectType(ObjectType::EXIT);
+    b2Body *exitBody = world.CreateBody(&exitBodyDef);
+    exitBody->SetTransform(toMeters({800, 410}), exitBody->GetAngle());
+    b2PolygonShape exitBodyShape;
+    exitBodyShape.SetAsBox(toMeters(20), toMeters(40));
+
+    b2FixtureDef exitFixtureDef;
+    exitFixtureDef.shape = &exitBodyShape;
+    exitFixtureDef.isSensor = true;
+    exitBody->CreateFixture(&exitFixtureDef);
 }
 /*********************************************************************************//**
 *   \brief	Initialize the game state.
