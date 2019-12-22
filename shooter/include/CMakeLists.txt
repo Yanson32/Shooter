@@ -2,6 +2,7 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Settings.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/DebugDraw.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/Functions.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/ObjectType.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/ContactListener.h"
 
 )
 set(SUB_DIRECTORIES "Engin"

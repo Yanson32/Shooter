@@ -15,7 +15,8 @@ namespace Events
         CLICK                   = GU::Evt::Id::CLICK,
         SHOW_GRID,
         SNAP_TO_GRID,
-        BASE
+        BASE,
+        PLAYER_COLLISION
     };
 }
 

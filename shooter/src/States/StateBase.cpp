@@ -22,6 +22,7 @@
 #include "States/LevelSelectState.h"
 #include "config.h"
 #include <GameUtilities/Event/EventManager.h>
+#include "Events/PlayerCollision.h"
 //sf::RenderWindow StateBase::window(sf::VideoMode({800, 600}), Settings::inst().getTitle());
 //tgui::Gui StateBase::gui(window);
 StateBase::StateBase(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
@@ -74,6 +75,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
         }
         break;
         case Events::Id::CLICK:
+        {
             std::shared_ptr<GU::Evt::Click> temp =  std::dynamic_pointer_cast<GU::Evt::Click>(event);
             switch(temp->buttonId)
             {
@@ -192,6 +194,18 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     }
                 }
                 break;
+            }
+        }
+        break;
+        case Events::Id::PLAYER_COLLISION:
+            std::shared_ptr<PlayerCollision> temp =  std::dynamic_pointer_cast<PlayerCollision>(event);
+            if(temp->type == ObjectType::EXIT)
+            {
+                if(Settings::currentLevel + 1 == Settings::unlocked)
+                {
+                    Settings::unlocked += 1;
+                    GU::Evt::EventManager::inst().Post<GU::Evt::Pop>();
+                }
             }
         break;
     }

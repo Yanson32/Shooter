@@ -4,6 +4,7 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Id.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/SFEventHandler.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/ShowGrid.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/SnapToGrid.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/PlayerCollision.h"
 )
 set(SUB_DIRECTORIES ""
 )

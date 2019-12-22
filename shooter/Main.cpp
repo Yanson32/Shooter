@@ -14,6 +14,8 @@
 #include "Functions.h"
 #include <Editor/Map.h>
 #include "config.h"
+#include "ContactListener.h"
+
 int main()
 {
     //Create map
@@ -24,7 +26,7 @@ int main()
     //Initialize box2d world object
     sf::Vector2f gravity(0, 9.8);
     b2World world(b2Vec2(0, 9.8));
-
+    world.SetContactListener(new ContactListener());
 
     //Set debug draw
     DebugDraw debugDraw(world, Settings::boxPixRatio);
