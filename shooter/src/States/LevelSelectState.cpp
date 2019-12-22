@@ -4,6 +4,9 @@
 #include "Editor/Map.h"
 #include <iostream>
 #include <GameUtilities/Event/PushState.h>
+#include <GameUtilities/Event/Pop.h>
+
+
 LevelSelectState::LevelSelectState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
 StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, newId)
 {
@@ -145,6 +148,11 @@ void LevelSelectState::HandleEvents(GU::Engin::Engin& engin, const float &deltaT
     //                        icon.setPosition(dots[position].getPosition());
     //                    }
     //            }
+                if(event.key.code == sf::Keyboard::Escape)
+                {
+                    GU::Evt::EventManager::inst().Post<GU::Evt::Pop>();
+                }
+
                 unsigned nextLevel = Settings::currentWorld * Settings::maxLevel + position + 1;
                 if(position == 0)
                 {
