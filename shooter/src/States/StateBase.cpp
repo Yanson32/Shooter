@@ -20,6 +20,7 @@
 #include "Gui/NewLevelSettingsPanel.h"
 #include "Gui/PlayerInfo.h"
 #include "States/LevelSelectState.h"
+#include "States/WorldSelectState.h"
 #include "config.h"
 #include <GameUtilities/Event/EventManager.h>
 #include "Events/PlayerCollision.h"
@@ -69,6 +70,9 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     break;
                     case States::Id::LEVEL_SELECT_STATE:
                         engin.Push<LevelSelectState>(window, gui, world, debugDraw, map);
+                    break;
+                    case States::Id::WORLD_SELECT_STATE:
+                        engin.Push<WorldSelectState>(window, gui, world, debugDraw, map);
                     break;
                 }
             }
@@ -204,6 +208,7 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                 if(Settings::currentLevel + 1 == Settings::unlocked)
                 {
                     Settings::unlocked += 1;
+
                     GU::Evt::EventManager::inst().Post<GU::Evt::Pop>();
                 }
                 else

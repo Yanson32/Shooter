@@ -3,6 +3,7 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Id.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/PlayState.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/MapCreatorState.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/LevelSelectState.h"
+            "${CMAKE_CURRENT_SOURCE_DIR}/WorldSelectState.h"
 			"${CMAKE_CURRENT_SOURCE_DIR}/StateBase.h"
 )
 set(SUB_DIRECTORIES ""

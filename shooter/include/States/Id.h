@@ -10,6 +10,7 @@ namespace States
         OPTIONS_STATE,
         MAP_CREATION_STATE,
         INTRO_STATE,
+        WORLD_SELECT_STATE,
         LEVEL_SELECT_STATE
     };
 }

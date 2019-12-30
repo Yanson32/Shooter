@@ -28,4 +28,5 @@ namespace Settings
     unsigned maxLevel = 9;
     unsigned currentLevel = 0;
     extern unsigned unlocked = 1;
+    unsigned unlockeWorld = 0;
 }
