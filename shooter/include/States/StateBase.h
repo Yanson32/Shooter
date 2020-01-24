@@ -25,11 +25,11 @@ public SFEventHandler
     protected:
         sf::RenderWindow &window;
        	tgui::Gui &gui;
+       	b2World &world;
+       	DebugDraw &debugDraw;
+       	Map &map;
         std::shared_ptr<GuiBase> panel;
         tgui::Label::Ptr title;
-        b2World &world;
-        DebugDraw &debugDraw;
-        Map &map;
         ECS ecs;
     private:
 

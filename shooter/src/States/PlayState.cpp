@@ -17,7 +17,7 @@
 
 
 PlayState::PlayState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap, const int &newId):
-StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::PLAY_STATE)
+StateBase(newWindow, newGui, newWorld, newDebugDraw, newMap, newId)
 {
 
     //Create temp object
