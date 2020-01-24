@@ -86,13 +86,13 @@ void PlayState::Init()
     b2Vec2 vert[5];
     vert[0] = toMeters({0, 0});
 
-    vert[1] = toMeters({map.width, 0});
+    vert[1] = toMeters({static_cast<float>(map.width), 0.0f});
 
-    vert[2] = toMeters({map.width, map.height});
+    vert[2] = toMeters({static_cast<float>(map.width), static_cast<float>(map.height)});
 
-    vert[3] = toMeters({0, map.height});
+    vert[3] = toMeters({0.0f, static_cast<float>(map.height)});
 
-    vert[4] = toMeters({0, 0});
+    vert[4] = toMeters({0.0f, 0.0f});
 
     chainShape.CreateChain(vert, 5);
     b2FixtureDef fixDef;
