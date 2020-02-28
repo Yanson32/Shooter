@@ -15,8 +15,8 @@
 #include "Settings.h"
 #include "Events/ShowGrid.h"
 #include "Events/SnapToGrid.h"
-
-
+#include <Box2D/Box2D.h>
+#include "Functions.h"
 MapCreatorState::MapCreatorState(sf::RenderWindow &newWindow, tgui::Gui &newGui, b2World &newWorld, DebugDraw &newDebugDraw, Map &newMap):
 PlayState(newWindow, newGui, newWorld, newDebugDraw, newMap, States::Id::MAP_CREATION_STATE),
 panel(new Editor(map, newGui))
@@ -125,6 +125,7 @@ void MapCreatorState::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr e
         }
         break;
         case Events::Id::CLICK:
+        {
             std::shared_ptr<GU::Evt::Click> temp =  std::dynamic_pointer_cast<GU::Evt::Click>(event);
             std::cout << "temp id " << temp->id << std::endl;
             switch(temp->buttonId)
@@ -157,6 +158,34 @@ void MapCreatorState::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr e
 //                    }
                 break;
             };
+        break;
+        }
+        case Events::Id::MAP_CHANGED:
+            std::cout << "Map Changed " << std::endl;
+                //Create world boundries
+
+            world.DestroyBody(borderBody);
+            b2BodyDef worldBodyDef;
+            b2Body* temp = world.CreateBody(&worldBodyDef);
+
+            b2ChainShape chainShape;
+            b2Vec2 vert[5];
+            vert[0] = toMeters({0, 0});
+
+            vert[1] = toMeters({static_cast<float>(map.width), 0.0f});
+
+            vert[2] = toMeters({static_cast<float>(map.width), static_cast<float>(map.height)});
+
+            vert[3] = toMeters({0.0f, static_cast<float>(map.height)});
+
+            vert[4] = toMeters({0.0f, 0.0f});
+
+            chainShape.CreateChain(vert, 5);
+            b2FixtureDef fixDef;
+            fixDef.shape = &chainShape;
+            temp->CreateFixture(&fixDef);
+
+            borderBody = temp;
         break;
     }
     StateBase::handleGUEvent(engin, event);

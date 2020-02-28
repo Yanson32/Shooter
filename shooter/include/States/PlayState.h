@@ -42,6 +42,7 @@ class PlayState: public StateBase
         virtual void Draw(GU::Engin::Engin& engin, const float &deltaTime) override;
         virtual ~PlayState();
         sf::Texture texture;
+        b2Body* borderBody = nullptr;
 };
 
 #endif // SHOOTER_PLAYSTATE_H

@@ -106,7 +106,6 @@ void Map::write()
 
         std::string fileName = name + ".map";
 
-
         boost::filesystem::ofstream steam(path.string() + fileName);
 
         steam << name << std::endl;

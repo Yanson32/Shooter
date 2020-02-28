@@ -80,7 +80,7 @@ void PlayState::Init()
 
     //Create world boundries
     b2BodyDef worldBodyDef;
-    b2Body* borderBody = world.CreateBody(&worldBodyDef);
+    borderBody = world.CreateBody(&worldBodyDef);
 
     b2ChainShape chainShape;
     b2Vec2 vert[5];

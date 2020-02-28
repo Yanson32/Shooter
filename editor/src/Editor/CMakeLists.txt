@@ -15,6 +15,7 @@ set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/Editor.cpp"
 )
 set(SUB_DIRECTORIES "Layers"
 		    "AssetManager"
+		    "Events"
 )
 
 set(RELATIVE_PATH "src")

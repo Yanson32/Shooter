@@ -1,10 +1,9 @@
-set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/id.h"
-		"${CMAKE_CURRENT_SOURCE_DIR}/MapChanged.h"
+set(FILES 	"${CMAKE_CURRENT_SOURCE_DIR}/MapChanged.cpp"
 )
 set(SUB_DIRECTORIES ""
 )
 
-set(RELATIVE_PATH "include")
+set(RELATIVE_PATH "src")
 
 #Add subdirectories
 foreach(LOOP_VAR ${SUB_DIRECTORIES})

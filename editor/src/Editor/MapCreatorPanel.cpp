@@ -9,7 +9,7 @@
 //#include "Settings.h"
 #include "Editor/Functions.h"
 #include "Editor/Events/id.h"
-
+#include "Editor/Events/MapChanged.h"
 MapCreatorPanel::MapCreatorPanel(Map &map)
 {
     const int HEIGHT = 450;
@@ -49,6 +49,7 @@ MapCreatorPanel::MapCreatorPanel(Map &map)
         map.ordering = toInt(generalPanel->ordering->getText());
         map.init();
         map.write();
+        GU::Evt::EventManager::inst().Post<MapChanged>();
     });
     buttonLayout->add(saveButton);
 
