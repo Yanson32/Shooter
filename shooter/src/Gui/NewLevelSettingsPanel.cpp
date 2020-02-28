@@ -36,34 +36,34 @@ NewLevelSettingsPanel::NewLevelSettingsPanel()
                 {
                     if(!ordering->getText().isEmpty())
                     {
-                        Map map;
-                        map.name = newLevel->getText().toAnsiString();
-                        map.width = toInt(widthBox->getText());
-                        map.height = toInt(heightBox->getText());
-                        map.ordering = toInt(ordering->getText());
-
-                        map.addAssetDirectory(boost::filesystem::path(BUILD_DIR + "/Assets/"));
-                        map.addAssetDirectory(boost::filesystem::path(SOURCE_DIR + "/Assets/"));
-
-                        for(std::size_t i = 0; i < map.getAssetDirectory().size(); ++i)
-                        {
-
-                            boost::filesystem::path path = map.getAssetDirectory()[i];
-                            boost::filesystem::create_directories(path);
-                            path.append("Level/");
-                            boost::filesystem::create_directories(path);
-                            path.append(map.name);
-                            path.append("/");
-                            boost::filesystem::create_directories(path);
-
-                        }
-
-
-
-
-                        map.write();
-                        Settings::map = map.name;
-                        GU::Evt::EventManager::inst().Post<GU::Evt::PushState>(States::Id::MAP_CREATION_STATE);
+//                        Map map;
+//                        map.name = newLevel->getText().toAnsiString();
+//                        map.width = toInt(widthBox->getText());
+//                        map.height = toInt(heightBox->getText());
+//                        map.ordering = toInt(ordering->getText());
+//
+//                        map.addAssetDirectory(boost::filesystem::path(BUILD_DIR + "/Assets/"));
+//                        map.addAssetDirectory(boost::filesystem::path(SOURCE_DIR + "/Assets/"));
+//
+//                        for(std::size_t i = 0; i < map.getAssetDirectory().size(); ++i)
+//                        {
+//
+//                            boost::filesystem::path path = map.getAssetDirectory()[i];
+//                            boost::filesystem::create_directories(path);
+//                            path.append("Level/");
+//                            boost::filesystem::create_directories(path);
+//                            path.append(map.name);
+//                            path.append("/");
+//                            boost::filesystem::create_directories(path);
+//
+//                        }
+//
+//
+//
+//
+//                        map.write();
+//                        Settings::map = map.name;
+//                        GU::Evt::EventManager::inst().Post<GU::Evt::PushState>(States::Id::MAP_CREATION_STATE);
                     }
                 }
             }

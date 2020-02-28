@@ -47,6 +47,7 @@ MapCreatorPanel::MapCreatorPanel(Map &map)
         map.height = toInt(generalPanel->height->getText());
         map.width = toInt(generalPanel->width->getText());
         map.ordering = toInt(generalPanel->ordering->getText());
+        map.init();
         map.write();
     });
     buttonLayout->add(saveButton);

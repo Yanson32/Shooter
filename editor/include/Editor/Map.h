@@ -21,7 +21,7 @@ class Map: public sf::Drawable
         bool loadLayer(const unsigned newOrdering);
         void layerSelected(const std::string &name);
         bool layerExists(const std::string &name);
-        void addLayer(Layer layer);
+        void addLayer(std::shared_ptr<Layer> layer);
         bool removeLayer(const std::string &layer);
         std::shared_ptr<Layer> getLayer(const std::string &name);
         std::vector<std::string> getAllDir() const;

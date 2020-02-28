@@ -25,18 +25,19 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         {
             if(!map.layerExists(text.toAnsiString()))
             {
-                Layer layer;
-                layer.name = text;
+                std::shared_ptr<Layer> layer(new Layer);
+                layer->name = text;
                 map.addLayer(layer);
             }
 
             if(map.getAssetDirectory().empty())
                 throw std::runtime_error("Error: Asset directory must not be empty");
 
-            //map.getLayer(text)->read(map.getAssetDirectory()[0], map.name);
-            //map.layerSelected(text);
-            //map.getLayer(text)->init({map.width, map.height});
-            //properties->init(map.getLayer(text));
+            map.getLayer(text)->read(map.getAssetDirectory()[0], map.name);
+            map.layerSelected(text);
+            map.getLayer(text)->init({static_cast<float>(map.width), static_cast<float>(map.height)});
+
+            properties->init(*map.getLayer(text));
         }
     });
 
@@ -64,8 +65,8 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         }
 
         listBox->addItem(text);
-        Layer layer;
-        layer.name = text.toAnsiString();
+        std::shared_ptr<Layer> layer(new Layer);
+        layer->name = text.toAnsiString();
         map.addLayer(layer);
         map.write();
 
@@ -114,6 +115,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         if(name.empty())
             return;
 
+        std::cout << "layer " << name << std::endl;
         //Exit if the layer does not exist
         if(!map.layerExists(name))
             return;
@@ -122,16 +124,19 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
         map.getLayer(name)->width = toInt(properties->tileWidth->getText());
         std::cout << "Width after " << map.getLayer(name)->width << std::endl;
         map.write();
-        //map.getLayer(name).init({map.width, map.height});
+        map.getLayer(name)->init({static_cast<float>(map.width), static_cast<float>(map.height)});
     });
 
     properties->tileHeight->connect("TextChanged", [&](){
         if(listBox-> getSelectedItemIndex() == -1)
             return;
+
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text)->height = toInt(properties->tileHeight->getText());
         map.write();
-        //map.getLayer(text).init({map.width, map.height});
+        map.width = 800;
+        map.height = 800;
+        map.getLayer(text)->init({static_cast<float>(map.width), static_cast<float>(map.height)});
     });
 
     properties->combo->connect("ItemSelected", [&](){
@@ -163,6 +168,7 @@ EditorLayersPanel::EditorLayersPanel(const int width, const int height, Map &new
             return;
         std::string text = properties->name->getText().toAnsiString();
         map.getLayer(text)->grid = properties->grid->isChecked();
+        map.getLayer(text)->init({static_cast<float>(map.width), static_cast<float>(map.height)});
         map.write();
     });
 

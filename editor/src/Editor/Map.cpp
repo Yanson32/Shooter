@@ -14,13 +14,14 @@ Map::Map()
 
 void Map::read()
 {
+    std::cout << "Read " << std::endl;
     std::vector<boost::filesystem::path> dir = getAssetDirectory();
 
     if(dir.empty())
         throw std::runtime_error("Error: There must be at least one directory");
 
     boost::filesystem::path path = dir[0];
-
+std::cout << "Map::read path " << path << std::endl;
     if(!boost::filesystem::exists(path))
         throw std::runtime_error("Error: Directory does not exist");
 
@@ -56,19 +57,22 @@ void Map::read()
     sourceStream >> green;
     std::size_t size;
     sourceStream >> size;
+    std::cout << "size " << size << std::endl;
     for(std::size_t i = 0; i < size; ++i)
     {
+        std::cout << "Loop " << std::endl;
         std::string temp;
         sourceStream >> temp;
         if(layerExists(temp))
         {
-            layers[temp]->read(path, name);
+            layers[temp]->read(dir[0], name);
         }
         else
         {
+            std::cout << "Layer " << temp << " does not exist" << std::endl;
             std::shared_ptr<Layer> layer(new Layer());
             layer->name = temp;
-            layer->read(path.string(), name);
+            layer->read(dir[0], name);
             layers[temp] = layer;
         }
     }
@@ -85,20 +89,20 @@ void Map::write()
     for(int i = 0; i < dir.size(); ++i)
     {
         boost::filesystem::path path = dir[i];
-//        if(!boost::filesystem::exists(path))
-//            boost::filesystem::create_directories(path);
+        if(!boost::filesystem::exists(path))
+            boost::filesystem::create_directories(path);
 
         path += "Level/";
 
-//        if(!boost::filesystem::exists(path))
-//            boost::filesystem::create_directories(path);
+        if(!boost::filesystem::exists(path))
+            boost::filesystem::create_directories(path);
 
         path += name;
         path += "/";
 
 
-//        if(!boost::filesystem::exists(path))
-//            boost::filesystem::create_directories(path);
+        if(!boost::filesystem::exists(path))
+            boost::filesystem::create_directories(path);
 
         std::string fileName = name + ".map";
 
@@ -116,8 +120,8 @@ void Map::write()
         steam << layers.size() << std::endl;
         for(auto &element : layers)
         {
-            steam << element.first << std::endl;
-            element.second->write(getAssetDirectory(), name);
+            steam << element.second->name << std::endl;
+            element.second->write(dir, this->name);
         }
         steam.close();
     }
@@ -137,10 +141,10 @@ void Map::remove()
 }
 
 
-void Map::addLayer(Layer layer)
+void Map::addLayer(std::shared_ptr<Layer> layer)
 {
-    assert(!layerExists(layer.name));
-    //layers[layer.name] = layer;
+    assert(!layerExists(layer->name));
+    layers[layer->name] = layer;
 }
 
 std::shared_ptr<Layer> Map::getLayer(const std::string &name)
@@ -193,7 +197,7 @@ bool Map::removeLayer(const std::string &layer)
         boost::filesystem::path path = dir[i];
         path.append("Level");
         path.append(name);
-        path /= name + ".lay";
+        path /= layer + ".lay";
         boost::filesystem::remove(path);
     }
 
@@ -227,7 +231,7 @@ void Map::init()
 {
     for(auto it = layers.begin(); it != layers.end(); ++it)
     {
-        //it->second.init({width, height});
+        it->second->init({static_cast<float>(width),static_cast<float>(height)});
     }
 }
 
@@ -333,6 +337,7 @@ bool Map::loadLayer(const unsigned newOrdering)
     boost::filesystem::directory_iterator end;
 
     boost::filesystem::directory_iterator it{getLevelDirectory()[0]};
+
     while (it != boost::filesystem::directory_iterator{})
     {
         this->name = it->path().stem().string();

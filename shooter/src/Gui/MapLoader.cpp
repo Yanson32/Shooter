@@ -62,27 +62,27 @@ map(newMap)
         if(temp.isEmpty())
             return;
 
-        Map map;
-        map.addAssetDirectory(boost::filesystem::path(BUILD_DIR + "/Assets/"));
-        map.addAssetDirectory(boost::filesystem::path(SOURCE_DIR + "/Assets/"));
-        map.name = temp.toAnsiString();
-        map.remove();
-
-        std::vector<boost::filesystem::path> dir = map.getAssetDirectory();
-        boost::filesystem::path dir1 = dir[0];
-        boost::filesystem::path dir2  = dir[1];
-
-        dir1.append("Level/");
-        dir1.append(temp.toAnsiString());
-        dir1.append("/");
-
-        dir2.append("Level/");
-        dir2.append(temp.toAnsiString());
-        dir2.append("/");
-
-        std::cout << "dir1 " << dir1 << boost::filesystem::exists(dir1) << std::endl;
-        if(!boost::filesystem::exists(dir1) && !boost::filesystem::exists(dir2))
-            combo->removeItem(temp);
+//        Map map;
+//        map.addAssetDirectory(boost::filesystem::path(BUILD_DIR + "/Assets/"));
+//        map.addAssetDirectory(boost::filesystem::path(SOURCE_DIR + "/Assets/"));
+//        map.name = temp.toAnsiString();
+//        map.remove();
+//
+//        std::vector<boost::filesystem::path> dir = map.getAssetDirectory();
+//        boost::filesystem::path dir1 = dir[0];
+//        boost::filesystem::path dir2  = dir[1];
+//
+//        dir1.append("Level/");
+//        dir1.append(temp.toAnsiString());
+//        dir1.append("/");
+//
+//        dir2.append("Level/");
+//        dir2.append(temp.toAnsiString());
+//        dir2.append("/");
+//
+//        std::cout << "dir1 " << dir1 << boost::filesystem::exists(dir1) << std::endl;
+//        if(!boost::filesystem::exists(dir1) && !boost::filesystem::exists(dir2))
+//            combo->removeItem(temp);
 
     });
 }

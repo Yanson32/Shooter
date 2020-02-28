@@ -19,7 +19,7 @@ void Layer::read(boost::filesystem::path path, const std::string &map)
 {
     path.append("Level");
     path.append(map);
-    path /= map + ".lay";
+    path /= this->name + ".lay";
 
     boost::filesystem::ifstream source(path);
 
@@ -42,14 +42,15 @@ void Layer::read(boost::filesystem::path path, const std::string &map)
 
 void Layer::write(const std::vector<boost::filesystem::path> &directories, const std::string &map)
 {
+    std::cout << "Layer Write" << std::endl;
     for(std::size_t i = 0; i < directories.size(); ++i)
     {
         boost::filesystem::path path = directories[i];
         path.append("Level");
         path.append(map);
-        path /= map;
-        path /= ".lay";
+        path /= this->name + ".lay";
 
+        std::cout << "Layer path " << path << std::endl;
         boost::filesystem::ofstream steam(path);
 
         steam << name << std::endl;
@@ -69,7 +70,7 @@ void Layer::draw(sf::RenderTarget& target, sf::RenderStates states) const
     for(auto it = tiles.begin(); it != tiles.end(); ++it)
         target.draw(*it);
 
-    if(grid && selected)
+    if(grid && selected && visible)
         target.draw(layerGrid);
 }
 
@@ -79,7 +80,7 @@ void Layer::init(const sf::Vector2f &mapSize)
         return;
     if(width <= 0 || height <=0)
         return;
-    //layerGrid.init(mapSize, {width, height});
+    layerGrid.init(mapSize, {static_cast<float>(width), static_cast<float>(height)});
 }
 
 Layer::~Layer()

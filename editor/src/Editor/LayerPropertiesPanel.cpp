@@ -1,5 +1,6 @@
 #include "Editor/LayerPropertiesPanel.h"
 #include "Editor/Functions.h"
+#include <iostream>
 LayerPropertiesPanel::LayerPropertiesPanel(const int width, const int height):
 PropertiesPanel(width, height)
 {
@@ -18,6 +19,7 @@ PropertiesPanel(width, height)
 
 void LayerPropertiesPanel::init(const Layer &layer)
 {
+    std::cout << "LayerPropertiesPanel " << layer.name << std::endl;
     name->setText(layer.name);
     visible->setChecked(layer.visible);
     grid->setChecked(layer.grid);
