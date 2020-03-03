@@ -8,12 +8,22 @@
 #include <memory>
 #include <vector>
 #include <boost/filesystem.hpp>
-class Map: public sf::Drawable
+#include "editor_export.h"
+class EDITOR_EXPORT Map: public sf::Drawable
 {
     public:
+        std::string name;
+        int width;
+        int height;
+        int ordering;
+        int red = 0;
+        int blue = 0;
+        int green = 0;
+
         Map();
-        void addAssetDirectory(const boost::filesystem::path &newPath);
+        bool addAssetDirectory(const boost::filesystem::path &path);
         std::vector<boost::filesystem::path> getAssetDirectory() const;
+        bool removeAssetDirectory(const boost::filesystem::path &path);
         void init();
         void read();
         void write();
@@ -21,18 +31,10 @@ class Map: public sf::Drawable
         bool loadLayer(const unsigned newOrdering);
         void layerSelected(const std::string &name);
         bool layerExists(const std::string &name);
-        void addLayer(std::shared_ptr<Layer> layer);
+        bool addLayer(std::shared_ptr<Layer> layer);
         bool removeLayer(const std::string &layer);
         std::shared_ptr<Layer> getLayer(const std::string &name);
         std::vector<std::string> getAllDir() const;
-        virtual ~Map();
-        std::string name;
-        int width;
-        int height;
-        int ordering;
-        int red = 100;
-        int blue = 0;
-        int green = 0;
         std::size_t getLayerCount() const;
         std::shared_ptr<Layer> operator [] (const std::size_t index);
         std::vector<boost::filesystem::path> getImageDirectory() const;
@@ -42,6 +44,7 @@ class Map: public sf::Drawable
         std::vector<boost::filesystem::path> getMusicDirectory() const;
         std::vector<boost::filesystem::path> getTilesheetDirectory() const;
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        virtual ~Map();
     private:
         std::map<std::string, std::shared_ptr<Layer>> layers;
         std::vector<boost::filesystem::path> assetDirectories;

@@ -13,6 +13,9 @@ target_include_directories("${PROJECT_NAME}" PUBLIC
 add_subdirectory("include")
 add_subdirectory("src")
 
+include(GenerateExportHeader)
+generate_export_header("Editor")
+
 find_package(SFML 2 COMPONENTS system window graphics audio network REQUIRED)
 target_link_libraries("${PROJECT_NAME}" PUBLIC sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 

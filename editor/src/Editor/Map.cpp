@@ -84,7 +84,7 @@ void Map::write()
     std::vector<boost::filesystem::path> dir = getAssetDirectory();
 
     if(dir.empty())
-        throw std::runtime_error("Asset directory has not been set");
+        return;
 
     for(int i = 0; i < dir.size(); ++i)
     {
@@ -140,18 +140,21 @@ void Map::remove()
 }
 
 
-void Map::addLayer(std::shared_ptr<Layer> layer)
+bool Map::addLayer(std::shared_ptr<Layer> layer)
 {
-    assert(!layerExists(layer->name));
-    layers[layer->name] = layer;
+    auto val = layers.insert(std::pair<std::string, std::shared_ptr<Layer>>(layer->name, layer));
+
+    return val.second;
 }
 
 std::shared_ptr<Layer> Map::getLayer(const std::string &name)
 {
-    assert(layerExists(name));
+    assert(!layerExists(name));
 
     if(layers.find(name) != layers.end())
         return layers.find(name)->second;
+
+    throw std::runtime_error("Error: Layer does not exist");
 }
 
 bool Map::layerExists(const std::string &name)
@@ -187,10 +190,14 @@ std::shared_ptr<Layer> Map::operator [] (const std::size_t index)
 
 bool Map::removeLayer(const std::string &layer)
 {
-    assert(layerExists(layer));
-    layers.erase(layers.find(layer));
-    std::vector<boost::filesystem::path> dir = getAssetDirectory();
+    if(!layerExists(layer))
+        return false;
 
+    //Remove layer object
+    layers.erase(layers.find(layer));
+
+    //Remove layer file
+    std::vector<boost::filesystem::path> dir = getAssetDirectory();
     for(int i = 0; i < dir.size(); ++i)
     {
         boost::filesystem::path path = dir[i];
@@ -234,9 +241,18 @@ void Map::init()
     }
 }
 
-void Map::addAssetDirectory(const boost::filesystem::path &newPath)
+bool Map::addAssetDirectory(const boost::filesystem::path &path)
 {
-    assetDirectories.push_back(newPath);
+    if(path.string().empty())
+        return false;
+
+    if(!boost::filesystem::is_directory(path))
+        if(!boost::filesystem::create_directories(path))
+            return false;
+
+    assetDirectories.push_back(path);
+
+    return true;
 }
 
 std::vector<boost::filesystem::path> Map::getAssetDirectory() const
@@ -352,6 +368,15 @@ bool Map::loadLayer(const unsigned newOrdering)
     return false;
 }
 
+bool Map::removeAssetDirectory(const boost::filesystem::path &path)
+{
+    if(assetDirectories.size() == 0)
+        return false;
+
+    auto result = assetDirectories.erase(std::remove(assetDirectories.begin(), assetDirectories.end(), path), assetDirectories.end());
+
+    return true;
+}
 
 Map::~Map()
 {

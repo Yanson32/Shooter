@@ -13,3 +13,7 @@ set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
 set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/Description.txt")
 
+option(EDITOR_TESTING "Set to true if you want to build unit tests" false)
+if(EDITOR_TESTING)
+	add_subdirectory("test")
+endif()
