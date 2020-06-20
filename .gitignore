@@ -1,4 +1,13 @@
 Build/
 BUILD/
 bUILD/
+build/
 *.orig
+
+#Linux 
+*.
+
+#ignore vim files
+*.swp
+*.swo
+*.swn
