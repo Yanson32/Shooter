@@ -11,5 +11,17 @@
 
 
 ## Compilation Instructions
-### CMake
-	Shooter uses CMake to generate a build system.
+
+* Debian Linux
+    1. Open a terminal
+        * ctrl+alt+t
+    2. Change to this directory
+        * cd <path to this directory>
+    3. Run bootstrap script
+        * sudo sh ./install/bootstrap.sh
+    4. compile the application
+        * mkdir Build
+        * cd Build
+        * cmake ../
+        * make
+        * sudo make install
