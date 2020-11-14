@@ -4,10 +4,8 @@ bUILD/
 build/
 *.orig
 
-#Linux 
+# Linux 
 *.
 
-#ignore vim files
-*.swp
-*.swo
-*.swn
+# Vim
+*.sw*
