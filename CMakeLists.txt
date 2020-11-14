@@ -2,6 +2,15 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.1.0)
 
 PROJECT("Shooter")
 
+#Set default compiler flags
+if(NOT DEFINED ${PROJECT_NAME}_IS_FIRST_RUN)
+	set(${PROJECT_NAME}_IS_FIRST_RUN False CACHE INTERNAL "Used to determine if current run is first run")
+
+	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+		set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -Wextra -Wall -pedantic -pedantic-errors" CACHE STRING "Compiler variables for debug mode" FORCE)
+	endif()
+endif()
+
 set(CMAKE_CXX_STANDARD 17)
 
 add_subdirectory("extlibs")
