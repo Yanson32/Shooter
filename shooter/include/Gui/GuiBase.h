@@ -11,7 +11,6 @@ class GuiBase: public tgui::Panel
         virtual ~GuiBase();
         const int id = -1;
     protected:
-        tgui::Panel::Ptr spacer;
         tgui::HorizontalLayout::Ptr tabLayout;
         tgui::HorizontalLayout::Ptr buttonLayout;
         int buttonTextSize = 30;

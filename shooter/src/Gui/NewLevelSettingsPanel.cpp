@@ -73,7 +73,7 @@ NewLevelSettingsPanel::NewLevelSettingsPanel()
     backButton->connect("pressed", [&](){
         GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::MAP_LOADER);
     });
-    buttonLayout->add(spacer);
+    buttonLayout->addSpace(1);
     buttonLayout->add(okButton);
     buttonLayout->add(backButton);
 }

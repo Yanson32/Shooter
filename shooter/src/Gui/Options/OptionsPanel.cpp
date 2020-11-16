@@ -97,15 +97,15 @@ multiPlayerSettingsPanel(new MultiPlayerSettingsPanel())
         closeBtn->getRenderer()->setBackgroundColor(grey);
         buttonLayout->add(backBtn);
         buttonLayout->add(closeBtn);
-        buttonLayout->add(spacer);
+        buttonLayout->addSpace(1);
 
     }
     else
     {
         getRenderer()->setBackgroundColor(sf::Color::Transparent);
-        buttonLayout->add(spacer);
+        buttonLayout->addSpace(1);
         buttonLayout->add(closeBtn);
-        buttonLayout->add(spacer);
+        buttonLayout->addSpace(1);
     }
 
    tabs->select("General");
