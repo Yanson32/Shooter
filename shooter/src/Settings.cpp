@@ -6,7 +6,7 @@ namespace Settings
     sf::Vector2f buttonSize(300, 50);
     sf::Vector2f screen(800, 450);
     sf::String name = "Player";
-    sf::String difficulty = "Normal";
+    sf::String difficulty = "Medium";
     int effectVolume = 10;
     int musicVolume = 10;
     sf::Keyboard::Key up = sf::Keyboard::W;
