@@ -21,7 +21,10 @@ namespace Gui
         B2_CIRCLE_SHAPE,
         B2_JOINT,
         B2_PAIR,
-        PLAYER_INFO
+        PLAYER_INFO,
+	PLAYER_INFO_OK_BUTTON,
+	WORLD_SELECT_OK_BUTTON,
+	WORLD_1,    
     };
 }
 #endif // ID_H_INCLUDED

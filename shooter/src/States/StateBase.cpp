@@ -19,6 +19,7 @@
 #include "Gui/MapLoader.h"
 #include "Gui/NewLevelSettingsPanel.h"
 #include "Gui/PlayerInfo.h"
+#include "Gui/WorldSelect.h"
 #include "States/LevelSelectState.h"
 #include "States/WorldSelectState.h"
 #include "config.h"
@@ -198,6 +199,19 @@ void StateBase::handleGUEvent(GU::Engin::Engin& engin, GU::Evt::EventPtr event)
                     }
                 }
                 break;
+		case Gui::id::PLAYER_INFO_OK_BUTTON:
+		    if(panel->id != Gui::id::PLAYER_INFO_OK_BUTTON)
+                    {
+                        gui.removeAllWidgets();
+                        std::shared_ptr<WorldSelect> tempPanel = std::shared_ptr<WorldSelect>(new WorldSelect());
+                        //tempPanel->init();
+                        panel = tempPanel;
+                        gui.add(panel);
+                    }
+
+		
+		
+		break;
             }
         }
         break;

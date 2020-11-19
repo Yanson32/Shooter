@@ -45,7 +45,8 @@ PlayerInfo::PlayerInfo()
         Settings::name = text;
         Settings::difficulty = difficultyBox->getSelectedItem().toAnsiString();
 
-        GU::Evt::EventManager::inst().Post<GU::Evt::PushState>(States::Id::WORLD_SELECT_STATE);
+        GU::Evt::EventManager::inst().Post<GU::Evt::Click>(Gui::id::PLAYER_INFO_OK_BUTTON);
+
     });
 
     buttonLayout->add(backButton);

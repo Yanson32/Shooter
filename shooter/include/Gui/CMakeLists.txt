@@ -4,6 +4,7 @@ set(FILES   "${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/GuiBase.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/PlayerInfo.h"
             "${CMAKE_CURRENT_SOURCE_DIR}/id.h"
+	    "${CMAKE_CURRENT_SOURCE_DIR}/WorldSelect.h"
 
 )
 

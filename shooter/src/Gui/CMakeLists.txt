@@ -3,6 +3,9 @@ set(FILES   "${CMAKE_CURRENT_SOURCE_DIR}/IntroPanel.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/NewLevelSettingsPanel.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/GuiBase.cpp"
             "${CMAKE_CURRENT_SOURCE_DIR}/PlayerInfo.cpp"
+	    "${CMAKE_CURRENT_SOURCE_DIR}/WorldSelect.cpp"
+	    
+
 )
 
 set(SUB_DIRECTORIES "Editor" "Options"
